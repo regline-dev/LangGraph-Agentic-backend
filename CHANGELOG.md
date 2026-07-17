@@ -5,6 +5,30 @@ PDF 모드용 LangGraph Agentic 백엔드 계획·구조·구현 변경 이력.
 
 ---
 
+## 2026-07-17 (v3) — Phase 0.5 완료
+
+**변경 파일**: ingest/load_pdf.py, ingest/chunk.py, ingest/index_documents.py, app/tools/search_documents.py, tests/test_ingest.py, tests/fixtures/sample.pdf, Docs/20260717_LangGraph-Agentic-backend_Phase0.5_계획.md
+
+**변경 내용**: Phase 0.5 — PDF 일방향 인제스트로 검색 연료 파이프라인 검증 완료
+
+- 샘플 PDF를 로드·청킹한 뒤 FakeEmbedding과 Qdrant(`pdf_chunks`)에 적재
+- `search_documents`로 연차 관련 쿼리 1건이 검색되는지 TDD로 확인 (`pytest` 4건 통과)
+- 실 LLM 임베딩·LangGraph 루프는 아직 없음 (Phase 1에서 연결)
+
+---
+
+## 2026-07-17 (v2) — Phase 0 완료
+
+**변경 파일**: app/main.py, app/config.py, tests/test_health.py, pyproject.toml, .env.example, Docs/20260717_LangGraph-Agentic-backend_Phase0_계획.md
+
+**변경 내용**: Phase 0 — FastAPI 뼈대와 `GET /health` 검증 완료
+
+- `app/main.py`에 FastAPI 앱과 `/health`(`{"status":"ok"}`) 추가
+- `tests/test_health.py` TDD로 작성 후 `pytest` 1건 통과
+- `pyproject.toml`·`.env.example`로 로컬 설치·실행 규약 정리 (기본 포트 8005)
+
+---
+
 ## 2026-07-17 (v1)
 
 **변경 파일**: LangGraph-Agentic-backend/README.md, LangGraph-Agentic-backend/CHANGELOG.md

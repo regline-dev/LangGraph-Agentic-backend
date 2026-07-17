@@ -8,31 +8,34 @@
 
 ## 1. 전체 폴더 구조
 
-현재는 README와 CHANGELOG 착수 단계이며, 아래 구조는 Phase 1 구현 시점의 기준안이다.
+현재 **Phase 0.5 완료** — FastAPI `/health`와 PDF 일방향 인제스트(로드→청킹→FakeEmbedding→Qdrant)까지 검증됐다. 아래는 이후 Phase 기준안이다.
 
 ```text
 LangGraph-Agentic-backend/
 ├── app/                         # FastAPI 애플리케이션
-│   ├── main.py                  # /agent/chat 엔드포인트 진입점
+│   ├── main.py                  # 앱 진입점 (Phase 0: /health)
+│   ├── config.py                # 환경변수 로딩 (Phase 0)
 │   ├── api/
-│   │   └── agent.py             # 요청/응답 라우터
+│   │   └── agent.py             # 요청/응답 라우터 (Phase 1.5)
 │   ├── graph/
 │   │   ├── state.py             # LangGraph State 타입
 │   │   ├── nodes.py             # LLM 판단 노드, Tool 실행 노드
 │   │   └── workflow.py          # StateGraph 구성
 │   ├── tools/
-│   │   └── search_documents.py  # PDF 문서 검색 Tool
-│   ├── schemas/
-│   │   └── agent.py             # request/response 모델
-│   └── config.py                # 환경변수 로딩
+│   │   └── search_documents.py  # PDF 문서 검색 (Phase 0.5 검증용)
+│   └── schemas/
+│       └── agent.py             # request/response 모델
 │
-├── ingest/                      # Phase 0.5: PDF 로드/청킹/임베딩
-│   ├── load_pdf.py              # PDF 로더
-│   ├── chunk.py                 # 청킹 규칙
-│   └── index_documents.py       # Vector Store 적재 스크립트
+├── ingest/                      # Phase 0.5: PDF 로드/청킹/임베딩 ✅
+│   ├── load_pdf.py              # PDF 로더 (pypdf)
+│   ├── chunk.py                 # 고정 길이 청킹 (Default A)
+│   └── index_documents.py       # FakeEmbedding + Qdrant 적재
 │
 ├── tests/                       # TDD 테스트
-│   ├── test_search_documents.py
+│   ├── fixtures/sample.pdf      # Phase 0.5 샘플 PDF
+│   ├── test_health.py           # Phase 0: /health
+│   ├── test_ingest.py           # Phase 0.5: 로드·청킹·인덱싱·검색
+│   ├── test_search_documents.py # (Phase 1)
 │   ├── test_graph_workflow.py
 │   └── test_agent_api.py
 │
@@ -207,14 +210,21 @@ QDRANT_COLLECTION=pdf_chunks
 
 ## 8. 개발 순서
 
-### Phase 0.5 — 인제스트 Default A
+### Phase 0 — FastAPI 뼈대 ✅
 
-1. 샘플 PDF 로드
-2. 청킹
-3. 임베딩
-4. Vector Store 적재
+1. `pyproject.toml`, `.env.example`, `app/main.py`, `app/config.py`
+2. `GET /health` — TDD (`tests/test_health.py`)
+3. 로컬 실행: `pip install -e ".[dev]"` → `pytest` → `python -m app.main`
 
-목적은 인제스트 방식을 확정하는 것이 아니라, Phase 1 검색 Agentic 구현에 필요한 검색 연료를 준비하는 것이다.
+### Phase 0.5 — 인제스트 Default A ✅
+
+1. 샘플 PDF 로드 (`ingest/load_pdf.py`, `tests/fixtures/sample.pdf`)
+2. 고정 길이 청킹 (`ingest/chunk.py`)
+3. 학습용 FakeEmbedding + Qdrant `pdf_chunks` 적재 (`ingest/index_documents.py`)
+4. `search_documents`로 쿼리 1건 검색 검증 (`tests/test_ingest.py`)
+
+임베딩은 API 키 없이 pytest가 돌아가도록 FakeEmbedding을 쓴다. 실임베딩(OpenAI/Google 등)은 이후 교체한다.  
+목적은 인제스트 A/B를 확정하는 것이 아니라, Phase 1 검색 Agentic에 필요한 검색 연료 파이프라인을 만드는 것이다.
 
 ### Phase 1 — 검색 Agentic
 
@@ -238,8 +248,8 @@ QDRANT_COLLECTION=pdf_chunks
 - [ ] PDF 검색 경로가 단순 `retriever → LLM`이 아니라 LangGraph Tool 루프인지 로그로 확인
 - [ ] Tool 0회/1회/2회 테스트가 통과
 - [ ] `/agent/chat` 응답이 `answer`와 `citations` 계약을 지킴
-- [ ] PDF 청크가 FAQ `qa_*` 컬렉션에 들어가지 않음
-- [ ] 인제스트 A/B가 아직 미결정이라는 상태가 문서에 유지됨
+- [x] PDF 청크가 FAQ `qa_*`가 아닌 별도 컬렉션 `pdf_chunks`에 적재됨 (Phase 0.5)
+- [x] 인제스트 A/B가 아직 미결정(Open)이며 Default A만 구현됨 (Phase 0.5)
 
 ---
 
