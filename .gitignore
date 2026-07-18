@@ -9,3 +9,7 @@ venv/
 .ruff_cache/
 dist/
 build/
+
+# 업로드 원본 PDF는 커밋하지 않음 (폴더는 .gitkeep으로 유지)
+data/uploads/*
+!data/uploads/.gitkeep

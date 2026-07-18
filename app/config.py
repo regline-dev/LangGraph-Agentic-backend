@@ -1,4 +1,4 @@
-"""환경변수 로딩 — Phase 0에서는 서버 호스트·포트만 사용."""
+"""환경변수 로딩 — 서버·Groq·Vector Store."""
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -10,6 +10,16 @@ class Settings(BaseSettings):
 
     app_host: str = "0.0.0.0"
     app_port: int = 8005
+
+    # Groq (검색 판단 LLM)
+    groq_api_key: str = ""
+    groq_model: str = "llama-3.3-70b-versatile"
+
+    # Vector Store — Chroma처럼 로컬 PATH 우선, 비면 HOST:PORT(Docker)
+    qdrant_path: str = ""
+    qdrant_host: str = "localhost"
+    qdrant_port: int = 6333
+    qdrant_collection: str = "pdf_chunks"
 
 
 def get_settings() -> Settings:

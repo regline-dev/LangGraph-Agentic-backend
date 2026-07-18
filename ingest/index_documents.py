@@ -1,16 +1,86 @@
-"""인덱싱 — 임베딩 후 Qdrant(pdf_chunks) 적재. FAQ qa_*와 분리."""
+"""인덱싱 — 임베딩 후 Qdrant(pdf_chunks) 적재. FAQ qa_*와 분리.
+
+PDF 실경로 원칙:
+  업로드 → data/uploads/원본.pdf 저장 → load_pdf_pages → 청킹 → Qdrant
+"""
 
 from __future__ import annotations
 
 import hashlib
 import math
 import re
+import shutil
+from pathlib import Path
 from typing import Protocol
 
 from qdrant_client import QdrantClient
 from qdrant_client.http import models as qmodels
 
-from ingest.chunk import DocumentChunk
+from ingest.chunk import DocumentChunk, chunk_pages
+from ingest.load_pdf import load_pdf_pages
+
+# 프로젝트 루트/data/uploads — README Locked 실경로
+DEFAULT_UPLOADS_DIR = Path(__file__).resolve().parent.parent / "data" / "uploads"
+
+
+def store_upload(source_path: Path | str, *, uploads_dir: Path | None = None) -> Path:
+    """업로드 소스를 uploads 디렉터리에 원본 파일명으로 저장하고 경로를 반환한다.
+
+    Args:
+        source_path: 사용자가 올린(또는 지정한) PDF 경로
+        uploads_dir: 저장 디렉터리 (기본: data/uploads)
+
+    Raises:
+        FileNotFoundError: 소스가 없을 때
+        ValueError: PDF가 아닐 때
+    """
+    source = Path(source_path)
+    if not source.exists():
+        raise FileNotFoundError(f"업로드 소스가 없습니다: {source}")
+    if source.suffix.lower() != ".pdf":
+        raise ValueError(f"PDF만 저장할 수 있습니다: {source}")
+
+    target_dir = (uploads_dir or DEFAULT_UPLOADS_DIR).resolve()
+    target_dir.mkdir(parents=True, exist_ok=True)
+    destination = target_dir / source.name
+    shutil.copy2(source, destination)
+    return destination
+
+
+def ingest_pdf(
+    pdf_path: Path | str,
+    *,
+    client: QdrantClient,
+    collection_name: str,
+    embedder: Embedder,
+    uploads_dir: Path | None = None,
+    chunk_size: int = 200,
+    chunk_overlap: int = 40,
+) -> int:
+    """uploads 아래 PDF만 로드→청킹→Qdrant 적재한다. 적재 개수를 반환.
+
+    tests/fixtures 등 uploads 밖 경로로 직접 호출하면 ValueError.
+    """
+    path = Path(pdf_path).resolve()
+    allowed_root = (uploads_dir or DEFAULT_UPLOADS_DIR).resolve()
+
+    if not path.exists():
+        raise FileNotFoundError(f"PDF가 없습니다: {path}")
+    try:
+        path.relative_to(allowed_root)
+    except ValueError as exc:
+        raise ValueError(
+            f"PDF는 uploads 디렉터리 아래여야 합니다: {allowed_root} (받은 경로: {path})"
+        ) from exc
+
+    pages = load_pdf_pages(path)
+    chunks = chunk_pages(pages, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    return index_chunks(
+        chunks,
+        client=client,
+        collection_name=collection_name,
+        embedder=embedder,
+    )
 
 
 class Embedder(Protocol):
