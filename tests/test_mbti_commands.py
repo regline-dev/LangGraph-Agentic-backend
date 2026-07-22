@@ -68,6 +68,24 @@ def test_help_does_not_catch_유형별_해석() -> None:
     assert try_handle_mbti_command("재해석", session_id="s1", memory=memory) is None
 
 
+def test_help_does_not_catch_title_mbti_해석해줘() -> None:
+    """「제목 + MBTI로 해석해줘」는 설정 안내가 아니라 재해석 경로."""
+    memory = FableSessionMemory()
+    memory.set_mbti("s1", "INFP")
+    assert (
+        try_handle_mbti_command(
+            "늑대와 어린양 MBTI로 해석해줘",
+            session_id="s1",
+            memory=memory,
+        )
+        is None
+    )
+    assert (
+        try_handle_mbti_command("MBTI로 해석해줘", session_id="s1", memory=memory)
+        is None
+    )
+
+
 def test_standalone_mbti_without_intent_returns_none() -> None:
     """동사 없는 단독 mbti는 vague 되묻기로 넘김."""
     memory = FableSessionMemory()

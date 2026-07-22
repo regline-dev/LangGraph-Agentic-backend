@@ -58,6 +58,22 @@ def test_modern_with_mbti_uses_llm() -> None:
     assert result["citations"] == []
 
 
+def test_natural_mbti로_해석해줘_with_mbti_uses_llm() -> None:
+    """자연어 「MBTI로 해석해줘」도 유형별 재해석."""
+    memory = FableSessionMemory()
+    memory.set_mbti("s1", "INFP")
+    result = try_handle_verbatim_body(
+        "늑대와 어린양 MBTI로 해석해줘",
+        session_id="s1",
+        memory=memory,
+        known_titles=TITLES,
+        fetch_fn=_fetch,
+        reinterpret_fn=_fake_llm,
+    )
+    assert result is not None
+    assert result["answer"] == "FAKE-INFP:늑대와 어린양"
+
+
 def test_keyword_한마디_결론_is_modern() -> None:
     memory = FableSessionMemory()
     result = try_handle_verbatim_body(

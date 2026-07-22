@@ -40,8 +40,10 @@ def _is_mbti_help_request(normalized: str) -> bool:
         return False
     if normalized in _HELP_EXACT:
         return True
-    # 유형별 해석 / 재해석은 안내가 아니라 verbatim 경로
+    # 유형별 해석 / 재해석 / 「MBTI로 해석」은 안내가 아니라 verbatim 경로
     if "유형별해석" in normalized or "재해석" in normalized:
+        return False
+    if "해석" in normalized:
         return False
     return _HELP_INTENT_PATTERN.search(normalized) is not None
 

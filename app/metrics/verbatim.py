@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from collections.abc import Callable
 from typing import Any
 
@@ -21,6 +22,10 @@ def wants_mbti_reinterpret(question: str) -> bool:
     if "MBTI 유형별 해석" in text or "유형별 해석" in text:
         return True
     if "재해석" in text:
+        return True
+    # 「MBTI로 해석해줘」 등 자연어
+    compact = re.sub(r"\s+", "", text.lower())
+    if "mbti" in compact and "해석" in compact:
         return True
     return False
 
