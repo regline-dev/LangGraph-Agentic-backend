@@ -16,3 +16,7 @@ build/
 # 업로드 원본 PDF는 커밋하지 않음 (폴더는 .gitkeep으로 유지)
 data/uploads/*
 !data/uploads/.gitkeep
+
+# PDF 생성 임시 파일 (시퀀스·tmp PDF)
+data/tmp/
+data/fable_id_seq.txt

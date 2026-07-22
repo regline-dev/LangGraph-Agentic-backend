@@ -4,9 +4,9 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# 빌드에 필요할 수 있는 최소 도구 (일부 wheel 컴파일용)
+# gcc: 일부 wheel 컴파일 · fonts-nanum: 우화 PDF 한글 (reportlab TTF)
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends gcc \
+    && apt-get install -y --no-install-recommends gcc fonts-nanum \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PYTHONUNBUFFERED=1 \
@@ -22,8 +22,8 @@ COPY ingest ./ingest
 RUN pip install --upgrade pip \
     && pip install .
 
-# 업로드 실경로 폴더 (런타임 볼륨 마운트 권장)
-RUN mkdir -p data/uploads
+# 업로드·생성 tmp (런타임 볼륨 마운트 권장)
+RUN mkdir -p data/uploads data/tmp/fable_pdf
 
 EXPOSE 8010
 

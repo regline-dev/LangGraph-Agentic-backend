@@ -14,6 +14,11 @@ dependencies = [
     "openai>=1.50.0",
     "sentence-transformers>=3.0.0",
     "pyyaml>=6.0.0",
+    # 2차-2 우화 PDF 생성
+    "reportlab>=4.0.0",
+    "matplotlib>=3.8.0",
+    "numpy>=1.26.0",
+    "langchain-groq>=0.2.0",
 ]
 
 [project.optional-dependencies]

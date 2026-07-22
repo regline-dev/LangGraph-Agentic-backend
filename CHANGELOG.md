@@ -5,6 +5,84 @@ PDF 모드용 LangGraph Agentic 백엔드 계획·구조·구현 변경 이력.
 
 ---
 
+## 2026-07-23 (v64)
+
+**변경 파일**: Docs/20260723_입력단에서_메타데이터_생성하여_여러_형식의_PDF_문서_만들기.md
+
+**변경 내용**: 입력단이 메타 스펙을 넘겨 여러 PDF 타입을 만드는 방향 — **설계 정리 문서만** 작성 (구현 전)
+
+- 하드코딩 메타 → 입력단에서 스키마·키:밸류·내용평가·영상적합도·키워드 전달
+- 이솝 = 첫 타입 · 내일 §9 미결 확인 후 Phase 착수
+
+---
+
+## 2026-07-23 (v63)
+
+**변경 파일**: admin_frontend_react (PdfGenerate·agentClient·fableGenerate), README.md, Docs/20260722_순번27이후_어드민PDF모드_입력단_계획.md
+
+**변경 내용**: 2차 순번 3 완료 — 어드민 `/pdf/generate`에서 원문 붙여넣기→채점→화면 PDF 다운로드·미리보기
+
+- Agent `POST /fable/generate-pdf` 연동 · 프론트 120초 · 미리보기는 클릭 후 우측만
+- 다음 권장: 실키로 1건 E2E(H) 확인 후 순번 4~
+
+---
+
+## 2026-07-23 (v62)
+
+**변경 파일**: app/api/fable.py, app/fable_pdf/*, app/schemas/fable.py, tests/test_fable_*.py, pyproject.toml, Dockerfile, README.md, Docs/20260722_순번27이후_어드민PDF모드_입력단_계획.md
+
+**변경 내용**: 2차 순번 2 완료 — `POST /fable/generate-pdf`로 원문→Groq 채점→PDF 바이너리 응답
+
+- 서버 자동 채번(`data/fable_id_seq.txt`) · tmp 즉시삭제+TTL 24h · LLM 한도 100초
+- 성공: `application/pdf` + `X-Fable-Id`/`Title` · 빈 원문 400 · 실패 502
+- TDD 8통과 · Docker에 `fonts-nanum` · reportlab/matplotlib/langchain-groq 의존성
+
+---
+
+## 2026-07-22 (v61)
+
+**변경 파일**: admin_frontend_react (Login·App·PdfGenerate·PdfVector·adminWorkspace·테스트), README.md
+
+**변경 내용**: 2차 순번 1 완료 — 로그인 FAQ|/PDF 2버튼 + `/pdf` 라우트·PDF 모드 사이드 메뉴
+
+- FAQ→`/main` · PDF→`/pdf`→`/pdf/generate` · 벡터 뼈대 `/pdf/vector`
+- 딥링크 시 `guest` 저장 · TDD 17통과
+
+---
+
+## 2026-07-22 (v60)
+
+**변경 파일**: README.md, Docs/20260722_순번27이후_어드민PDF모드_입력단_계획.md
+
+**변경 내용**: 1차 백엔드(순번 27)에서 끊고 PDF 프론트는 **2차 순번 1부터** · 로그인 화면 FAQ/PDF 분기 UX 확정
+
+- 구 28~35 → 2차 1~8
+- 로그인 제목·FAQ(하늘)·PDF(분홍) 2등분 버튼
+- **라우트** — FAQ=`/main` 유지 · PDF=`/pdf/*` · `/faq` 신설 안 함 (주소창 `/main` 직입 OK)
+- `.gitignore`에 `data/tmp/` · `data/fable_id_seq.txt` 추가
+- 딥링크 디폴트 아이디 = **`guest` 저장** (표시만 fallback 아님)
+- PDF 생성 LLM: Groq · 프론트 타임아웃 **120초** · 서버 **100초** · 실패 시 다시 시도
+- PDF 저장: `data/tmp/fable_pdf/` · 즉시삭제+TTL 24h · 체크 시에만 `data/uploads/`
+- **2차-7 배치 보류** · MVP는 **1건 생성 + 화면 PDF 다운로드** 우선
+- 우화 ID는 **서버 자동 채번** (UI 입력란 없음)
+- `/pdf/generate`: 완료 후 다운로드·미리보기·다시만들기 · **미리보기 클릭 시에만** 우측 PDF
+- 생성 화면 uploads 체크 제거 (벡터화와 분리)
+- **DB 테이블은 1건 생성 통과 후** 계획 (현재 MVP는 파일 시퀀스)
+
+---
+
+## 2026-07-22 (v59)
+
+**변경 파일**: Docs/20260722_순번27이후_어드민PDF모드_입력단_계획.md, README.md
+
+**변경 내용**: 순번 27 이후를 28~35로 세분 — 어드민 FAQ|PDF 분리·PDF 입력단·hub 딥링크 계획 확정
+
+- 루트 `:3002`=로그인 유지, hub 카드는 `/faq`·`/pdf` index 직행
+- FAQ 벡터(엑셀+QA)와 PDF 벡터는 선택 순간부터 다른 페이지
+- 구 순번 25(배치+입력단) → 28~35 분해
+
+---
+
 ## 2026-07-22 (v58)
 
 **변경 파일**: Docs/20260722_LangGraph-Agentic-backend_순번23_compose_계획.md, docker-compose.hetzner.yml, .env.hetzner.example, tests/test_hetzner_compose.py, README.md, .gitignore

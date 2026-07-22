@@ -13,10 +13,11 @@
 상태: `[ ]` 미완료 · **[보류]** · `[완료]` 완료 · `[]` 결번  
 검증: `자동` = pytest로 충분 · `H` = 직접 확인(실키·UI·품질·배포) · `-` = 문서/원칙(별도 테스트 없음)
 
-**다음:** **24**(배포 기동·`/health`·PDF `/agent/chat`) · 순번 25는 **배포 완료 후**  
+**다음:** **2차 순번 3 H 확인** (원문 1건 → 화면 다운로드) 후 **2차 순번 4** PDF 벡터화 UI  
 ※ PDF Agent 임베딩 **bge-m3** (`pdf_chunks_bge`). FAQ Chroma bge-m3 교체는 **포기**(MiniLM 유지).  
 ※ 지표·MBTI·한마디 결론: `Docs/20260720_…내용평가…계획.md` / 실임베딩: `Docs/20260720_순번21_bge-m3_실임베딩_계획.md`  
-※ **PDF 안 이솝 vs ARKK** 분기·ARKK ingest: `Docs/20260721_PDF모드_도메인라우터_ARKK_ingest_계획.md` (§4-1) · **완료**
+※ **PDF 안 이솝 vs ARKK** 분기·ARKK ingest: `Docs/20260721_PDF모드_도메인라우터_ARKK_ingest_계획.md` (§4-1) · **완료**  
+※ **2차 PDF 프론트:** `Docs/20260722_순번27이후_어드민PDF모드_입력단_계획.md` (2차 순번 1~)
 
 
 | 검증 | 상태 | 순번 | 작업 |
@@ -46,9 +47,25 @@
 | H | [완료] | 22 | **배포 전** — `Dockerfile` + `.dockerignore` (`app`/`ingest`만 이미지에 넣고 `tests/` 제외) |
 | H | [완료] | 23 | **배포 전** — compose/환경변수 운영 규약 (`APP_PORT=8010`, `QDRANT_*`, `GROQ_*`) |
 | H | [ ] | 24 | **배포** — 서버(또는 compose) 기동 후 `GET /health` · PDF `/agent/chat` 확인 |
-| H | [ ] | 25 | **배치 인제스트 + 입력단** — 우화 312편 등. **배포(22→24) 완료 후** (업로드 UI와 같이) |
+| - | [분해→2차] | 25 | **(구)** 배치 인제스트 + 입력단 → **2차 프론트 순번 1~8로 분해** |
 | 자동 | [완료] | 26 | **ARKK ingest** — holdings PDF → bge-m3 → Qdrant `arkk_holdings_bge` (우화 컬렉션 분리) |
 | H | [완료] | 27 | **PDF 도메인 라우터** — LLM이 이솝 vs ARKK 먼저 판별 → 이솝만 규칙 라우터, ARKK는 holdings 벡터 직행 |
+
+**—— 1차 백엔드 종료 (순번 27) ——**
+
+### 2차 · LangGraph-Agentic PDF 프론트엔드 페이지 개발
+순번은 **이 섹션만 1부터** (1차 백엔드 1~27과 번호가 겹쳐도 구간으로 구분).
+
+| 검증 | 상태 | 순번 | 작업 |
+|------|------|------|------|
+| H | [완료] | 1 | **어드민** — 로그인 FAQ\|PDF 2버튼 (`/main`·`/pdf`) + PDF 라우트 (레이아웃 재사용, 하늘/분홍) |
+| 자동 | [완료] | 2 | **API** — `POST /fable/generate-pdf` (`run_pipeline` 래핑, TDD) |
+| H | [완료·H확인] | 3 | **어드민 PDF** — 원문 붙여넣기 → 생성 완료 → **화면에서 PDF 다운로드** |
+| H | [ ] | 4 | **어드민 PDF** — PDF 벡터화 화면 (FAQ 엑셀+QA 벡터화와 분리) |
+| H | [ ] | 5 | **regline-hub** — 카드 href 최종 (`chatbot-admin`→`/main`, `agentic-rag`→`/pdf`) |
+| 자동/H | [ ] | 6 | **딥링크** — `admin_user_id` 없으면 **`guest` localStorage 저장** (로그인으로 안 보냄) |
+| H | **[보류]** | 7 | **배치 인제스트** — 우화 312편. **1건 생성·다운로드 정상 후** |
+| H | [ ] | 8 | **(선택)** 생성 PDF → `data/uploads` → ingest 한 버튼 |
 
 ---
 
@@ -107,10 +124,46 @@ Args:
 - metadata 질문(내용평가·키워드 등)은 검색을 안 타므로 **유사도 해당 없음** (되묻기/모름과 구분). 상세: `Docs/20260720_LangGraph-Agentic-backend_내용평가_키워드_라우팅_계획.md`
 - FAQ Chroma `bge-m3` 교체: **포기** (하드코딩·품질보정(threshold/키워드합산) 재검증 부담). FAQ는 MiniLM 유지
 
+순번 2차(프론트) 설명 — 어드민 FAQ|PDF · 입력단 · hub ---------------
+상세 계획: `Docs/20260722_순번27이후_어드민PDF모드_입력단_계획.md`  
+**1차 백엔드(1~27) 종료 후**, 아래는 **2차 순번 1~** (번호 다시 시작).
+
+```text
+로그인: :3002/ → /login (유지)
+hub 카드: :3002/main · :3002/pdf 딥링크 (아이디 없으면 **guest** 저장)
+
+[ FAQ 운영 ]              [ PDF 생성 ]
+  모니터링 · FAQ벡터화      PDF생성 · PDF벡터화
+  (엑셀+QA / Chroma)        (문서 / Qdrant)  ← 완전 별개
+  ※ 모니터링 컨텐츠 = 기존 Monitoring 재사용
+```
+
+| 2차 순번 | 요지 |
+|----------|------|
+| 1 | 로그인 FAQ→`/main` · PDF→`/pdf` · 하늘/분홍 구분감 |
+| 2 | `POST /fable/generate-pdf` (CLI 파이프라인 래핑) **[완료]** |
+| 3 | 원문 → PDF 다운로드·미리보기 UI **[완료·H확인]** |
+| 4 | PDF 벡터화 UI (FAQ 벡터화와 분리) |
+| 5 | hub 카드 → `/main`·`/pdf` |
+| 6 | 딥링크 시 `admin_user_id` 없으면 **`guest` 저장** |
+| 7 | **[보류]** 우화 312편 배치 — 1건 정상 후 |
+| 8 | (선택) 생성 PDF → uploads → ingest |
+
+**2차-2 API 요약**
+
+| 항목 | 내용 |
+|------|------|
+| `POST /fable/generate-pdf` | `{ "body_text", "source_note?" }` → `application/pdf` |
+| 헤더 | `X-Fable-Id` · `X-Fable-Title`/`Subtitle`(percent-encoding) |
+| 채번 | `data/fable_id_seq.txt` · tmp `data/tmp/fable_pdf/` · 응답 후 삭제 · TTL 24h |
+| 한도 | 서버 LLM **100초** · 실패 시 **502** |
+
+구 1차-25(배치+입력단) · 구 28~35 표기 → **2차 1~8**.
+
 
 ## 2. 전체 폴더 구조
 
-현재: 순번 1~7·10~18·20·22·23 `[완료]`, 8·9 **[결번]**, 19 **[보류]** — **다음 24 기동 확인** · 21b 조건부
+현재: **1차 백엔드** 1~7·10~18·20·22·23·26·27 `[완료]` · **2차** 순번 1·2·3 `[완료]` · **다음 = 2차-3 H(실키 1건) 후 순번 4**
 
 ```text
 LangGraph-Agentic-backend/
@@ -119,7 +172,9 @@ LangGraph-Agentic-backend/
 │   ├── config.py                # 환경변수 로딩 (QDRANT_PATH 포함)
 │   ├── qdrant_factory.py        # 로컬 PATH / HOST:PORT 클라이언트 생성
 │   ├── api/
-│   │   └── agent.py             # 요청/응답 라우터 (P1-API)
+│   │   ├── agent.py             # POST /agent/chat
+│   │   └── fable.py             # POST /fable/generate-pdf (2차-2)
+│   ├── fable_pdf/               # 우화 채점·PDF 생성 (시퀀스·tmp·파이프라인)
 │   ├── graph/                   # P1: LangGraph (검색 판단)
 │   │   ├── state.py             # Agent State
 │   │   ├── nodes.py             # 판단·Tool·최종답 노드
@@ -132,7 +187,8 @@ LangGraph-Agentic-backend/
 │   │   ├── search_holdings.py   # ARKK arkk_holdings_bge 검색
 │   │   └── lookup_fable_metadata.py
 │   └── schemas/
-│       └── agent.py             # request/response (+ session_id)
+│       ├── agent.py             # request/response (+ session_id)
+│       └── fable.py             # generate-pdf 요청 스키마
 │
 ├── ingest/                      # P0.5: PDF 로드/청킹/임베딩
 │   ├── load_pdf.py              # PDF 로더 (pypdf)
@@ -148,8 +204,10 @@ LangGraph-Agentic-backend/
 │   └── ingest_arkk_holdings.py  # ARKK PDF → arkk_holdings_bge
 │
 ├── data/
-│   └── uploads/                 # 업로드된 원본 PDF 저장 (실경로 Locked)
-│       └── ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf  # ARKK 원본 (수동 복사)
+│   ├── uploads/                 # 업로드된 원본 PDF 저장 (실경로 Locked)
+│   │   └── ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf  # ARKK 원본 (수동 복사)
+│   ├── tmp/fable_pdf/           # 생성 PDF 임시 (응답 후 삭제 · TTL 24h)
+│   └── fable_id_seq.txt         # 우화 번호 시퀀스 (gitignore)
 │
 ├── tests/                       # TDD 테스트 (검증만 — 실경로가 아님)
 │   ├── fixtures/sample.pdf      # 테스트용 가짜 입력
@@ -161,10 +219,13 @@ LangGraph-Agentic-backend/
 │   ├── test_arkk_holdings_ingest.py  # ARKK 메타·payload
 │   ├── test_search_documents.py # P1: Tool 단위
 │   ├── test_graph_workflow.py   # P1: Tool 0/1회
-│   └── test_agent_api.py        # (P1-API)
+│   ├── test_agent_api.py        # (P1-API)
+│   ├── test_fable_id_sequence.py
+│   ├── test_fable_tmp_store.py
+│   └── test_fable_generate_pdf.py  # 2차-2 generate-pdf 계약
 │
 ├── docs/                        # 구현 중 보조 문서(필요 시)
-├── Dockerfile                   # 순번 22: 배포 이미지 (app/ingest)
+├── Dockerfile                   # 순번 22: 배포 이미지 (app/ingest) + fonts-nanum
 ├── .dockerignore                # 빌드 context에서 tests·.env 등 제외
 ├── .env.example                 # 로컬 환경변수 예시
 ├── .env.hetzner.example         # Hetzner compose용 예시 (시크릿은 .env.hetzner)
@@ -201,7 +262,7 @@ LangGraph-Agentic-backend/
 
 | 서비스/모듈 | 포트 | 동작 방식 | 역할 | 주 사용 언어/스택 | 구분 |
 |---|---:|---|---|---|---|
-| `agent-api` | 8010 | 상시서버 | `POST /agent/chat` 제공, LangGraph 실행 진입점 | Python, FastAPI | 개발 |
+| `agent-api` | 8010 | 상시서버 | `/agent/chat` · `/fable/generate-pdf` | Python, FastAPI | 개발 |
 | `agent-graph` | - | 내부 그래프 | LLM 판단 → Tool 호출 → Observation → 최종 답변 | Python, LangGraph, LangChain 계열 | 개발 |
 | `search_documents` | - | Tool | PDF Vector Store 검색, citation 근거 반환 | Python, Vector DB client | 개발 |
 | `pdf-ingest` | - | 스크립트/배치 | PDF 로드 → 청킹 → 임베딩 → Vector Store 적재 | Python, PDF loader, embedding client | 개발 |
