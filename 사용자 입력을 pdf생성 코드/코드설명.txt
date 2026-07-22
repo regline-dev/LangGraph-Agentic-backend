@@ -1,0 +1,10 @@
+fable_pdf_generator.py — PDF 생성 (표, 레이더 차트, 스탯 타일, 원문, 오늘날로 치면 등 전부 포함, 방금 드린 최신본)
+
+fable_scorer.py — LLM 채점 (재미도·폭력성·교훈명확도·결말톤·키워드·오늘날로치면·제목/부제 자동 생성)
+
+run_pipeline.py — 위 둘을 연결하는 진입점 (원문 텍스트 파일 하나만 넣으면 채점부터 PDF까지 한 번에)
+
+
+run_pipeline.py
+   ├─ fable_scorer.py       (LLM 채점)
+   └─ fable_pdf_generator.py (PDF 생성 - 방금 수정된 최신본)

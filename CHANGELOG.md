@@ -5,6 +5,70 @@ PDF 모드용 LangGraph Agentic 백엔드 계획·구조·구현 변경 이력.
 
 ---
 
+## 2026-07-22 (v58)
+
+**변경 파일**: Docs/20260722_LangGraph-Agentic-backend_순번23_compose_계획.md, docker-compose.hetzner.yml, .env.hetzner.example, tests/test_hetzner_compose.py, README.md, .gitignore
+
+**변경 내용**: 순번 23 — Hetzner compose에 LangGraph-Agentic-backend·Qdrant 규약 추가, 레거시 regline_hub 제거
+
+- 서비스 `langgraph_agentic`(:8010) · `qdrant`(:6333) · env `QDRANT_HOST=qdrant` · `.env.hetzner.example`
+- Vercel로 옮긴 `regline_hub`(:3003) 블록 삭제
+- 기동·헬스 확인은 순번 24 (CPX22 OOM 주의)
+
+---
+
+## 2026-07-22 (v57)
+
+**변경 파일**: Docs/20260722_LangGraph-Agentic-backend_순번22_Dockerfile_계획.md, Dockerfile, .dockerignore, tests/test_dockerfile.py, README.md
+
+**변경 내용**: 순번 22 — 배포용 `Dockerfile` + `.dockerignore` 완료 (app/ingest만 이미지, tests·.env 제외)
+
+- `EXPOSE 8010` · `uvicorn app.main:app` — compose(23)에서 스택 연결 예정
+- pytest `test_dockerfile` 2통과로 계약 고정
+
+---
+
+## 2026-07-21 (v56) — 우화 312편·입력단은 배포 후
+
+**변경 파일**: README.md
+
+**변경 내용**: 순번 25(우화 312편·업로드 입력단)는 **배포(22→24) 끝난 뒤** 진행. 내일은 배포만
+
+---
+
+## 2026-07-21 (v55) — Phase D PDF 도메인 라우터 (완료)
+
+**변경 파일**: app/graph/domain_router.py, app/graph/runtime.py, app/tools/search_holdings.py, app/graph/groq_decision.py, app/graph/workflow.py, tests/test_domain_router.py
+
+**변경 내용**: PDF 모드에서 **Groq 도메인 분류(이솝 vs ARKK)** 후 이솝만 규칙 라우터, ARKK는 `arkk_holdings_bge` 검색 + Groq Tool 루프
+
+- `classify_pdf_domain` — Groq JSON + 키워드 폴백
+- `run_agent_chat` — holdings 분기 시 catalog·MBTI 등 우화 규칙 스킵
+- pytest `test_domain_router` 8통과, 전체 116통과
+- H: 프론트 PDF 모드 — 우화·ARKK 샘플 질문 정상 확인
+
+---
+
+## 2026-07-21 (v54) — Phase C ARKK ingest (완료)
+
+**변경 파일**: ingest/holdings_metadata.py, ingest/ingest_arkk.py, ingest/arkk_manifest.yaml, scripts/ingest_arkk_holdings.py, app/config.py, ingest/index_documents.py, tests/test_arkk_holdings_ingest.py, pyproject.toml, .env.example
+
+**변경 내용**: ARKK holdings PDF를 **bge-m3·`arkk_holdings_bge`** 로 ingest — manifest·fund·as_of_date 메타 스탬프, 우화 `pdf_chunks_bge`와 분리
+
+- TDD: `test_arkk_holdings_ingest` 7통과
+- CLI: `python scripts/ingest_arkk_holdings.py` → **37청크** 적재 (H 확인)
+- H: 우화·FAQ 회귀, PDF 모니터링(`content_channel=pdf`) 정상
+
+---
+
+## 2026-07-21 (v53) — PDF 도메인 라우터·ARKK ingest (계획)
+
+**변경 파일**: Docs/20260721_PDF모드_도메인라우터_ARKK_ingest_계획.md, README.md
+
+**변경 내용**: Phase C/D **예정 파일 경로**를 계획서·README §2·§4-1에 명시 (ingest_arkk, arkk_manifest, ingest_arkk_holdings 등) — 착수
+
+---
+
 ## 2026-07-21 (v52) — 목록 질문 공백 정규화
 
 **변경 파일**: Docs/20260721_목록질문_공백정규화_계획.md, app/metrics/catalog.py, tests/test_human_test_fixes.py

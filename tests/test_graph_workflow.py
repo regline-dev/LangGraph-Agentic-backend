@@ -90,6 +90,8 @@ def test_tool_one_time_searches_then_answers(tmp_path: Path) -> None:
     assert "leave" in result["answer"].lower() or "fifteen" in result["answer"].lower() or "문서" in result["answer"]
     assert len(result["citations"]) >= 1
     assert result["citations"][0]["source_file"] == "sample.pdf"
+    assert "score" in result["citations"][0]
+    assert isinstance(result["citations"][0]["score"], float)
 
 
 def test_tool_call_cap_stops_infinite_search() -> None:

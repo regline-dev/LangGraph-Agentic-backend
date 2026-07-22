@@ -24,8 +24,25 @@ _SYSTEM_PROMPT = """당신은 PDF 문서 검색 에이전트 판단기다.
 
 규칙:
 - 인사·자기소개·잡담처럼 문서 근거가 불필요하면 need_search=false 이고 answer에 답변을 채운다.
-- 문서 내용(제도·기간·규정 등)이 필요하면 need_search=true, search_query에 검색어, answer는 "".
-- observations(이전 검색 결과)가 있으면 그걸 근거로 need_search=false와 answer를 채우거나, 부족하면 need_search=true로 재검색한다.
+- 우화·PDF 내용·교훈·등장인물 등 문서가 필요하면 need_search=true, search_query에 검색어, answer는 "".
+- observations(이전 검색 결과)가 있으면 그걸 근거로만 answer를 쓴다. 부족하면 need_search=true로 재검색한다.
+- observations가 비어 있는데 문서성 질문이면 절대 지어내지 말고 need_search=true로 검색한다.
+- 검색 결과에도 없으면 need_search=false 와 answer에 "문서에서 관련 내용을 찾지 못했습니다."만 짧게.
+- 외부 지식(다른 유명한 우화 이름 등)을 지어내지 않는다.
+"""
+
+_HOLDINGS_SYSTEM_PROMPT = """당신은 ARK ETF holdings PDF 검색 에이전트 판단기다.
+사용자 질문을 보고 holdings 문서 검색(Tool)이 필요한지 판단한다.
+
+반드시 JSON 객체만 출력한다. 다른 문장·마크다운 설명 금지.
+형식:
+{"need_search": true또는false, "search_query": "검색어", "answer": "최종답변또는빈문자열"}
+
+규칙:
+- 인사·잡담은 need_search=false, answer에 짧게 답한다.
+- 종목·비중·보유·ARKK·ETF 관련 질문은 need_search=true, search_query에 검색어, answer는 "".
+- observations가 있으면 그 숫자·종목명만 근거로 answer를 쓴다. 없는 종목·비중을 지어내지 않는다.
+- 검색 결과에도 없으면 need_search=false 와 "문서에서 관련 내용을 찾지 못했습니다."만 짧게.
 """
 
 
@@ -67,6 +84,7 @@ def make_groq_decide_fn(
     api_key: str,
     model: str,
     client: Any | None = None,
+    system_prompt: str | None = None,
 ) -> DecideFn:
     """Groq를 호출하는 decide_fn을 만든다.
 
@@ -81,6 +99,7 @@ def make_groq_decide_fn(
 
     cleaned_model = (model or "").strip() or "llama-3.3-70b-versatile"
     chat_client = client or _create_groq_client(cleaned_key)
+    prompt = (system_prompt or _SYSTEM_PROMPT).strip()
 
     def decide(state: AgentState) -> dict[str, Any]:
         user_payload = {
@@ -91,7 +110,7 @@ def make_groq_decide_fn(
         completion = chat_client.chat.completions.create(
             model=cleaned_model,
             messages=[
-                {"role": "system", "content": _SYSTEM_PROMPT},
+                {"role": "system", "content": prompt},
                 {
                     "role": "user",
                     "content": json.dumps(user_payload, ensure_ascii=False),
@@ -108,12 +127,17 @@ def make_groq_decide_fn(
     return decide
 
 
-def make_groq_decide_fn_from_settings() -> DecideFn:
+def make_groq_decide_fn_from_settings(*, document_domain: str = "fable") -> DecideFn:
     """app.config Settings로 Groq decide_fn을 만든다."""
     from app.config import get_settings
 
     settings = get_settings()
-    return make_groq_decide_fn(api_key=settings.groq_api_key, model=settings.groq_model)
+    prompt = _HOLDINGS_SYSTEM_PROMPT if document_domain == "holdings" else _SYSTEM_PROMPT
+    return make_groq_decide_fn(
+        api_key=settings.groq_api_key,
+        model=settings.groq_model,
+        system_prompt=prompt,
+    )
 
 
 def _create_groq_client(api_key: str) -> Any:

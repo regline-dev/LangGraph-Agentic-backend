@@ -14,6 +14,7 @@ def _fake_runner(question: str) -> dict:
                 "source_file": "sample.pdf",
                 "page": 1,
                 "snippet": "Annual leave is fifteen days.",
+                "score": 0.87,
             }
         ],
     }
@@ -34,6 +35,8 @@ def test_agent_chat_returns_answer_and_citations() -> None:
         assert body["citations"][0]["source_file"] == "sample.pdf"
         assert body["citations"][0]["page"] == 1
         assert "snippet" in body["citations"][0]
+        assert body["citations"][0]["score"] == 0.87
+        assert body["similarity"] == 0.87
     finally:
         app.dependency_overrides.clear()
 

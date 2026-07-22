@@ -52,11 +52,14 @@ def build_agent_graph(*, decide_fn: DecideFn, search_fn: SearchFn):
     return graph.compile()
 
 
-def build_groq_agent_graph(*, search_fn: SearchFn):
+def build_groq_agent_graph(*, search_fn: SearchFn, document_domain: str = "fable"):
     """운영용: Groq 판단 + 주입된 검색 함수로 그래프를 만든다."""
     from app.graph.groq_decision import make_groq_decide_fn_from_settings
 
-    return build_agent_graph(decide_fn=make_groq_decide_fn_from_settings(), search_fn=search_fn)
+    return build_agent_graph(
+        decide_fn=make_groq_decide_fn_from_settings(document_domain=document_domain),
+        search_fn=search_fn,
+    )
 
 
 def run_agent(graph: Any, *, question: str) -> AgentState:

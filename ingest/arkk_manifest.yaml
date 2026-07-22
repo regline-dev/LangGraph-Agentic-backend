@@ -1,0 +1,16 @@
+# holdings corpus ingest manifest (ARKK only)
+# 규칙: LangGraph/Docs/2026_06_24_계획_RAG_메타데이터_규칙.md
+# PDF 원본: data/uploads/
+
+schemas:
+  holdings: { required: [path, as_of_date], optional: [fund] }
+
+documents:
+  - schema: holdings
+    path: ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf
+    as_of_date: "2025-11-26"
+    fund: ARKK
+    doc_type: holdings
+    loader: pdfplumber
+    chunk_size: 300
+    chunk_overlap: 100

@@ -66,6 +66,7 @@ def make_tool_node(search_fn: SearchFn):
                 "source_file": hit.get("metadata", {}).get("source_file", ""),
                 "page": hit.get("metadata", {}).get("page", 0),
                 "snippet": str(hit.get("page_content", ""))[:200],
+                "score": float(hit.get("score") or 0.0),
             }
             for hit in hits
         ]
@@ -83,13 +84,29 @@ def make_tool_node(search_fn: SearchFn):
     return tool_node
 
 
+_NO_DOC_ANSWER = (
+    "문서에서 관련 내용을 찾지 못했습니다. "
+    "우화 제목과 함께 내용·줄거리·한마디 결론·내용평가 등으로 물어봐 주세요."
+)
+
+
 def final_answer_node(state: AgentState) -> dict[str, Any]:
-    """최종 답변 노드 — 이미 answer가 있으면 유지, 없으면 안내 문구."""
+    """최종 답변 노드 — 이미 answer가 있으면 유지, 없으면 안내 문구.
+
+    검색을 돌렸는데 근거(citations)가 없으면 환각 답을 막는다.
+    """
     answer = (state.get("answer") or "").strip()
-    if not answer:
+    citations = list(state.get("citations") or [])
+    tool_count = int(state.get("tool_call_count") or 0)
+    observations = list(state.get("observations") or [])
+
+    if tool_count > 0 and not citations and not observations:
+        answer = _NO_DOC_ANSWER
+    elif not answer:
         answer = "답변을 생성하지 못했습니다."
+
     return {
         "answer": answer,
-        "citations": list(state.get("citations") or []),
-        "tool_call_count": int(state.get("tool_call_count") or 0),
+        "citations": citations,
+        "tool_call_count": tool_count,
     }

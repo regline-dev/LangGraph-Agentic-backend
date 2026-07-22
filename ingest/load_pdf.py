@@ -37,7 +37,9 @@ def load_pdf_pages(pdf_path: Path | str) -> list[PdfPage]:
 
     for index, page in enumerate(reader.pages, start=1):
         raw_text = page.extract_text() or ""
-        text = " ".join(raw_text.split())
+        # 줄바꿈은 유지 (우화 카드 라벨 파싱용). 줄 안 연속 공백만 정리.
+        lines = [" ".join(line.split()) for line in raw_text.splitlines()]
+        text = "\n".join(line for line in lines if line).strip()
         if text:
             pages.append(PdfPage(text=text, source_file=source_file, page=index))
 

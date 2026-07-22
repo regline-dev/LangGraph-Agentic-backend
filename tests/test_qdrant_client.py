@@ -7,7 +7,11 @@ from pathlib import Path
 import pytest
 
 from app.config import Settings
-from app.qdrant_factory import create_qdrant_client
+from app.qdrant_factory import (
+    create_qdrant_client,
+    get_shared_qdrant_client,
+    reset_shared_qdrant_client,
+)
 
 
 def test_create_qdrant_client_uses_local_path_when_set(tmp_path: Path) -> None:
@@ -70,3 +74,21 @@ def test_create_qdrant_client_trims_blank_path_as_server_mode(
 
     assert created.get("host") == "127.0.0.1"
     assert "path" not in created
+
+
+def test_get_shared_qdrant_client_reuses_same_instance(tmp_path: Path) -> None:
+    """로컬 PATH는 공유 클라이언트 1개만 쓴다 (이중 open → 502 방지)."""
+    reset_shared_qdrant_client()
+    storage = tmp_path / "qdrant_shared"
+    settings = Settings(
+        qdrant_path=str(storage),
+        qdrant_host="unused",
+        qdrant_port=1,
+        qdrant_collection="pdf_chunks",
+    )
+    try:
+        first = get_shared_qdrant_client(settings)
+        second = get_shared_qdrant_client(settings)
+        assert first is second
+    finally:
+        reset_shared_qdrant_client()

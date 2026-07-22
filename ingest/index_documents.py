@@ -54,8 +54,8 @@ def ingest_pdf(
     collection_name: str,
     embedder: Embedder,
     uploads_dir: Path | None = None,
-    chunk_size: int = 200,
-    chunk_overlap: int = 40,
+    chunk_size: int = 300,
+    chunk_overlap: int = 60,
 ) -> int:
     """uploads 아래 PDF만 로드→청킹→Qdrant 적재한다. 적재 개수를 반환.
 
@@ -143,12 +143,7 @@ def index_chunks(
         qmodels.PointStruct(
             id=_stable_point_id(chunk.metadata["chunk_id"]),
             vector=vector,
-            payload={
-                "page_content": chunk.page_content,
-                "source_file": chunk.metadata["source_file"],
-                "page": chunk.metadata["page"],
-                "chunk_id": chunk.metadata["chunk_id"],
-            },
+            payload=_chunk_payload(chunk),
         )
         for chunk, vector in zip(chunks, vectors, strict=True)
     ]
@@ -156,11 +151,68 @@ def index_chunks(
     return len(points)
 
 
+def _chunk_payload(chunk: DocumentChunk) -> dict:
+    """청크 payload — 기본 필드 + 우화 metadata(있으면)."""
+    payload: dict = {
+        "page_content": chunk.page_content,
+        "source_file": chunk.metadata["source_file"],
+        "page": chunk.metadata["page"],
+        "chunk_id": chunk.metadata["chunk_id"],
+    }
+    # 필터 검색용 우화 필드 (없으면 생략 — 일반 PDF 회귀)
+    for key in (
+        "content_type",
+        "fable_id",
+        "title",
+        "ending_tone",
+        "fun",
+        "violence",
+        "moral_clarity",
+        "reading_seconds",
+        "characters_count",
+        "dialogue_ratio",
+        "char_count",
+        "final_grade",
+        "keywords",
+        # ARKK holdings
+        "fund",
+        "as_of_date",
+        "as_of_year",
+        "doc_type",
+        "schema",
+    ):
+        if key in chunk.metadata:
+            payload[key] = chunk.metadata[key]
+    return payload
+
+
+def _vector_size_from_collection(client: QdrantClient, collection_name: str) -> int | None:
+    """컬렉션 벡터 차원. 알 수 없으면 None."""
+    info = client.get_collection(collection_name)
+    vectors = info.config.params.vectors
+    if vectors is None:
+        return None
+    size = getattr(vectors, "size", None)
+    if size is not None:
+        return int(size)
+    if isinstance(vectors, dict) and vectors:
+        first = next(iter(vectors.values()))
+        nested = getattr(first, "size", None)
+        if nested is not None:
+            return int(nested)
+    return None
+
+
 def _ensure_collection(client: QdrantClient, collection_name: str, dimension: int) -> None:
-    """컬렉션이 없으면 cosine 벡터 컬렉션을 생성한다."""
+    """컬렉션이 없거나 벡터 차원이 다르면 cosine 컬렉션을 (재)생성한다."""
     existing = {item.name for item in client.get_collections().collections}
     if collection_name in existing:
-        return
+        current_size = _vector_size_from_collection(client, collection_name)
+        # 차원을 못 읽으면 안전하게 재생성
+        if current_size is not None and current_size == dimension:
+            return
+        client.delete_collection(collection_name)
+
     client.create_collection(
         collection_name=collection_name,
         vectors_config=qmodels.VectorParams(size=dimension, distance=qmodels.Distance.COSINE),

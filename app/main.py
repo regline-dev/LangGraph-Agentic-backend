@@ -15,10 +15,12 @@ app = FastAPI(
 )
 
 # 로컬 챗봇 UI(frontend_react)에서 /agent/chat 호출 허용
+# allow_origins=["*"] 와 allow_credentials=True 는 브라우저가 거부함 → credentials 끔
+# (PDF Agent는 쿠키 인증 미사용. FAQ backend_python 운영 * 패턴과 동일)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -35,4 +37,5 @@ def health_check() -> dict[str, str]:
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("app.main:app", host=settings.app_host, port=settings.app_port, reload=True)
+    # reload=True 는 로컬 Qdrant PATH 잠금과 겹치면 워커가 옛 코드로 남을 수 있음
+    uvicorn.run("app.main:app", host=settings.app_host, port=settings.app_port, reload=False)

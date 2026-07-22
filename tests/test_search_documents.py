@@ -51,3 +51,4 @@ def test_search_documents_returns_hits_after_ingest(tmp_path: Path) -> None:
     assert len(results) >= 1
     assert "page_content" in results[0]
     assert results[0]["metadata"]["source_file"] == "sample.pdf"
+    assert isinstance(results[0].get("score"), float)

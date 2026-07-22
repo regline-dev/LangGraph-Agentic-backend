@@ -1,0 +1,13 @@
+# 테스트용 ARKK manifest (운영: ingest/arkk_manifest.yaml)
+schemas:
+  holdings: { required: [path, as_of_date], optional: [fund] }
+
+documents:
+  - schema: holdings
+    path: ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf
+    as_of_date: "2025-11-26"
+    fund: ARKK
+    doc_type: holdings
+    loader: pdfplumber
+    chunk_size: 300
+    chunk_overlap: 100
