@@ -13,11 +13,12 @@
 상태: `[ ]` 미완료 · **[보류]** · `[완료]` 완료 · `[]` 결번  
 검증: `자동` = pytest로 충분 · `H` = 직접 확인(실키·UI·품질·배포) · `-` = 문서/원칙(별도 테스트 없음)
 
-**다음:** **2차 순번 3 H 확인** (원문 1건 → 화면 다운로드) 후 **2차 순번 4** PDF 벡터화 UI  
+**다음:** **2차 순번 4 H** · 메타 기준표 `Docs/20260703_PDF-표준-메타데이터_기준표.md` (일반 §1 · 이솝 §2 · `title`·`created_date` 후속)  
 ※ PDF Agent 임베딩 **bge-m3** (`pdf_chunks_bge`). FAQ Chroma bge-m3 교체는 **포기**(MiniLM 유지).  
 ※ 지표·MBTI·한마디 결론: `Docs/20260720_…내용평가…계획.md` / 실임베딩: `Docs/20260720_순번21_bge-m3_실임베딩_계획.md`  
 ※ **PDF 안 이솝 vs ARKK** 분기·ARKK ingest: `Docs/20260721_PDF모드_도메인라우터_ARKK_ingest_계획.md` (§4-1) · **완료**  
-※ **2차 PDF 프론트:** `Docs/20260722_순번27이후_어드민PDF모드_입력단_계획.md` (2차 순번 1~)
+※ **2차 PDF 프론트:** `Docs/20260722_순번27이후_어드민PDF모드_입력단_계획.md` · 벡터화: `Docs/20260723_2차4_PDF벡터화_화면_계획.md`  
+※ **PDF 표준 메타 기준표:** `Docs/20260703_PDF-표준-메타데이터_기준표.md` (위=일반 · 아래=이솝 · 추가 시 이 문서만)
 
 
 | 검증 | 상태 | 순번 | 작업 |
@@ -60,12 +61,26 @@
 |------|------|------|------|
 | H | [완료] | 1 | **어드민** — 로그인 FAQ\|PDF 2버튼 (`/main`·`/pdf`) + PDF 라우트 (레이아웃 재사용, 하늘/분홍) |
 | 자동 | [완료] | 2 | **API** — `POST /fable/generate-pdf` (`run_pipeline` 래핑, TDD) |
-| H | [완료·H확인] | 3 | **어드민 PDF** — 원문 붙여넣기 → 생성 완료 → **화면에서 PDF 다운로드** |
-| H | [ ] | 4 | **어드민 PDF** — PDF 벡터화 화면 (FAQ 엑셀+QA 벡터화와 분리) |
-| H | [ ] | 5 | **regline-hub** — 카드 href 최종 (`chatbot-admin`→`/main`, `agentic-rag`→`/pdf`) |
-| 자동/H | [ ] | 6 | **딥링크** — `admin_user_id` 없으면 **`guest` localStorage 저장** (로그인으로 안 보냄) |
+| H | [완료] | 3 | **어드민 PDF** — 원문 붙여넣기 → 생성 완료 → **화면에서 PDF 다운로드** |
+| H | [자동완료·H확인] | 4 | **어드민 PDF** — `/pdf/vector` 벡터화 (타입·`/pdf/inspect`·불일치 모달·50:50·검사 후 버튼 활성) · `Docs/20260723_2차4_…` |
+| 자동 | [완료] | 4a | **메타 기준 문서** — `Docs/20260703_PDF-표준-메타데이터_기준표.md` (위§1 일반 · 아래§2 이솝 · §3 ARKK 예약) |
+| 자동 | [완료] | 4b | **§1 필드** — `title`·`created_date` (inspect/ingest·Qdrant 청크·기본 메타 UI) |
+| 자동 | [완료] | 4c | **키워드** — 우화 tags **한글만** (프롬프트 + `貪欲`→`탐욕` 정규화) |
+| H | [로컬완료·배포H] | 5 | **regline-hub** — LangGraph-Agentic RAG → `:3002/pdf/generate` · CTA `OPEN APP` (Vercel 반영 확인) |
+| 자동 | [완료] | 6 | **딥링크** — `admin_user_id` 없으면 **`guest` localStorage 저장** (로그인으로 안 보냄) |
 | H | **[보류]** | 7 | **배치 인제스트** — 우화 312편. **1건 생성·다운로드 정상 후** |
 | H | [ ] | 8 | **(선택)** 생성 PDF → `data/uploads` → ingest 한 버튼 |
+
+
+그다음(문서상 3차·후속) — 맞음
+계획서에 2차 밖·보류로 둔 것들입니다.
+
+입력단에서 메타 정의 → 여러 PDF 타입 (20260723_입력단에서_…)
+DB 테이블 (생성 이력 등) — “1건 통과 후”로 미뤄 둔 것
+동일 원문 중복 (§12 A~D 미확정)
+(여유 시) 배치 312편, 생성→ingest 한 버튼
+한 줄: 2차 MVP 본체는 했고, 자잘한 H/배포/선택은 남음. 중복·DB·입력단 메타 = 다음 축(3차) 맞습니다.
+<<>>  일반 선택후 ARKK 아닌 다른 문서 벡터화 안해봄. 
 
 ---
 
@@ -140,30 +155,36 @@ hub 카드: :3002/main · :3002/pdf 딥링크 (아이디 없으면 **guest** 저
 
 | 2차 순번 | 요지 |
 |----------|------|
-| 1 | 로그인 FAQ→`/main` · PDF→`/pdf` · 하늘/분홍 구분감 |
+| 1 | 로그인 FAQ→`/main` · PDF→`/pdf` · 하늘/분홍 구분감 **[완료]** |
 | 2 | `POST /fable/generate-pdf` (CLI 파이프라인 래핑) **[완료]** |
-| 3 | 원문 → PDF 다운로드·미리보기 UI **[완료·H확인]** |
-| 4 | PDF 벡터화 UI (FAQ 벡터화와 분리) |
-| 5 | hub 카드 → `/main`·`/pdf` |
-| 6 | 딥링크 시 `admin_user_id` 없으면 **`guest` 저장** |
+| 3 | 원문 → PDF 다운로드·미리보기 UI **[완료]** |
+| 4 | PDF 벡터화 UI (타입·inspect·모달·50:50·검사후 버튼) **[자동완료·H확인]** |
+| 4a | 표준 메타 기준표 한 문서 (§1·§2·§3) **[완료]** |
+| 4b | §1 `title`·`created_date` (API·청크·UI) **[완료]** |
+| 4c | 우화 키워드 한글 정규화 **[완료]** |
+| 5 | hub 카드 → `/pdf/generate` **[로컬완료·Vercel H]** |
+| 6 | 딥링크 시 `guest` 저장 **[완료]** |
 | 7 | **[보류]** 우화 312편 배치 — 1건 정상 후 |
 | 8 | (선택) 생성 PDF → uploads → ingest |
 
-**2차-2 API 요약**
+**2차-2·4 API 요약**
 
 | 항목 | 내용 |
 |------|------|
 | `POST /fable/generate-pdf` | `{ "body_text", "source_note?" }` → `application/pdf` |
+| `POST /pdf/inspect` | multipart `file` → `{ is_fable_card, page_count, basic_metadata, fable_metadata? }` (적재 없음) |
+| `POST /pdf/ingest` | `multipart file` → `{ source_file, indexed, collection, page_count, metadata, basic_metadata }` |
+| `basic_metadata` | `source_file` · `page_count` · `char_count` · **`title`** · **`created_date`** (§1) |
 | 헤더 | `X-Fable-Id` · `X-Fable-Title`/`Subtitle`(percent-encoding) |
 | 채번 | `data/fable_id_seq.txt` · tmp `data/tmp/fable_pdf/` · 응답 후 삭제 · TTL 24h |
 | 한도 | 서버 LLM **100초** · 실패 시 **502** |
 
-구 1차-25(배치+입력단) · 구 28~35 표기 → **2차 1~8**.
+구 1차-25(배치+입력단) · 구 28~35 표기 → **2차 1~8** (+ 4a~4c 보강).
 
 
 ## 2. 전체 폴더 구조
 
-현재: **1차 백엔드** 1~7·10~18·20·22·23·26·27 `[완료]` · **2차** 순번 1·2·3 `[완료]` · **다음 = 2차-3 H(실키 1건) 후 순번 4**
+현재: **1차 백엔드** 1~7·10~18·20·22·23·26·27 `[완료]` · **2차** 1~3·4a~4c·6 `[완료]` · **4** `[자동완료·H확인]` · **5** `[로컬완료·Vercel H]` · **다음 = 2차-4 H 마무리 또는 2차-5 배포 확인 · 8(선택)**
 
 ```text
 LangGraph-Agentic-backend/
@@ -173,7 +194,8 @@ LangGraph-Agentic-backend/
 │   ├── qdrant_factory.py        # 로컬 PATH / HOST:PORT 클라이언트 생성
 │   ├── api/
 │   │   ├── agent.py             # POST /agent/chat
-│   │   └── fable.py             # POST /fable/generate-pdf (2차-2)
+│   │   ├── fable.py             # POST /fable/generate-pdf (2차-2)
+│   │   └── pdf_ingest.py        # POST /pdf/inspect · /pdf/ingest (2차-4)
 │   ├── fable_pdf/               # 우화 채점·PDF 생성 (시퀀스·tmp·파이프라인)
 │   ├── graph/                   # P1: LangGraph (검색 판단)
 │   │   ├── state.py             # Agent State
@@ -254,7 +276,9 @@ LangGraph-Agentic-backend/
 - **본 코드**: `store_upload(소스)` → `ingest_pdf(저장된경로)` (`ingest/index_documents.py`)
 - **테스트**(`tests/fixtures/…`)는 업로드 소스용 가짜 입력일 뿐. E2E는 본 코드 `store_upload`→`ingest_pdf`만 호출한다.
 - `ingest_pdf`는 `data/uploads/`(또는 주입된 uploads_dir) **밖** 경로를 거부한다.
-- HTTP 업로드 API는 아직 없음. 지금은 파일 경로를 `store_upload`에 넘기는 진입점까지.
+- HTTP: `POST /pdf/inspect`(형식 검사) · `POST /pdf/ingest`(uploads→적재) (2차-4). CLI `store_upload` 경로도 유지.
+- **PDF 표준 메타 기준표** (2타입): 위=일반 · 아래=이솝 · 메타 추가 시 이 문서만  
+  → `Docs/20260703_PDF-표준-메타데이터_기준표.md` (`title`/`created_date` 구현 후속 · ARKK는 §3 예약)
 
 ---
 
@@ -262,7 +286,7 @@ LangGraph-Agentic-backend/
 
 | 서비스/모듈 | 포트 | 동작 방식 | 역할 | 주 사용 언어/스택 | 구분 |
 |---|---:|---|---|---|---|
-| `agent-api` | 8010 | 상시서버 | `/agent/chat` · `/fable/generate-pdf` | Python, FastAPI | 개발 |
+| `agent-api` | 8010 | 상시서버 | `/agent/chat` · `/fable/generate-pdf` · `/pdf/inspect` · `/pdf/ingest` | Python, FastAPI | 개발 |
 | `agent-graph` | - | 내부 그래프 | LLM 판단 → Tool 호출 → Observation → 최종 답변 | Python, LangGraph, LangChain 계열 | 개발 |
 | `search_documents` | - | Tool | PDF Vector Store 검색, citation 근거 반환 | Python, Vector DB client | 개발 |
 | `pdf-ingest` | - | 스크립트/배치 | PDF 로드 → 청킹 → 임베딩 → Vector Store 적재 | Python, PDF loader, embedding client | 개발 |

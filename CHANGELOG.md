@@ -5,6 +5,125 @@ PDF 모드용 LangGraph Agentic 백엔드 계획·구조·구현 변경 이력.
 
 ---
 
+## 2026-07-23 (v75)
+
+**변경 파일**: Docs/20260723_Hetzner_배포자동화_계획.md, Docs/20260723_배포 자동화 기술_LangGraph-Agentic-backend.md, .github/workflows/deploy-hetzner.yml, tests/test_deploy_workflow.py
+
+**변경 내용**: 순번 24 MVP — `main` push 시 Hetzner `langgraph_agentic` compose 재빌드 + `/health` 스모크 (GitHub Actions)
+
+- 운영·Secrets는 계획서·**기술 문서**에만 · README에는 기술 서술 없음
+- **H:** Secrets 등록 후 Actions 1회
+
+---
+
+## 2026-07-23 (v74)
+
+**변경 파일**: Docs/20260723_PDF_일반메타_title_created_date_계획.md, Docs/20260703_PDF-표준-메타데이터_기준표.md, app/pdf_ingest/doc_metadata.py, app/pdf_ingest/analyze.py, ingest/index_documents.py, tests/test_doc_metadata.py, tests/test_pdf_ingest_service.py · admin PdfVector · README.md
+
+**변경 내용**: 표준 §1 — 일반 PDF `title`·`created_date`를 inspect/ingest 응답·Qdrant 청크·`/pdf/vector` 기본 메타에 반영
+
+- PDF Info Title/날짜 → 없으면 파일명 stem · 업로드일(UTC)
+- 우화 청크는 카드 `title` 유지 + `created_date` 스탬프 · TDD 통과
+- README 2차 표 — **4a~4c** 추가 · **5·6** 상태 갱신 (CHANGELOG 대비 누락분)
+
+---
+
+## 2026-07-23 (v73)
+
+**변경 파일**: app/fable_pdf/keyword_normalize.py, app/fable_pdf/scorer.py, app/pdf_ingest/analyze.py, tests/test_keyword_normalize.py, Docs/20260703_PDF-표준-메타데이터_기준표.md
+
+**변경 내용**: 우화 키워드(`tags`)는 **한글만** — 채점 프롬프트 강화 + `貪欲`→`탐욕` 등 한자 정규화
+
+- 이미 만든 PDF는 **다시 생성·벡터화**해야 화면에 반영 (옛 PDF 본문에 한자가 남아 있음)
+- 재벡터화 시 inspect/ingest도 키워드 정규화 적용
+
+---
+
+## 2026-07-23 (v72)
+
+**변경 파일**: Docs/20260703_PDF-표준-메타데이터_기준표.md, Docs/20260723_PDF_일반_메타데이터_기준.md(삭제), Docs/20260723_2차4_…, README.md
+
+**변경 내용**: PDF 메타를 **표준 기준표 한 문서**로 통합 — 위 §1 일반 · 아래 §2 이솝 · §3 ARKK 예약 · 이후 메타 추가는 이 파일만
+
+- 구 `20260723_PDF_일반_메타데이터_기준.md` 삭제 · 파일명 `20260703_PDF-표준-메타데이터_기준표.md`
+
+---
+
+## 2026-07-23 (v71)
+
+**변경 파일**: Docs/20260723_PDF_일반_메타데이터_기준.md, Docs/20260723_2차4_…계획.md (§2-1), README.md
+
+**변경 내용**: PDF **일반 메타데이터 기준** 문서 확정 — 2타입 유지, 일반 필수 키(source·page_count·title·created_date·page·chunk_id)
+
+- ARKK는 이 화면 밖(전용 `as_of_date`) · `section` 보류 · title/created_date 구현은 후속 Phase
+- → **v72에서 표준 기준표로 통합·이명**
+
+---
+
+## 2026-07-23 (v70)
+
+**변경 파일**: Docs/20260723_2차4_PDF벡터화_화면_계획.md (§2-1)
+
+**변경 내용**: 일반 PDF **기본 메타**를 문서급·청크급으로 정리 — source/page/chunk_id/title/section/total_pages/created_date
+
+- 필수(지금): `source_file`·`page`·`chunk_id`·`page_count` · title/created_date는 다음 · section은 보류
+
+---
+
+## 2026-07-23 (v69)
+
+**변경 파일**: Docs/20260723_2차4_PDF벡터화_화면_계획.md, app/api/pdf_ingest.py, app/pdf_ingest/*, app/schemas/pdf_ingest.py, tests/test_pdf_ingest_*.py, README.md · admin PdfVector
+
+**변경 내용**: 2차-4 UX — PDF 타입(이솝/일반)·`POST /pdf/inspect`·불일치 모달·완료 화면 벡터결과\|메타 50:50
+
+- 일반 PDF도 **기본 메타**(페이지·파일·글자수) · 이솝 실패 시 「우화 카드 메타 실패」
+- 메타 부모 그룹(내용 평가·영상화 적합도) · 다시 하기 오른쪽 하단 · TDD 통과
+- H: 이솝/일반/불일치 모달 확인
+
+---
+
+## 2026-07-23 (v68)
+
+**변경 파일**: Docs/20260723_2차4_PDF벡터화_화면_계획.md, app/api/pdf_ingest.py, app/pdf_ingest/*, app/schemas/pdf_ingest.py, app/main.py, tests/test_pdf_ingest_*.py, README.md · admin PdfVector
+
+**변경 내용**: 2차 순번 4 — `POST /pdf/ingest`로 PDF 업로드→`data/uploads`→Qdrant 적재 · 완료 화면에 **문서 메타데이터** 표시
+
+- 어드민 `/pdf/vector` · 파일명 옆 **× 선택 취소** · StepBar 폭 **생성과 동일 80%**
+- 동일 파일명 재업로드 시 기존 포인트 삭제 후 재적재 · TDD 통과
+- H: 메타·×·바 폭 재확인
+
+---
+
+## 2026-07-23 (v67)
+
+**변경 파일**: Docs/20260722_순번27이후_…계획.md, README.md
+
+**변경 내용**: 2차 순번 3 H 통과 — `/pdf/generate` 원문 1건→PDF 생성·다운로드·미리보기 확인
+
+- 다음: **2차-4** PDF 벡터화 화면 · 입력단 메타·배치·중복처리는 보류
+
+---
+
+## 2026-07-23 (v66)
+
+**변경 파일**: Docs/20260723_…PDF_문서_만들기.md (§12), Docs/20260722_순번27이후_…계획.md
+
+**변경 내용**: 동일 원문 중복 생성 — MVP는 허용(새 번호·재채점), 이후 A~D 후보를 계획서에 기록
+
+- 상세·미결 체크: 20260723 문서 **§12**
+
+---
+
+## 2026-07-23 (v65)
+
+**변경 파일**: Docs/20260723_입력단에서_메타데이터_생성하여_여러_형식의_PDF_문서_만들기.md, Docs/20260722_순번27이후_어드민PDF모드_입력단_계획.md
+
+**변경 내용**: 입력단 메타데이터·멀티 타입 구현은 **보류** — 이솝 `/pdf/generate` 1건 정상 생성이 우선
+
+- 1건(다운로드·미리보기) 통과 후에만 20260723 문서 Phase B 재개
+
+---
+
 ## 2026-07-23 (v64)
 
 **변경 파일**: Docs/20260723_입력단에서_메타데이터_생성하여_여러_형식의_PDF_문서_만들기.md

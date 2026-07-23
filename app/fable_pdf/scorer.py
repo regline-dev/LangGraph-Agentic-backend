@@ -9,6 +9,7 @@ from typing import Any
 from langchain_groq import ChatGroq
 
 from app.config import get_settings
+from app.fable_pdf.keyword_normalize import normalize_keyword_tags
 
 SCORE_PROMPT = """다음은 짧은 우화(또는 동화) 원문이다. 아래 JSON 형식으로만 평가하라. 다른 설명은 붙이지 마라.
 
@@ -23,7 +24,7 @@ SCORE_PROMPT = """다음은 짧은 우화(또는 동화) 원문이다. 아래 JS
   "violence": 0~5 사이 정수 (폭력성 - 신체적 위해, 위협, 죽음 등의 정도),
   "moral_clarity": 0~5 사이 정수 (교훈이 얼마나 명확하게 드러나는가),
   "ending_tone": "해피" 또는 "중립" 또는 "새드" 중 하나,
-  "tags": ["이 우화가 담은 교훈을 1~3개 키워드로", "예: 권력남용, 정직, 근면"],
+  "tags": ["교훈 키워드 1~3개 — 반드시 한글만(한자·중국어·일본어 금지). 예: 탐욕, 무지, 결과"],
   "characters": ["등장인물 또는 등장동물 목록, 원문에 실제로 등장하는 것만"],
   "modern_take": "이 상황을 오늘날에 빗대면 어떤 상황인지, 캐주얼한 말투로 2문장 이내"
 }}"""
@@ -68,8 +69,9 @@ def score_fable_with_llm(
     scored.setdefault("tags", [])
     scored.setdefault("characters", [])
     scored.setdefault("modern_take", "")
-    if not scored["tags"]:
-        scored["tags"] = ["우화"]
+    if not isinstance(scored["tags"], list):
+        scored["tags"] = [str(scored["tags"])]
+    scored["tags"] = normalize_keyword_tags(scored["tags"])
     if not isinstance(scored["characters"], list):
         scored["characters"] = []
     return scored

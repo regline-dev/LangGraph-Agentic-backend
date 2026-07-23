@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.agent import router as agent_router
 from app.api.fable import router as fable_router
+from app.api.pdf_ingest import router as pdf_ingest_router
 from app.config import get_settings
 
 settings = get_settings()
@@ -30,6 +31,7 @@ app.add_middleware(
 
 app.include_router(agent_router)
 app.include_router(fable_router)
+app.include_router(pdf_ingest_router)
 
 
 @app.get("/health")

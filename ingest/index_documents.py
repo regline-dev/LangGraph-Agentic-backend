@@ -19,6 +19,15 @@ from qdrant_client.http import models as qmodels
 from ingest.chunk import DocumentChunk, chunk_pages
 from ingest.load_pdf import load_pdf_pages
 
+try:
+    from app.pdf_ingest.doc_metadata import (
+        build_doc_metadata_fields,
+        stamp_chunks_with_doc_metadata,
+    )
+except ImportError:  # pragma: no cover — CLI-only 환경
+    build_doc_metadata_fields = None  # type: ignore[assignment]
+    stamp_chunks_with_doc_metadata = None  # type: ignore[assignment]
+
 # 프로젝트 루트/data/uploads — README Locked 실경로
 DEFAULT_UPLOADS_DIR = Path(__file__).resolve().parent.parent / "data" / "uploads"
 
@@ -75,6 +84,14 @@ def ingest_pdf(
 
     pages = load_pdf_pages(path)
     chunks = chunk_pages(pages, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    # §1 title · created_date 청크 스탬프
+    if build_doc_metadata_fields is not None and stamp_chunks_with_doc_metadata is not None:
+        doc_fields = build_doc_metadata_fields(path, source_file=path.name)
+        chunks = stamp_chunks_with_doc_metadata(
+            chunks,
+            title=doc_fields["title"],
+            created_date=doc_fields["created_date"],
+        )
     return index_chunks(
         chunks,
         client=client,
@@ -174,6 +191,7 @@ def _chunk_payload(chunk: DocumentChunk) -> dict:
         "char_count",
         "final_grade",
         "keywords",
+        "created_date",
         # ARKK holdings
         "fund",
         "as_of_date",

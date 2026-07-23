@@ -1,0 +1,58 @@
+# main push → Hetzner langgraph_agentic 재배포 (순번 24 보조)
+name: Deploy Hetzner (langgraph_agentic)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "app/**"
+      - "ingest/**"
+      - "Dockerfile"
+      - ".dockerignore"
+      - "pyproject.toml"
+      - ".github/workflows/deploy-hetzner.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hetzner-agentic
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HETZNER_HOST }}
+          username: ${{ secrets.HETZNER_USER }}
+          key: ${{ secrets.HETZNER_SSH_KEY }}
+          # bge-m3 재빌드·기동이 길 수 있음
+          command_timeout: 25m
+          script: |
+            set -euo pipefail
+            APP_DIR="${{ secrets.HETZNER_APP_DIR }}"
+            if [ -z "$APP_DIR" ]; then
+              APP_DIR="/home/chatbot/app"
+            fi
+            cd "$APP_DIR"
+            test -f docker-compose.hetzner.yml
+            test -d LangGraph-Agentic-backend
+            git -C LangGraph-Agentic-backend fetch --prune origin
+            git -C LangGraph-Agentic-backend checkout main
+            git -C LangGraph-Agentic-backend pull --ff-only origin main
+            docker compose -f docker-compose.hetzner.yml up -d --build langgraph_agentic
+            # 컨테이너 기동 대기 후 헬스
+            for i in $(seq 1 30); do
+              if curl -sf "http://127.0.0.1:8010/health" >/dev/null; then
+                echo "health OK"
+                curl -sS "http://127.0.0.1:8010/health"
+                exit 0
+              fi
+              sleep 5
+            done
+            echo "health check failed after wait"
+            docker compose -f docker-compose.hetzner.yml ps langgraph_agentic || true
+            docker logs --tail 80 langgraph-agentic-backend || true
+            exit 1
