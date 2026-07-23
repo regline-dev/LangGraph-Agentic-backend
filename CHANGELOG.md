@@ -5,6 +5,17 @@ PDF 모드용 LangGraph Agentic 백엔드 계획·구조·구현 변경 이력.
 
 ---
 
+## 2026-07-23 (v76)
+
+**변경 파일**: pyproject.toml
+
+**변경 내용**: 배포 컨테이너 기동 실패 수정 — PDF multipart 업로드용 `python-multipart` 의존성 추가
+
+- Actions 배포는 SSH·빌드까지 성공했으나 `/pdf/inspect` Form 때문에 앱이 재시작 루프
+- `pip install python-multipart` 규약을 pyproject에 고정
+
+---
+
 ## 2026-07-23 (v75)
 
 **변경 파일**: Docs/20260723_Hetzner_배포자동화_계획.md, Docs/20260723_배포 자동화 기술_LangGraph-Agentic-backend.md, .github/workflows/deploy-hetzner.yml, tests/test_deploy_workflow.py

@@ -43,8 +43,8 @@ jobs:
             git -C LangGraph-Agentic-backend checkout main
             git -C LangGraph-Agentic-backend pull --ff-only origin main
             docker compose -f docker-compose.hetzner.yml up -d --build langgraph_agentic
-            # 컨테이너 기동 대기 후 헬스
-            for i in $(seq 1 30); do
+            # 컨테이너 기동 대기 후 헬스 (빌드·의존성 로딩이 길 수 있음)
+            for i in $(seq 1 60); do
               if curl -sf "http://127.0.0.1:8010/health" >/dev/null; then
                 echo "health OK"
                 curl -sS "http://127.0.0.1:8010/health"
