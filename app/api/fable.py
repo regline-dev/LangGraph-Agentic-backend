@@ -42,7 +42,6 @@ def generate_fable_pdf_endpoint(
     headers = {
         "X-Fable-Id": str(result.fable_id),
         "X-Fable-Title": quote(result.title or "", safe=""),
-        "X-Fable-Subtitle": quote(result.subtitle or "", safe=""),
         "Content-Disposition": f'attachment; filename="fable_{result.fable_id}.pdf"',
     }
     return Response(

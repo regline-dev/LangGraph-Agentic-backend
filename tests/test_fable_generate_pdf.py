@@ -21,7 +21,6 @@ def _fake_service_ok(body_text: str, source_note: str | None = None) -> FableGen
     return FableGenerateResult(
         fable_id=42,
         title="늑대와 어린양",
-        subtitle="힘 있는 자의 논리",
         pdf_bytes=_FAKE_PDF_BYTES,
     )
 
@@ -87,7 +86,7 @@ def test_generate_pdf_service_deletes_tmp_after_read(tmp_path: Path, monkeypatch
 
     def _fake_pipeline(body_text: str, fable_id: int, output_path: str, source_note: str) -> dict:
         Path(output_path).write_bytes(_FAKE_PDF_BYTES)
-        return {"title": "테스트제목", "subtitle": "부제"}
+        return {"title": "테스트제목"}
 
     monkeypatch.setattr(svc_mod, "DEFAULT_SEQ_PATH", seq_path)
     monkeypatch.setattr(svc_mod, "DEFAULT_TMP_DIR", tmp_dir)

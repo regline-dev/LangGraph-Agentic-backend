@@ -5,6 +5,51 @@ PDF 모드용 LangGraph Agentic 백엔드 계획·구조·구현 변경 이력.
 
 ---
 
+## 2026-07-26 (v80) — PK/FK 재설계 + 감사 컬럼 추가로 갱신
+
+**변경 파일**: Docs/20260726_PDF생성_이력DB_ERD_계획.md (워크스페이스 Docs)
+
+**변경 내용**: 3차 순번 1(생성 이력 DB)용 **텍스트 ERD** — 자연키(`pdf_type.code`) PK·복합 PK 초안을 기존 `backend_python/sql/*.sql` 컨벤션(surrogate `_id_num` PK, FK 이름 일치, `pdf_types→pdf_generate_jobs`는 이력 보존용 `ON DELETE RESTRICT`, `fable_id`는 FK 아님)으로 전면 재설계 (CREATE 전)
+
+- `pdf_types.name` → `type_name`으로 정정 (기존 `service_name`/`file_name` 네이밍과 정렬)
+- `pdf_types`에 `사용여부(is_active)`·`등록자/등록일(created_by/created_at)`·`수정자/수정일(updated_by/updated_at)` 감사 컬럼 추가, `owner`/`is_system`은 중복이라 삭제(등록자로 대체)
+- `pdf_type_configs.group_name`(자유 텍스트)을 신규 `common_codes` 공통코드 테이블 FK(`group_code_id_num`)로 분리 — 그룹 추가·이름 변경을 데이터로 관리
+
+---
+
+## 2026-07-26 (v79) — 완료
+
+**변경 파일**: Docs/20260726_PDF부제_subtitle_제거_계획.md, app/fable_pdf/scorer.py, app/fable_pdf/pdf_generator.py, app/fable_pdf/service.py, app/fable_pdf/pipeline.py, app/api/fable.py, app/main.py, tests/test_fable_no_subtitle.py, tests/test_fable_generate_pdf.py
+
+**변경 내용**: PDF **부제(subtitle) 제거** — LLM 프롬프트에서 부제를 묻지 않고, PDF 제목 아래에도 그리지 않으며, 응답 헤더 `X-Fable-Subtitle`도 없앰. 결론은 「한마디 결론」만
+
+- 모델이 JSON에 subtitle을 넣어도 서버에서 폐기
+
+---
+
+## 2026-07-23 (v78)
+
+**변경 파일**: Docs/20260723_3차_PDF_입력단메타_이력DB_중복_계획.md, Docs/20260723_입력단에서_…, README.md
+
+**변경 내용**: **3차 계획 착수** — 입력단 메타·생성 이력 DB·동일 원문 중복(§12)·여유(배치·한 버튼) 순번표와 게이트(일반·비ARKK 벡터 H)
+
+- README 「그다음」초안을 3차 표로 정리 · 스펙 본체는 기존 입력단 문서에 두고 순번은 3차 계획서
+- 구현 전 사람 확인: `/pdf/vector` 일반 타입으로 ARKK 아닌 PDF 1건
+
+---
+
+## 2026-07-23 (v77)
+
+**변경 파일**: Docs/20260723_배포 자동화 기술_LangGraph-Agentic-backend.md, Docs/20260723_Hetzner_배포자동화_계획.md
+
+**변경 내용**: Hetzner 배포 기술 매뉴얼을 이 대화 기준으로 덮어쓰기 — GitHub Secret을 화면마다 하나씩 넣는 §2·키 구분·트러블 정리 · **H `/health` OK로 MVP 완료**
+
+- 운영자가 Settings에서 `HETZNER_HOST` 등 ①~④를 표만 보고 헷갈리지 않게 함
+- SSH timeout · multipart · Restarting · 어드민 별도 레포 주의를 같은 문서에 모음
+- 서버 `http://…:8010/health` → `{"status":"ok"}`
+
+---
+
 ## 2026-07-23 (v76)
 
 **변경 파일**: pyproject.toml

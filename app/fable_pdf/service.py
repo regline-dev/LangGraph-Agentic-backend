@@ -25,7 +25,6 @@ class FableGenerateResult:
 
     fable_id: int
     title: str
-    subtitle: str
     pdf_bytes: bytes
 
 
@@ -89,7 +88,6 @@ def generate_fable_pdf_bytes(
     return FableGenerateResult(
         fable_id=fable_id,
         title=str((meta or {}).get("title") or ""),
-        subtitle=str((meta or {}).get("subtitle") or ""),
         pdf_bytes=pdf_bytes,
     )
 

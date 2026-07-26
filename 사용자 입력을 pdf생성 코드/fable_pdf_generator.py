@@ -190,7 +190,7 @@ def generate_fable_pdf(data: dict, output_path: str, radar_tmp_path: str = "/tmp
     flow.append(badge_tbl)
     flow.append(Spacer(1, 8))
     flow.append(Paragraph(data["title"], s["title"]))
-    flow.append(Paragraph(data["subtitle"], s["subtitle"]))
+    # 부제(subtitle) 없음 — 제목 다음 바로 내용 평가
 
     flow.append(Paragraph("내용 평가", s["section"]))
     eval_tbl = Table([

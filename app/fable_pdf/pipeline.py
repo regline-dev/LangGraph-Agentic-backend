@@ -24,7 +24,7 @@ def run_fable_pipeline(
 ) -> dict[str, Any]:
     """
     Groq 채점 후 PDF를 output_path에 쓴다.
-    반환: title/subtitle 등 채점 메타 (응답 헤더용).
+    반환: title 등 채점 메타 (응답 헤더용). 부제(subtitle)는 포함하지 않음.
     timeout_seconds 초과 시 TimeoutError.
     """
 
@@ -39,7 +39,6 @@ def run_fable_pipeline(
         generate_fable_pdf(data, output_path)
         return {
             "title": str(scored.get("title") or ""),
-            "subtitle": str(scored.get("subtitle") or ""),
             "fun": scored.get("fun"),
             "violence": scored.get("violence"),
             "moral_clarity": scored.get("moral_clarity"),

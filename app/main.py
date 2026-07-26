@@ -26,7 +26,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
     # 프론트가 PDF 응답에서 우화 번호·제목을 읽도록 노출
-    expose_headers=["X-Fable-Id", "X-Fable-Title", "X-Fable-Subtitle", "Content-Disposition"],
+    expose_headers=["X-Fable-Id", "X-Fable-Title", "Content-Disposition"],
 )
 
 app.include_router(agent_router)

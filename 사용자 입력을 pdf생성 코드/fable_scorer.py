@@ -20,7 +20,6 @@ SCORE_PROMPT = """다음은 짧은 우화(또는 동화) 원문이다. 아래 JS
 출력 형식(JSON만, 코드블록 표시 없이):
 {{
   "title": "우화 제목 (원문에 이미 제목이 있으면 그대로, 없으면 내용 기반으로 짧게 생성)",
-  "subtitle": "한 줄 부제, 15자 내외로 이야기의 핵심을 요약",
   "fun": 0~5 사이 정수 (재미도),
   "violence": 0~5 사이 정수 (폭력성 - 신체적 위해, 위협, 죽음 등의 정도),
   "moral_clarity": 0~5 사이 정수 (교훈이 얼마나 명확하게 드러나는가),
@@ -66,7 +65,7 @@ def score_fable_with_llm(body_text: str, llm: ChatGroq | None = None) -> dict:
     if scored.get("ending_tone") not in ("해피", "중립", "새드"):
         scored["ending_tone"] = "중립"
     scored.setdefault("title", "")
-    scored.setdefault("subtitle", "")
+    scored.pop("subtitle", None)
     scored.setdefault("tags", [])
     scored.setdefault("characters", [])
     scored.setdefault("modern_take", "")

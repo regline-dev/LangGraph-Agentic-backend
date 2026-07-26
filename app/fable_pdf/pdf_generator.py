@@ -141,15 +141,6 @@ def _styles() -> dict[str, ParagraphStyle]:
             textColor=colors.HexColor("#0b0b0b"),
             spaceAfter=4,
         ),
-        "subtitle": ParagraphStyle(
-            "subtitle",
-            fontName="Noto",
-            fontSize=10.5,
-            leading=14,
-            textColor=colors.HexColor("#52514e"),
-            spaceAfter=10,
-            firstLineIndent=10,
-        ),
         "section": ParagraphStyle(
             "section",
             fontName="Noto",
@@ -297,7 +288,7 @@ def generate_fable_pdf(data: dict, output_path: str, radar_tmp_path: str | None 
         flow.append(badge_tbl)
         flow.append(Spacer(1, 8))
         flow.append(Paragraph(str(data["title"]), s["title"]))
-        flow.append(Paragraph(str(data["subtitle"]), s["subtitle"]))
+        # 부제(subtitle) 없음 — 제목 다음 바로 내용 평가
 
         flow.append(Paragraph("내용 평가", s["section"]))
         ending = data["ending_tone"]
