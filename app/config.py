@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     app_host: str = "0.0.0.0"
     app_port: int = 8010
 
-    # Groq (검색 판단 LLM)
+    # Groq (검색 판단 LLM 등)
     groq_api_key: str = ""
     groq_model: str = "llama-3.3-70b-versatile"
 

@@ -32,3 +32,89 @@ class PdfInspectResponse(BaseModel):
     page_count: int = Field(..., ge=0)
     basic_metadata: dict[str, Any] = Field(default_factory=dict)
     fable_metadata: dict[str, Any] | None = None
+    document_kind: int = Field(
+        1,
+        ge=1,
+        le=4,
+        description="1 일반텍스트 · 2 스캔/이미지 · 3 표 · 4 복합레이아웃",
+    )
+    structure_labels: list[str] = Field(
+        default_factory=list,
+        description="구조 지문 — 헤더·라벨 이름만 (값 제외)",
+    )
+    extracted_metadata: list[dict[str, str]] = Field(
+        default_factory=list,
+        description="문서 구조에서 확인한 메타데이터 후보 [{label, value, source}]",
+    )
+    template_match_status: str = Field(
+        "no_match",
+        description="match | ambiguous | no_match",
+    )
+    template_id: str | None = Field(None, description="맞음일 때 템플릿 id")
+    template_prompt: str | None = Field(None, description="맞음일 때 잠금 프롬프트")
+    prompt_locked: bool = Field(False, description="맞음이면 프롬프트 수정 불가")
+    template_candidates: list[dict[str, Any]] = Field(
+        default_factory=list,
+        description="애매일 때 후보 [{template_id, name}]",
+    )
+    text_excerpt: str = Field(
+        "",
+        description="문서 텍스트 발췌 (UI 지시문 채움용)",
+    )
+    result_schema: dict[str, Any] | None = Field(
+        None,
+        description="맞음일 때 결과 양식 템플릿 (확정 JSON 구조)",
+    )
+    filled_result: dict[str, Any] | None = Field(
+        None,
+        description="맞음+결과양식일 때 서버가 이번 PDF 값으로 채운 메타 (자동 표시용)",
+    )
+
+
+class PdfSaveTemplateRequest(BaseModel):
+    """양식 저장 — 판별용 labels + 결과 양식 및/또는 탐색 지시문."""
+
+    template_id: str = Field(..., min_length=1)
+    name: str = Field("")
+    labels: list[str] = Field(default_factory=list)
+    prompt: str = Field("", description="탐색 지시문(결과 양식 없을 때·레거시)")
+    result_schema: dict[str, Any] | None = Field(
+        None,
+        description="결과 양식 템플릿 (확정 메타 JSON)",
+    )
+
+
+class PdfSaveTemplateResponse(BaseModel):
+    """양식 저장 결과."""
+
+    template_id: str
+    name: str
+    labels: list[str]
+    saved: bool = True
+    has_result_schema: bool = False
+
+
+class PdfDeleteTemplateResponse(BaseModel):
+    """템플릿 soft-delete / 벡터 삭제 결과."""
+
+    template_id: str
+    soft_deleted: bool = True
+    delete_vectors: bool = False
+    deleted_vector_points: int = 0
+
+
+class PdfTemplateListItem(BaseModel):
+    """템플릿 목록 한 건."""
+
+    template_id: str
+    name: str = ""
+    metadata_name: str = Field("", description="METADATA_NAME 정규화(UPPER)")
+    labels: list[str] = Field(default_factory=list)
+    has_result_schema: bool = False
+    result_schema: dict[str, Any] | None = None
+
+
+class PdfTemplateListResponse(BaseModel):
+    """GET /pdf/templates."""
+
+    templates: list[PdfTemplateListItem] = Field(default_factory=list)

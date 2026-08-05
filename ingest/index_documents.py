@@ -65,10 +65,12 @@ def ingest_pdf(
     uploads_dir: Path | None = None,
     chunk_size: int = 300,
     chunk_overlap: int = 60,
+    admin_meta: dict | None = None,
 ) -> int:
     """uploads 아래 PDF만 로드→청킹→Qdrant 적재한다. 적재 개수를 반환.
 
     tests/fixtures 등 uploads 밖 경로로 직접 호출하면 ValueError.
+    admin_meta: 관리자 결과 JSON(영문 키·search_labels) — 있으면 청크에 스탬프.
     """
     path = Path(pdf_path).resolve()
     allowed_root = (uploads_dir or DEFAULT_UPLOADS_DIR).resolve()
@@ -92,6 +94,10 @@ def ingest_pdf(
             title=doc_fields["title"],
             created_date=doc_fields["created_date"],
         )
+    if admin_meta:
+        from app.pdf_ingest.admin_meta import stamp_chunks_with_admin_meta
+
+        chunks = stamp_chunks_with_admin_meta(chunks, admin_meta)
     return index_chunks(
         chunks,
         client=client,
@@ -169,7 +175,7 @@ def index_chunks(
 
 
 def _chunk_payload(chunk: DocumentChunk) -> dict:
-    """청크 payload — 기본 필드 + 우화 metadata(있으면)."""
+    """청크 payload — 기본 필드 + 우화 metadata(있으면) + 관리자 메타."""
     payload: dict = {
         "page_content": chunk.page_content,
         "source_file": chunk.metadata["source_file"],
@@ -198,9 +204,21 @@ def _chunk_payload(chunk: DocumentChunk) -> dict:
         "as_of_year",
         "doc_type",
         "schema",
+        # kind=3 관리자 메타
+        "DOC_TYPE",
+        "SCHEMA",
+        "template_id",
+        "search_labels",
     ):
         if key in chunk.metadata:
             payload[key] = chunk.metadata[key]
+    # search_labels에 있는 영문 키 값도 payload에 (예: As of)
+    labels = chunk.metadata.get("search_labels")
+    if isinstance(labels, dict):
+        for en_key in labels:
+            key = str(en_key)
+            if key in chunk.metadata and key not in payload:
+                payload[key] = chunk.metadata[key]
     return payload
 
 

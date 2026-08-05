@@ -1,0 +1,2653 @@
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=0.8571
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성']
+  문서에만=['한마디 결론']
+  시드에만=['오늘날로 치면']
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '오늘날로 치면', '원문', '재미도', '최종평가', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=table_basic_v1 score=0.0000
+  교집합=[]
+  문서에만=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=0.8571
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성']
+  문서에만=['한마디 결론']
+  시드에만=['오늘날로 치면']
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '오늘날로 치면', '원문', '재미도', '최종평가', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=candidate reason=템플릿별 점수 template_id=table_basic_v1 score=0.0000
+  교집합=[]
+  문서에만=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=candidate reason=템플릿별 점수 template_id=table_basic_v1 score=0.0000
+  교집합=[]
+  문서에만=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=candidate reason=템플릿별 점수 template_id=table_basic_v1 score=0.0000
+  교집합=[]
+  문서에만=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=candidate reason=템플릿별 점수 template_id=table_basic_v1 score=0.0000
+  교집합=[]
+  문서에만=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=candidate reason=템플릿별 점수 template_id=table_basic_v1 score=0.0000
+  교집합=[]
+  문서에만=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=candidate reason=템플릿별 점수 template_id=table_basic_v1 score=0.0000
+  교집합=[]
+  문서에만=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=['재미도']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=['매출', '부서']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=['재미도']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=['매출', '부서']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=['재미도']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=['매출', '부서']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=candidate reason=템플릿별 점수 template_id=table_basic_v1 score=0.0000
+  교집합=[]
+  문서에만=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=빈약 지문 또는 템플릿 없음 doc_labels=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=label_only labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=with_schema labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(1)=['재미도']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=['재미도'] templates_loaded=1 template_ids=['a']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['원문', '재미도', '키워드']
+  templates_loaded=2
+  · id=fable labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성'] has_schema=False
+  · id=holdings labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['매출', '부서']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['매출', '부서'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['매출', '부서', '비용', '인원']
+  templates_loaded=1
+  · id=fable labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=4
+  · id=C_counsel_1785552744099 labels=['ARKK', 'As of'] has_schema=True
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=4 template_ids=['C_counsel_1785552744099', 'C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=3
+  · id=C_counsel_1785552854952 labels=['As of', 'arkk'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=3 template_ids=['C_counsel_1785552854952', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=2
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=2 template_ids=['fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=2
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=2 template_ids=['fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=2
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=2 template_ids=['fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=2
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=2 template_ids=['fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=2
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=[] templates_loaded=2 template_ids=['fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=label_only labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=with_schema labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(1)=['재미도']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=no_match reason=빈약 지문(doc_labels 비거나 ≤2) — kind=3은 이솝 허용목록 기준이라 ARKK 표 PDF는 지문이 비는 경우가 많음 doc_labels=['재미도'] templates_loaded=1 template_ids=['a']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['원문', '재미도', '키워드']
+  templates_loaded=2
+  · id=fable labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성'] has_schema=False
+  · id=holdings labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['매출', '부서']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['매출', '부서'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['매출', '부서', '비용', '인원']
+  templates_loaded=1
+  · id=fable labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=label_only labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=with_schema labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(1)=['재미도']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족(doc_labels 비거나 ≤2)으로 템플릿 비교 생략 doc_labels=['재미도'] templates_loaded=1 template_ids=['a']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['원문', '재미도', '키워드']
+  templates_loaded=2
+  · id=fable labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성'] has_schema=False
+  · id=holdings labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['매출', '부서']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['매출', '부서'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['매출', '부서', '비용', '인원']
+  templates_loaded=1
+  · id=fable labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=label_only labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=with_schema labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(1)=['재미도']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['재미도'] templates_loaded=1 template_ids=['a']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['원문', '재미도', '키워드']
+  templates_loaded=2
+  · id=fable labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성'] has_schema=False
+  · id=holdings labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['매출', '부서']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['매출', '부서'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['매출', '부서', '비용', '인원']
+  templates_loaded=1
+  · id=fable labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=2
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=[] templates_loaded=2 template_ids=['fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=3
+  · id=C_counsel_1785650574094 labels=['ARKK', 'As of'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=[] templates_loaded=3 template_ids=['C_counsel_1785650574094', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(0)=[]
+  templates_loaded=3
+  · id=C_counsel_1785650574094 labels=['ARKK', 'As of'] has_schema=True
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=False
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=[] templates_loaded=3 template_ids=['C_counsel_1785650574094', 'fable_card_v1', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=label_only labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=with_schema labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(1)=['재미도']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['재미도'] templates_loaded=1 template_ids=['a']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['원문', '재미도', '키워드']
+  templates_loaded=2
+  · id=fable labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성'] has_schema=False
+  · id=holdings labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['매출', '부서']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['매출', '부서'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['매출', '부서', '비용', '인원']
+  templates_loaded=1
+  · id=fable labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=1
+  · id=general labels=['발행일', '작성자', '제목'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] status=match reason=score>=0.85 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['발행일', '작성자', '제목'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=label_only labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=with_schema labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(1)=['재미도']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['재미도'] templates_loaded=1 template_ids=['a']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['원문', '재미도', '키워드']
+  templates_loaded=2
+  · id=fable labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성'] has_schema=False
+  · id=holdings labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['매출', '부서']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['매출', '부서'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['매출', '부서', '비용', '인원']
+  templates_loaded=1
+  · id=fable labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=1
+  · id=general labels=['발행일', '작성자', '제목'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] status=match reason=score>=0.85 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['발행일', '작성자', '제목'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=label_only labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=with_schema labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(1)=['재미도']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['재미도'] templates_loaded=1 template_ids=['a']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['원문', '재미도', '키워드']
+  templates_loaded=2
+  · id=fable labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성'] has_schema=False
+  · id=holdings labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['매출', '부서']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['매출', '부서'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['매출', '부서', '비용', '인원']
+  templates_loaded=1
+  · id=fable labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=1
+  · id=general labels=['발행일', '작성자', '제목'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] status=match reason=score>=0.85 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['발행일', '작성자', '제목'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=label_only labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=with_schema labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(1)=['재미도']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['재미도'] templates_loaded=1 template_ids=['a']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['원문', '재미도', '키워드']
+  templates_loaded=2
+  · id=fable labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성'] has_schema=False
+  · id=holdings labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['매출', '부서']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['매출', '부서'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['매출', '부서', '비용', '인원']
+  templates_loaded=1
+  · id=fable labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=1
+  · id=general labels=['발행일', '작성자', '제목'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] status=match reason=score>=0.85 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['발행일', '작성자', '제목'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=label_only labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=with_schema labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(1)=['재미도']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['재미도'] templates_loaded=1 template_ids=['a']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['원문', '재미도', '키워드']
+  templates_loaded=2
+  · id=fable labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성'] has_schema=False
+  · id=holdings labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['매출', '부서']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['매출', '부서'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['매출', '부서', '비용', '인원']
+  templates_loaded=1
+  · id=fable labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=1
+  · id=general labels=['발행일', '작성자', '제목'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] status=match reason=score>=0.85 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['발행일', '작성자', '제목'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=label_only labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=with_schema labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(1)=['재미도']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['재미도'] templates_loaded=1 template_ids=['a']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['원문', '재미도', '키워드']
+  templates_loaded=2
+  · id=fable labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성'] has_schema=False
+  · id=holdings labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['매출', '부서']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['매출', '부서'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['매출', '부서', '비용', '인원']
+  templates_loaded=1
+  · id=fable labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=1
+  · id=general labels=['발행일', '작성자', '제목'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] status=match reason=score>=0.85 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['발행일', '작성자', '제목'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=label_only labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=with_schema labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(1)=['재미도']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['재미도'] templates_loaded=1 template_ids=['a']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['원문', '재미도', '키워드']
+  templates_loaded=2
+  · id=fable labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성'] has_schema=False
+  · id=holdings labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['매출', '부서']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['매출', '부서'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['매출', '부서', '비용', '인원']
+  templates_loaded=1
+  · id=fable labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=1
+  · id=general labels=['발행일', '작성자', '제목'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] status=match reason=score>=0.85 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['발행일', '작성자', '제목'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=fable_v1 labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=fable_v1 score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=a score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=label_only labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=label_only score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['원문', '재미도', '키워드', '폭력성']
+  templates_loaded=1
+  · id=with_schema labels=['원문', '재미도', '키워드', '폭력성'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=match reason=score>=0.85 template_id=with_schema score=1.0000
+  교집합=['원문', '재미도', '키워드', '폭력성']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['원문', '재미도', '키워드', '폭력성']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(1)=['재미도']
+  templates_loaded=1
+  · id=a labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['재미도'] templates_loaded=1 template_ids=['a']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['원문', '재미도', '키워드']
+  templates_loaded=2
+  · id=fable labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성'] has_schema=False
+  · id=holdings labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] status=candidate reason=템플릿별 점수 template_id=holdings score=0.0000
+  교집합=[]
+  문서에만=['원문', '재미도', '키워드']
+  시드에만=['매출', '부서', '비용', '인원']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['매출', '부서', '비용', '인원']
+[template_match] status=ambiguous reason=0.5<=score<0.85 template_id=fable score=0.6000
+  교집합=['원문', '재미도', '키워드']
+  문서에만=[]
+  시드에만=['교훈 명확도', '폭력성']
+  doc_labels=['원문', '재미도', '키워드']
+  seed_labels=['교훈 명확도', '원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['매출', '부서']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['매출', '부서'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(4)=['매출', '부서', '비용', '인원']
+  templates_loaded=1
+  · id=fable labels=['원문', '재미도', '키워드', '폭력성'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] status=no_match reason=score<0.5 template_id=fable score=0.0000
+  교집합=[]
+  문서에만=['매출', '부서', '비용', '인원']
+  시드에만=['원문', '재미도', '키워드', '폭력성']
+  doc_labels=['매출', '부서', '비용', '인원']
+  seed_labels=['원문', '재미도', '키워드', '폭력성']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=1
+  · id=general labels=['발행일', '작성자', '제목'] has_schema=False
+[template_match] status=candidate reason=템플릿별 점수 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] status=match reason=score>=0.85 template_id=general score=1.0000
+  교집합=['발행일', '작성자', '제목']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['발행일', '작성자', '제목']
+  seed_labels=['발행일', '작성자', '제목']
+[template_match] --- inspect 요약 ---
+  doc_labels(3)=['발행일', '작성자', '제목']
+  templates_loaded=0
+[template_match] status=no_match reason=템플릿 파일 없음 doc_labels=['발행일', '작성자', '제목'] templates_loaded=0 template_ids=[]
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['ARKK', 'As of']
+  templates_loaded=2
+  · id=C_counsel_1785650574094 labels=['ARKK', 'As of'] has_schema=True
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['ARKK', 'As of'] templates_loaded=2 template_ids=['C_counsel_1785650574094', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['ARKK', 'As of']
+  templates_loaded=2
+  · id=C_counsel_1785650574094 labels=['ARKK', 'As of'] has_schema=True
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['ARKK', 'As of'] templates_loaded=2 template_ids=['C_counsel_1785650574094', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['ARKK', 'As of']
+  templates_loaded=2
+  · id=C_counsel_1785650574094 labels=['ARKK', 'As of'] has_schema=True
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['ARKK', 'As of'] templates_loaded=2 template_ids=['C_counsel_1785650574094', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(13)=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  templates_loaded=1
+  · id=fable_card_v1 labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론'] has_schema=True
+[template_match] status=candidate reason=템플릿별 점수 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] status=match reason=score>=0.85 template_id=fable_card_v1 score=1.0000
+  교집합=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  문서에만=[]
+  시드에만=[]
+  doc_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+  seed_labels=['결말톤', '교훈 명확도', '내용 평가', '대사비중', '등장인물', '분량', '예상 낭독시간', '원문', '재미도', '최종평가', '키워드', '폭력성', '한마디 결론']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['ARKK', 'As of']
+  templates_loaded=2
+  · id=C_counsel_1785650574094 labels=['ARKK', 'As of'] has_schema=True
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['ARKK', 'As of'] templates_loaded=2 template_ids=['C_counsel_1785650574094', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['ARKK', 'As of']
+  templates_loaded=2
+  · id=C_counsel_1785650574094 labels=['ARKK', 'As of'] has_schema=True
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['ARKK', 'As of'] templates_loaded=2 template_ids=['C_counsel_1785650574094', 'table_basic_v1']
+[template_match] --- inspect 요약 ---
+  doc_labels(2)=['ARKK', 'As of']
+  templates_loaded=2
+  · id=C_counsel_1785650574094 labels=['ARKK', 'As of'] has_schema=True
+  · id=table_basic_v1 labels=['매출', '부서', '비용', '인원'] has_schema=False
+[template_match] status=no_match reason=구조 라벨 부족으로 템플릿 비교 생략(doc_labels 비거나 ≤2) doc_labels=['ARKK', 'As of'] templates_loaded=2 template_ids=['C_counsel_1785650574094', 'table_basic_v1']

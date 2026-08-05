@@ -1,0 +1,52 @@
+{
+  "template_id": "fable_card_v1",
+  "name": "이솝 우화 카드",
+  "doc_type": "A",
+  "labels": [
+    "결말톤",
+    "교훈 명확도",
+    "내용 평가",
+    "대사비중",
+    "등장인물",
+    "분량",
+    "예상 낭독시간",
+    "한마디 결론",
+    "원문",
+    "재미도",
+    "최종평가",
+    "키워드",
+    "폭력성"
+  ],
+  "prompt": "",
+  "result_schema": {
+    "DOC_TYPE": "A",
+    "METADATA_NAME": "FABLE_CARD",
+    "DESCRIPTION": "",
+    "ending_tone": "",
+    "fun": "",
+    "violence": "",
+    "moral_clarity": "",
+    "keywords": "",
+    "reading_seconds": "",
+    "characters_count": "",
+    "dialogue_ratio": "",
+    "length": "",
+    "final_grade": "",
+    "original_text": "",
+    "one_line_conclusion": "",
+    "search_labels": {
+      "ending_tone": "결말톤",
+      "fun": "재미도",
+      "violence": "폭력성",
+      "moral_clarity": "교훈 명확도",
+      "keywords": "키워드",
+      "reading_seconds": "예상 낭독시간",
+      "characters_count": "등장인물",
+      "dialogue_ratio": "대사비중",
+      "length": "분량",
+      "final_grade": "최종평가",
+      "original_text": "원문",
+      "one_line_conclusion": "한마디 결론"
+    }
+  }
+}

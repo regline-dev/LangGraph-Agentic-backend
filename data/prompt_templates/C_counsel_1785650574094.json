@@ -1,0 +1,40 @@
+{
+  "template_id": "C_counsel_1785650574094",
+  "name": "C_counsel_1785650574094",
+  "doc_type": "C",
+  "labels": [
+    "ARKK",
+    "As of"
+  ],
+  "prompt": "{\n  \"DOC_TYPE\": \"C\",\n  \"METADATA_NAME\": \"ARKK\",\n  \"DESCRIPTION\": \"ARK INNOVATION ETF ARKK HOLDINGS 관련 내용을 다루는 표 중심 문서입니다.\\n보유종목(Holdings) 현황 문서. 종목명·티커·비중 등이 표 형태\",\n  \"COLLECTION\": \"\",\n  \"PDF_LOADER\": \"\",\n  \"CHUNK_SIZE\": \"\",\n  \"CHUNK_OVERLAP\": \"\",\n  \"title\": \"ARK_INNOVATION_ETF_ARKK_HOLDINGS\",\n  \"indexed\": \"\",\n  \"source_file\": \"ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf\",\n  \"page_count\": 3,\n  \"char_count\": 5819,\n  \"pdf_created_by\": \"\",\n  \"pdf_created_at\": \"2025-11-26\",\n  \"pdf_updated_by\": \"\",\n  \"pdf_updated_at\": \"\",\n  \"template_created_by\": \"counsel\",\n  \"template_created_at\": \"2026-08-02T06:02:54.095Z\",\n  \"template_updated_by\": \"counsel\",\n  \"template_updated_at\": \"2026-08-02T06:02:54.095Z\",\n  \"vector_created_by\": \"\",\n  \"vector_created_at\": \"\",\n  \"vector_updated_by\": \"\",\n  \"vector_updated_at\": \"\",\n  \"As of\": \"11/26/2025\",\n  \"search_labels\": {\n    \"As of\": \"데이터기준일\"\n  }\n}",
+  "result_schema": {
+    "DOC_TYPE": "C",
+    "METADATA_NAME": "ARKK",
+    "DESCRIPTION": "ARK INNOVATION ETF ARKK HOLDINGS 관련 내용을 다루는 표 중심 문서입니다.\n보유종목(Holdings) 현황 문서. 종목명·티커·비중 등이 표 형태",
+    "COLLECTION": "",
+    "PDF_LOADER": "",
+    "CHUNK_SIZE": "",
+    "CHUNK_OVERLAP": "",
+    "title": "ARK_INNOVATION_ETF_ARKK_HOLDINGS",
+    "indexed": "",
+    "source_file": "ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf",
+    "page_count": 3,
+    "char_count": 5819,
+    "pdf_created_by": "",
+    "pdf_created_at": "2025-11-26",
+    "pdf_updated_by": "",
+    "pdf_updated_at": "",
+    "template_created_by": "counsel",
+    "template_created_at": "2026-08-02T06:02:54.095Z",
+    "template_updated_by": "counsel",
+    "template_updated_at": "2026-08-02T06:04:56.814Z",
+    "vector_created_by": "",
+    "vector_created_at": "",
+    "vector_updated_by": "",
+    "vector_updated_at": "",
+    "As of": "11/26/2025",
+    "search_labels": {
+      "As of": "데이터기준일"
+    }
+  }
+}

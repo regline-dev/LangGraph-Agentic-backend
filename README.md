@@ -4,6 +4,20 @@
 > 역할: PDF 모드 전용 LangGraph Agentic API 서버  
 > 기준: FAQ 벡터(`qa_*`)와 PDF 벡터를 분리하고, PDF 사용자 검색은 LangGraph Tool 루프로 처리
 
+## 현재 A/C 메타데이터 파이프라인
+
+```text
+PDF inspect → kind 1(A) / kind 3(C)
+→ 콜론·파이프·저장 템플릿 라벨로 extracted_metadata 추출
+→ 같은 DOC_TYPE 템플릿끼리 Jaccard 비교
+→ 찾은 값 채움 / 못 찾은 값 빈칸 / 관리자 +ADD·수정
+→ 템플릿 저장 또는 JSON과 함께 ingest
+```
+
+- 메타 생성 경로는 LLM을 사용하지 않는다. 메타 추천 API와 전용 LLM 설정은 제거됐다.
+- Qdrant payload에는 `template_id`가 저장되며 템플릿+벡터 삭제 시 이 값으로 포인트를 삭제한다.
+- PDF 관리 API는 `X-Admin-User-Id`를 받아 요청·성공·실패를 다줄 로그로 남긴다.
+
 ---
 
 ## 1. 전체 작업순서도 (처음부터 끝까지, 파이프라인 기준)
@@ -63,6 +77,7 @@
 | 자동 | [완료] | 2 | **API** — `POST /fable/generate-pdf` (`run_pipeline` 래핑, TDD) |
 | H | [완료] | 3 | **어드민 PDF** — 원문 붙여넣기 → 생성 완료 → **화면에서 PDF 다운로드** |
 | H | [자동완료·H확인] | 4 | **어드민 PDF** — `/pdf/vector` 벡터화 (타입·`/pdf/inspect`·불일치 모달·50:50·검사 후 버튼 활성) · `Docs/20260723_2차4_…` |
+| - | **[기술부채]** | 4※ | **이솝/일반 검증·채번 구조** — 문제·수정 시점 ↓ 「1-1. 이솝·일반 PDF 검증 기술부채」 · **DB(3차 이력·타입) 때 수정** · 오늘은 손대지 않음 |
 | 자동 | [완료] | 4a | **메타 기준 문서** — `Docs/20260703_PDF-표준-메타데이터_기준표.md` (위§1 일반 · 아래§2 이솝 · §3 ARKK 예약) |
 | 자동 | [완료] | 4b | **§1 필드** — `title`·`created_date` (inspect/ingest·Qdrant 청크·기본 메타 UI) |
 | 자동 | [완료] | 4c | **키워드** — 우화 tags **한글만** (프롬프트 + `貪欲`→`탐욕` 정규화) |
@@ -77,19 +92,47 @@
 | 검증 | 상태 | 순번 | 작업 |
 |------|------|------|------|
 | H | [ ] | 0 | **게이트** — `/pdf/vector` 일반 타입 · **ARKK 아닌 PDF** 1건 |
-| 자동+H | [ ] | 1 | **생성 이력 DB** |
+| 자동+H | [ ] | 1 | **생성 이력 DB** ← 이 시점에 **식별자·타입·검증 재설계** (↓ 기술부채) |
 | H | [ ] | 2 | **§12 중복 방침** 확정 (A~D) |
 | 자동+H | [ ] | 3 | **§12 구현** |
 | 자동+H | [ ] | 4 | **입력단 메타 MVP** (`Docs/20260723_입력단에서_…`) |
-| H | [ ] | 5 | **타입 2** (이솝 외 1종) |
+| H | [ ] | 5 | **타입 2** (이솝 외 1종) ← 타입 DB와 함께 검증 로직을 **그룹코드 기준**으로 교체 |
 | H | **[여유]** | 6 | 배치 312편 (구 2차-7) |
 | H | **[여유]** | 7 | 생성→ingest 한 버튼 (구 2차-8) |
 
-**한 줄:** 2차 MVP 본체 완료 · 3차 = 입력단 메타 + DB + 중복(§12) · 배치·한 버튼은 여유.
+**한 줄:** 2차 MVP 본체 완료 · 3차 = 입력단 메타 + DB + 중복(§12) · 배치·한 버튼은 여유.  
+**오늘(프롬프트):** 이솝 검증 후 프롬프트 입력→ingest 전달 — `Docs/20260729_PDF벡터화_이솝_프롬프트_입력전달_계획.md` (검증·채번 재설계는 DB 때)  
+**벡터화 기본 흐름(공유 기준):** `Docs/20260729_PDF벡터화_기본흐름_다이어그램.md`
 
 ---
 
 ## 1-1. 작업순서도 세부 설명
+
+### 이솝·일반 PDF 검증 기술부채 (문제 → 수정 시점)
+
+> **지금은 구현하지 않는다.** 아래는 “왜 엉터리인지 / 언제 고칠지”만 적는다.  
+> 오늘 할 일: **프롬프트 입력 → 벡터화 시 서버 전달** (`Docs/20260729_PDF벡터화_이솝_프롬프트_입력전달_계획.md`).
+
+**문제점 (현행 MVP 잔재)**
+
+1. **채번이 이솝 생성에만 있음** — `fable_id` / PDF 위 `이솝우화 #숫자`만 서버 채번. 일반·커스텀 타입 PDF에는 공통 고유번호가 없다.
+2. **생성 화면 커스텀 타입 ≠ 실제 PDF 형식** — 생성 API는 타입과 무관하게 이솝 카드 파이프라인만 탄다. UI 타입과 파일 형식이 어긋난다.
+3. **벡터화 검증이 “이솝 카드 파싱 성공 여부” 한 방** — 프론트는 `이솝 선택 && is_fable_card === false`일 때만 막는다. 일반 타입은 막지 않는다. 타입·그룹코드·DB 타입이 아니라 **카드 텍스트 파서**에 묶여 있다.
+4. **식별자가 갈라짐** — 이솝은 카드 ID, 일반은 `source_file`(파일명). 검색·이력·중복 방지의 큰 나무가 없다.
+
+**올바른 방향 (DB 때)**
+
+- 모든 PDF에 공통 `doc_id` 채번  
+- `group_code` / `doc_type`(이솝·일반·커스텀…)으로 그룹  
+- 검증은 **선택한 DB 타입 ↔ 문서 타입** 일치로 재설계 (카드 파서 성공 여부만으로 타입을 대체하지 않음)
+
+**수정 시점·방법**
+
+| 시점 | 무엇을 |
+|------|--------|
+| **3차 순번 1 — 생성 이력 DB** | 공통 식별자·타입 테이블 설계에 `doc_id` / `group_code` 반영. 이솝 전용 채번을 공통 채번으로 승격하는 계획 확정 |
+| **3차 순번 5 — 타입 2** | 타입 DB와 함께 `/pdf/inspect`·프론트 `isPdfTypeMismatch`를 **타입 코드 기준**으로 교체 |
+| **오늘** | 위 검증·채번 **손대지 않음**. 이솝 경로에 프롬프트 입력란만 추가해 서버로 전달 |
 
 순번 2 설명 ---------------------------------------------------------
 **FastAPI 뼈대**에서 만든 것 (아직 Agent/PDF 기능 없이, 서버 틀만 잡은 단계):
@@ -177,8 +220,9 @@ hub 카드: :3002/main · :3002/pdf 딥링크 (아이디 없으면 **guest** 저
 | 항목 | 내용 |
 |------|------|
 | `POST /fable/generate-pdf` | `{ "body_text", "source_note?" }` → `application/pdf` |
-| `POST /pdf/inspect` | multipart `file` → `{ is_fable_card, page_count, basic_metadata, fable_metadata? }` (적재 없음) |
-| `POST /pdf/ingest` | `multipart file` → `{ source_file, indexed, collection, page_count, metadata, basic_metadata }` |
+| `POST /pdf/inspect` | multipart `file` → 기본 메타·`document_kind`·`extracted_metadata`·DOC_TYPE별 템플릿 매칭 (적재 없음) |
+| `POST /pdf/ingest` | `multipart file` + 선택 `prompt` → `{ source_file, indexed, collection, page_count, metadata, basic_metadata }` · prompt는 메타에 보존 |
+| `/pdf/templates` | GET 목록 · POST 저장/수정 · DELETE `_delete` 보관 및 선택적 `template_id` 벡터 삭제 |
 | `basic_metadata` | `source_file` · `page_count` · `char_count` · **`title`** · **`created_date`** (§1) |
 | 헤더 | `X-Fable-Id` · `X-Fable-Title`/`Subtitle`(percent-encoding) |
 | 채번 | `data/fable_id_seq.txt` · tmp `data/tmp/fable_pdf/` · 응답 후 삭제 · TTL 24h |
@@ -231,6 +275,8 @@ LangGraph-Agentic-backend/
 │   └── ingest_arkk_holdings.py  # ARKK PDF → arkk_holdings_bge
 │
 ├── data/
+│   ├── GLOBAL_LABELS.json       # 전역 라벨 EN→KO 사전 (합의 · 구현 예정) — §8-1
+│   ├── prompt_templates/        # 결과 양식 템플릿 `{template_id}.json`
 │   ├── uploads/                 # 업로드된 원본 PDF 저장 (실경로 Locked)
 │   │   └── ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf  # ARKK 원본 (수동 복사)
 │   ├── tmp/fable_pdf/           # 생성 PDF 임시 (응답 후 삭제 · TTL 24h)
@@ -492,8 +538,80 @@ QDRANT_COLLECTION_ARKK=arkk_holdings_bge
 | 인제스트 | 로드 → Separator 우선 청킹(300/60) → 임베딩 → Qdrant (`ingest/`) | **Locked A** |
 | 청킹 변경 후 | `pdf_chunks` 비우기 → 동일 PDF 재인제스트 (옛/새 청크 혼재 방지) | 운영 필수 |
 | Qdrant 연결 | `QDRANT_PATH` 로컬 우선, 비면 `HOST:PORT`(Docker) | Locked |
-| PDF 도메인 | 이솝 vs ARKK LLM 판별 후 이솝만 규칙 라우터 | **예정** (순번 27) |
-| ARKK 벡터 | `arkk_holdings_bge` — 우화 `pdf_chunks_bge`와 분리 | **예정** (순번 26) |
+| PDF 도메인 | 이솝 vs ARKK LLM 판별 후 이솝만 규칙 라우터 | Locked (순번 27) |
+| ARKK 벡터 | `arkk_holdings_bge` — 우화 `pdf_chunks_bge`와 분리 | Locked (순번 26) |
+| 문서특성 코드 | 숫자 1~4 ↔ 문자 A~D (`doc_kind`) | **Locked** (§8-1) |
+| template_id | `{A\|B\|C\|D}_{login_id}_{ms}` · 파일명 동일 | **Locked** (§8-1) |
+| 전역 라벨 | `data/GLOBAL_LABELS.json` (EN→KO). FE 복사본 `admin_frontend_react/src/data/` | **Locked** (§8-1) |
+| result_schema | 전역 키 **전부** 포함(빈값 `""`). 키 순서 = GLOBAL_LABELS 순서 | **Locked** (§8-1) |
+
+### 8-1. 문서특성 · template_id · GLOBAL_LABELS (2026-08-01)
+
+> **상태:** Locked · 구현 완료 (`global_labels.py` / FE `pdfIngest.js`).  
+> 상세: `Docs/20260801_전역라벨_template_id_합의.md`
+
+#### 문서특성 (숫자 ↔ 문자)
+
+| 숫자 (`DOC_TYPE` / kind) | 문자 (template_id 접두) | 의미 |
+|---:|---|---|
+| 1 | **A** | 일반텍스트 |
+| 2 | **B** | 스캔본/이미지 |
+| 3 | **C** | 표 중심 문서 |
+| 4 | **D** | 복합 레이아웃 |
+
+#### template_id · 파일명
+
+```text
+{문서특성문자}_{로그인id}_{Date.now밀리초}
+예: C_counsel1_1785541236324
+파일: data/prompt_templates/C_counsel1_1785541236324.json
+```
+
+- 로그인 id = 어드민 `localStorage.admin_user_id` (사이드바 왼쪽 아래와 동일)
+- 기존 `template_id`가 있으면 **재사용**(덮어쓰기). 신규만 위 규칙으로 생성
+- 표시용 `name`은 id와 별도 (사람이 읽는 제목)
+
+#### GLOBAL_LABELS.json
+
+- 경로: `data/GLOBAL_LABELS.json` (파일명 **대문자**)
+- 역할: 전역 `영문키 → 한글명` 사전. UI 「한글 검색용」안내·필터 해석·`result_schema` 키 순서의 단일 기준
+- 저장 방식: JSON 확정 (MariaDB 이전은 나중에). 코드 상수(`FIXED_FIELD_LABELS` 등)는 이 파일로 대체 예정
+
+키·한글명 (이 순서가 `result_schema` 순서):
+
+```text
+DOC_TYPE           : 문서타입명
+METADATA_NAME      : 메타데이터 템플릿명
+COLLECTION         : 컬렉션명
+PDF_LOADER         : PDF로더
+CHUNK_SIZE         : 청크크기
+CHUNK_OVERLAP      : 청크오버랩
+title              : 제목
+indexed            : 적재청크수
+source_file        : 파일명
+page_count         : 총페이지
+char_count         : 총글자수
+pdf_created_by     : 문서 등록자
+pdf_created_at     : 문서 생성일
+pdf_updated_by     : 문서 수정자
+pdf_updated_at     : 문서 수정일
+template_created_by: 템플릿 등록자
+template_created_at: 템플릿 생성일
+template_updated_by: 템플릿 수정자
+template_updated_at: 템플릿 수정일
+vector_created_by  : 벡터화 등록자(ID)
+vector_created_at  : 벡터화 생성일
+vector_updated_by  : 벡터화 수정자(ID)
+vector_updated_at  : 벡터화 수정일
+```
+
+DOC_TYPE 저장값 예: `"C"` (표). 구 `SCHEMA` 키는 로드 시 `METADATA_NAME`으로 이전.
+#### result_schema 규칙
+
+1. 위 **전역 키를 전부** 넣는다. 아직 없으면 `""` (칸은 있고 미채움 = 상태 파악 가능)
+2. 키 **순서** = `GLOBAL_LABELS.json` 위→아래
+3. 가변 메타(예: `As of`)는 전역 키 **뒤**
+4. `search_labels`는 **맨 끝**
 
 ---
 
@@ -514,6 +632,7 @@ QDRANT_COLLECTION_ARKK=arkk_holdings_bge
 - `Docs/20260715_FAQ_PDF모드_LangGraph분리_계획.md`
 - `Docs/20260715_RAG_Agent_다이어그램_부록.md`
 - `Docs/20260721_PDF모드_도메인라우터_ARKK_ingest_계획.md` (순번 26→27)
+- `Docs/20260801_전역라벨_template_id_합의.md` (§8-1 전역 라벨·template_id)
 - `Docs/20260718_고전원문_MBTI현대재해석_컨셉.md` (별도 제품 후보 · 본 README와 구현 무관)
 
 ---

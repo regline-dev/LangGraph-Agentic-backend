@@ -1,0 +1,12 @@
+{
+  "template_id": "table_basic_v1",
+  "name": "표형 기본(부서·매출)",
+  "doc_type": "C",
+  "labels": [
+    "부서",
+    "매출",
+    "비용",
+    "인원"
+  ],
+  "prompt": ""
+}

@@ -1,0 +1,168 @@
+[meta-generate] llm invoke start prompt_len=2 has_doc_section=False has_basic_section=False instruction_hint_json=False preview='hi'
+[meta-generate] llm ok len=8 starts_like_json=True preview='{" a\\:1}'
+[meta-generate] endpoint in filename='ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf' file_bytes=95319 prompt_len=6546
+[meta-generate] llm invoke start prompt_len=6546 has_doc_section=True has_basic_section=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\r\n\r\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\r\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\r\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\r\n\r\n규칙:\r\n- 기본 정보('
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=45
+[meta-generate] llm ok len=19997 starts_like_json=False preview='latile than broad market averages. Past performance is not indicative of future results and current data may not be representative of future data. ARK ETFs\r\nare actively managed ETFs. ARKK ETF is an actively managed ETF that seeks to provide long-term growth of capital. ARKK ETF invests in equity\r\nsecurities of companies that are relevant to the theme of disruptive innovation. ARKK ETF’s investment objective is to provide long-term growth of\r\ncapital. ARKK ETF’s investment strategy is to invest '
+[meta-generate] endpoint done source=llm out_len=19997 message=None
+[meta-generate] endpoint in filename='sample.pdf' file_bytes=611 prompt_len=618
+[meta-generate] llm invoke start prompt_len=618 has_doc_section=True has_basic_section=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\n\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\n\n규칙:\n- 기본 정보(파일명, 페이'
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=45
+[meta-generate] llm ok len=269 starts_like_json=True preview='```json\n{\n  "source_file": "sample.pdf",\n  "page_count": 1,\n  "char_count": 47,\n  "title": "sample",\n  "created_date": "2026-07-30",\n  "handbook_info": {\n    "handbook_name": "Regline handbook",\n    "leave_policy": {\n      "annual_leave": "fifteen days"\n    }\n  }\n}\n```'
+[meta-generate] endpoint done source=llm out_len=269 message=None
+[meta-generate] endpoint in filename='ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf' file_bytes=95319 prompt_len=6546
+[meta-generate] llm invoke start prompt_len=6546 has_doc_section=True has_basic_section=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\r\n\r\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\r\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\r\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\r\n\r\n규칙:\r\n- 기본 정보('
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=45
+[meta-generate] llm ok len=19171 starts_like_json=False preview='latile than broad market averages. Past performance is not indicative of future results and current data may not be representative of future data. ARK ETFs are actively managed ETFs and their performance and holdings may vary significantly from those of their respective benchmarks. ARKK ETF is an actively managed ETF that seeks to provide long-term growth of capital by investing in companies that are expected to benefit from the development of new products or services, technological improvements'
+[meta-generate] endpoint done source=llm out_len=19171 message=None
+[meta-generate] endpoint in filename='ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf' file_bytes=95319 prompt_len=6444
+[meta-generate] llm invoke start prompt_len=6444 has_doc_section=True has_basic_section=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\n\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\n\n규칙:\n- 기본 정보(파일명, 페이'
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=45
+[meta-generate] llm ok len=315 starts_like_json=False preview='atile than broad market indices and may not be suitable for all investors.\nThe ARK ETFs are actively managed exchange-traded funds that are designed to provide investors with an opportunity to invest in companies that are\npositioned to benefit from the convergence of technological advancements and economic growth.'
+[meta-generate] endpoint done source=llm out_len=315 message=None
+[meta-generate] llm invoke start prompt_len=23 has_doc_section=True has_basic_section=True has_json_closing=False instruction_hint_json=False preview='지시문\n기본 정보: {}\n문서 내용: 본문'
+[meta-generate] llm ok json_extracted=True len=19 preview='{"이솝우화": {"번호": 6}}'
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] llm invoke error: groq down
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] llm ok json_extracted=True len=8 preview='{"a": 1}'
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=60 json_mode=True
+[meta-generate] llm invoke start prompt_len=23 has_doc_section=True has_basic_section=True has_json_closing=False instruction_hint_json=False preview='지시문\n기본 정보: {}\n문서 내용: 본문'
+[meta-generate] llm ok json_extracted=True len=19 preview='{"이솝우화": {"번호": 6}}'
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] llm invoke error: groq down
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] llm ok json_extracted=True len=7 preview='{"a":1}'
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=60 json_mode=True
+[meta-generate] llm invoke start prompt_len=6543 has_doc_section=True has_basic_section=True has_json_closing=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\n\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\n\n규칙:\n- 기본 정보(파일명, 페이'
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=60 json_mode=True
+[meta-generate] llm ok json_extracted=True len=10505 preview='{\n  "--- 문서 끝 ---":\n{\n  "source_file": "ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf",\n  "page_count": 3,\n  "char_count": 5819,\n  "title": "ARK_INNOVATION_ETF_ARKK_HOLDINGS",\n  "created_date": "2025-11-26",\n  "holdings": {\n    "as_of": "2025-11-26",\n    "etf_name": "ARK Innovation ETF",\n    "etf_ticker": "ARKK",\n    "holdings_list": [\n      {\n        "company_name": "TESLA INC",\n        "ticker": "TSLA",\n        "cusip": "88160R101",\n        "shares": 2204438,\n        "market_value": 924541297.20,\n     '
+[meta-generate] llm invoke start prompt_len=6510 has_doc_section=True has_basic_section=True has_json_closing=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\n\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\n\n규칙:\n- 기본 정보(파일명, 페이'
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=60 json_mode=True
+[meta-generate] llm invoke error: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': 'max completion tokens reached before generating a valid document'}}
+[meta-generate] llm invoke start prompt_len=23 has_doc_section=True has_basic_section=True has_json_closing=False instruction_hint_json=False preview='지시문\n기본 정보: {}\n문서 내용: 본문'
+[meta-generate] llm ok json_extracted=True len=19 preview='{"이솝우화": {"번호": 6}}'
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] llm invoke error: groq down
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] llm ok json_extracted=True len=7 preview='{"a":1}'
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=60 json_mode=True
+[meta-generate] llm invoke start prompt_len=4248 has_doc_section=True has_basic_section=True has_json_closing=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\n\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\n\n규칙:\n- 기본 정보(파일명, 페이'
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] llm ok json_extracted=True len=979 preview='{\n  "source_file": "ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf",\n   "page_count": 3,\n   "char_count": 5819,\n   "title": "ARK_INNOVATION_ETF_ARKK_HOLDINGS",\n   "created_date": "2025-11-26",\n   "holdings_data": {\n      "as_of": "11/26/2025",\n      "etf_name": "ARK Innovation ETF",\n      "holdings": [\n         {\n            "company": "TESLA INC",\n            "ticker": "TSLA",\n            "cusip": "88160R101",\n            "shares": 2204438,\n            "market_value": 924541297.20,\n            "weight": '
+[meta-generate] llm invoke start prompt_len=23 has_doc_section=True has_basic_section=True has_json_closing=False instruction_hint_json=False preview='지시문\n기본 정보: {}\n문서 내용: 본문'
+[meta-generate] llm ok json_extracted=True len=19 preview='{"이솝우화": {"번호": 6}}'
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] llm invoke error: groq down
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] llm ok json_extracted=True len=7 preview='{"a":1}'
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] endpoint in filename='ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf' file_bytes=95319 prompt_len=4333
+[meta-generate] llm invoke start prompt_len=4333 has_doc_section=True has_basic_section=True has_json_closing=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\r\n\r\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\r\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\r\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\r\n\r\n규칙:\r\n- 기본 정보('
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] llm ok json_extracted=True len=939 preview='{\n  "source_file": "ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf",\n   "page_count": 3,\n   "char_count": 5819,\n   "title": "ARK_INNOVATION_ETF_ARKK_HOLDINGS",\n   "created_date": "2025-11-26",\n   "holdings_data": {\n      "as_of": "11/26/2025",\n      "holdings": [\n         {\n            "company": "TESLA INC",\n            "ticker": "TSLA",\n            "cusip": "88160R101",\n            "shares": 2204438,\n            "market_value": 924541297.20,\n            "weight": 12.26\n         },\n         {\n           '
+[meta-generate] endpoint done source=llm out_len=939 message=None
+[meta-generate] llm invoke start prompt_len=23 has_doc_section=True has_basic_section=True has_json_closing=False instruction_hint_json=False preview='지시문\n기본 정보: {}\n문서 내용: 본문'
+[meta-generate] llm ok json_extracted=True len=19 preview='{"이솝우화": {"번호": 6}}'
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] llm invoke error: groq down
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] llm ok json_extracted=True len=7 preview='{"a":1}'
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] endpoint in filename='a.pdf' file_bytes=45 prompt_len=3
+[meta-generate] endpoint exception: _RecommendService.recommend_prompt() got an unexpected keyword argument 'prompt'
+[meta-generate] endpoint in filename='a.pdf' file_bytes=45 prompt_len=3
+[meta-generate] endpoint done source=llm out_len=3 message=None
+[meta-generate] endpoint in filename='ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf' file_bytes=95319 prompt_len=4297
+[meta-generate] llm invoke start prompt_len=4297 has_doc_section=True has_basic_section=True has_json_closing=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\r\n\r\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\r\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\r\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\r\n\r\n규칙:\r\n- 기본 정보('
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] llm ok json_extracted=True len=983 preview='{\n  "source_file": "ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf",\n   "page_count": 3,\n   "char_count": 5819,\n   "title": "ARK_INNOVATION_ETF_ARKK_HOLDINGS",\n   "created_date": "2025-11-26",\n   "holdings_data": {\n      "as_of": "11/26/2025",\n      "etf_name": "ARK Innovation ETF",\n      "top_holdings": [\n         {\n            "company": "TESLA INC",\n            "ticker": "TSLA",\n            "cusip": "88160R101",\n            "shares": 2204438,\n            "market_value": 924541297.20,\n            "weigh'
+[meta-generate] endpoint done source=llm out_len=983 message=None
+[meta-generate] endpoint in filename='06_아버지와_아들들.pdf' file_bytes=142858 prompt_len=1466
+[meta-generate] llm invoke start prompt_len=1466 has_doc_section=True has_basic_section=True has_json_closing=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\r\n\r\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\r\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\r\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\r\n\r\n규칙:\r\n- 기본 정보('
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] llm ok json_extracted=True len=728 preview='{\n  "source_file": "06_아버지와_아들들.pdf",\n   "page_count": 2,\n   "char_count": 814,\n   "title": "(anonymous)",\n   "created_date": "2026-07-19",\n   "document_info": {\n      "title": "아버지와 아들들",\n      "genre": "이솝우화",\n      "evaluation": {\n         "재미도": 2,\n         "폭력성": 1,\n         "교훈 명확도": 5,\n         "결말톤": "해피"\n      },\n      "keywords": ["단결", "협동", "형제애"],\n      "video_info": {\n         "영상화 적합도": "예상",\n         "예상 낭독시간": "89초",\n         "등장인물": 2,\n         "난이도": "낮음",\n         "대사비중": "26'
+[meta-generate] endpoint done source=llm out_len=728 message=None
+[meta-generate] endpoint in filename='ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf' file_bytes=95319 prompt_len=4303
+[meta-generate] llm invoke start prompt_len=4303 has_doc_section=True has_basic_section=True has_json_closing=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\r\n\r\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\r\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\r\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\r\n\r\n규칙:\r\n- 기본 정보('
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] llm ok json_extracted=True len=892 preview='{\n  "source_file": "ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf",\n   "page_count": 3,\n   "char_count": 5819,\n   "title": "ARK_INNOVATION_ETF_ARKK_HOLDINGS",\n   "created_date": "2025-11-26",\n   "fund_info": {\n      "fund_name": "ARK Innovation ETF",\n      "fund_ticker": "ARKK",\n      "as_of_date": "2025-11-26"\n   },\n   "holdings_summary": {\n      "total_holdings": 48,\n      "top_holdings": [\n         {\n            "company_name": "TESLA INC",\n            "ticker": "TSLA",\n            "market_value": 924'
+[meta-generate] endpoint done source=llm out_len=892 message=None
+[meta-generate] send-doc-before-llm doc_chars=5819 doc_lines=79 dense_rows~=68 has_omit_marker=False sample_tickers=['TSLA', 'TEM', 'ROKU', 'CRSP'] doc_preview='Holdings Data - ARKK\nAs of 11/26/2025\nARKK\nARK Innovation ETF\nCompany Ticker CUSIP Shares Market Value ($) Weight (%)\n1 TESLA INC TSLA 88160R101 2,204,438 $924,541,297.20 12.26%\n2 TEMPUS AI INC TEM 88023B103 5,465,331 $419,956,034.04 5.57%\n3 ROKU INC ROKU 77543R102 4,347,025 $412,445,732.00 5.47%\n4 CRISPR THERAPEUTICS AG CRSP H17182108 7,625,349 $408,489,945.93 5.42%\n5 COINBASE GLOBAL INC -CLASS A COIN 19260Q107 1,542,644 $392,016,693.28 5.20%\n6 SHOPIFY INC - CLASS A SHOP 82509L107 2,415,270 $380,091,039.90 5.04%\n7 ROBINHOOD MARKETS INC - A HOOD 770700102 2,751,983 $318,046,675.31 4.22%\n8 ROBLOX CORP -CLASS A RBLX 771049103 3,142,157 $286,156,237.99 3.79%\n9 PALANTIR TECHNOLOGIES INC-A PLTR 69608A108 1,610,266 $263,359,004.30 3.49%\n10 ADVANCED MICRO DEVICES AMD 007903107 1,225,457 $252,603,'
+[meta-generate] send-doc-before-llm doc_chars=2414 doc_lines=32 dense_rows~=19 has_omit_marker=True sample_tickers=[] doc_preview="Holdings Data - ARKK\nAs of 11/26/2025\nARKK\nARK Innovation ETF\n1\n[표 요약 - 표 전체 대신 일부만 포함]\n...(이하 27행 생략)\nHoldings Data - ARKK\nAs of 11/26/2025\nInvestors should carefully consider the investment objectives and risks as well as charges and expenses of an ARK ETF before investing. This and other\ninformation are contained in the ARK ETFs' prospectuses, which may be obtained on ark-funds.com. The prospectus should be read carefully before\ninvesting. An investment in an ARK ETF is subject to risks and you can lose money on your investment in an ARK ETF. There can be no assurance that the ARK\nETFs will achieve their investment objectives. The ARK ETFs’ portfolios are more voǩatile than broad market averages. The ARK ETFs also have specific risks,\nwhich are described in the ARK ETFs' prospectuses.\nS"
+[meta-generate] endpoint in filename='ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf' file_bytes=95319 prompt_len=3180
+[meta-generate] llm invoke start prompt_len=3180 has_doc_section=True has_basic_section=True has_json_closing=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\r\n\r\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\r\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\r\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\r\n\r\n규칙:\r\n- 기본 정보('
+[meta-generate] send-doc-before-llm doc_chars=0 doc_lines=0 dense_rows~=0 has_omit_marker=False sample_tickers=[] doc_preview=''
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] llm ok json_extracted=True len=1262 preview='{\n  "source_file": "ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf",\n   "page_count": 3,\n   "char_count": 5819,\n   "title": "ARK_INNOVATION_ETF_ARKK_HOLDINGS",\n   "created_date": "2025-11-26",\n   "fund_info": {\n      "name": "ARK Innovation ETF",\n      "ticker": "ARKK",\n      "as_of_date": "2025-11-26"\n   },\n   "investment_info": {\n      "objectives": "investment objectives and risks",\n      "charges": "charges and expenses",\n      "prospectus": "available on ark-funds.com"\n   },\n   "risk_info": {\n      "'
+[meta-generate] endpoint done source=llm out_len=1262 message=None
+[meta-generate] llm invoke start prompt_len=3190 has_doc_section=True has_basic_section=True has_json_closing=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\n\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\n\n규칙:\n- 기본 정보(파일명, 페이'
+[meta-generate] send-doc-before-llm doc_chars=2414 doc_lines=32 dense_rows~=19 has_omit_marker=True sample_tickers=[] doc_preview="Holdings Data - ARKK\nAs of 11/26/2025\nARKK\nARK Innovation ETF\n1\n[표 요약 - 표 전체 대신 일부만 포함]\n...(이하 27행 생략)\nHoldings Data - ARKK\nAs of 11/26/2025\nInvestors should carefully consider the investment objectives and risks as well as charges and expenses of an ARK ETF before investing. This and other\ninformation are contained in the ARK ETFs' prospectuses, which may be obtained on ark-funds.com. The prospectus should be read carefully before\ninvesting. An investment in an ARK ETF is subject to risks and you can lose money on your investment in an ARK ETF. There can be no assurance that the ARK\nETFs will achieve their investment objectives. The ARK ETFs’ portfolios are more voǩatile than broad market averages. The ARK ETFs also have specific risks,\nwhich are described in the ARK ETFs' prospectuses.\nS"
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] llm ok json_extracted=True len=734 preview='{\n  "source_file": "ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf",\n   "page_count": 3,\n   "char_count": 5819,\n   "title": "ARK_INNOVATION_ETF_ARKK_HOLDINGS",\n   "created_date": "2025-11-26",\n   "etf_info": {\n      "etf_name": "ARK Innovation ETF",\n      "etf_code": "ARKK",\n      "as_of": "2025-11-26"\n   },\n   "disclaimer": {\n      "investment_risks": "An investment in an ARK ETF is subject to risks and you can lose money on your investment in an ARK ETF.",\n      "no_guarantee": "There can be no guarante'
+[meta-generate] llm invoke start prompt_len=886 has_doc_section=True has_basic_section=True has_json_closing=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\n\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\n\n규칙:\n- 기본 정보(파일명, 페이'
+[meta-generate] send-doc-before-llm doc_chars=177 doc_lines=10 dense_rows~=2 has_omit_marker=True sample_tickers=[] doc_preview='Holdings Data - ARKK\nAs of 11/26/2025\nARKK\nARK Innovation ETF\n[표 요약 - 표 전체 대신 일부만 포함]\n...(이하 27행 생략)\nHoldings Data - ARKK\nAs of 11/26/2025\n[표 요약 - 표 전체 대신 일부만 포함]\n...(이하 24행 생략)'
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] llm invoke error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kxcetvw3fgbvjs9bn6kb9h4a` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 97231, Requested 8698. Please try again in 1h25m22.656s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[meta-generate] llm invoke start prompt_len=23 has_doc_section=True has_basic_section=True has_json_closing=False instruction_hint_json=False preview='지시문\n기본 정보: {}\n문서 내용: 본문'
+[meta-generate] send-doc-before-llm doc_chars=0 doc_lines=0 dense_rows~=0 has_omit_marker=False sample_tickers=[] doc_preview=''
+[meta-generate] llm ok json_extracted=True len=19 preview='{"이솝우화": {"번호": 6}}'
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] send-doc-before-llm doc_chars=0 doc_lines=0 dense_rows~=0 has_omit_marker=False sample_tickers=[] doc_preview=''
+[meta-generate] llm invoke error: groq down
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] send-doc-before-llm doc_chars=0 doc_lines=0 dense_rows~=0 has_omit_marker=False sample_tickers=[] doc_preview=''
+[meta-generate] llm ok json_extracted=True len=7 preview='{"a":1}'
+[meta-generate] LocalLLM base_url=http://127.0.0.1:11434/v1 model=llama3.1:latest timeout=180 json_mode=True
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] llm invoke start prompt_len=886 has_doc_section=True has_basic_section=True has_json_closing=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\n\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\n\n규칙:\n- 기본 정보(파일명, 페이'
+[meta-generate] send-doc-before-llm doc_chars=177 doc_lines=10 dense_rows~=2 has_omit_marker=True sample_tickers=[] doc_preview='Holdings Data - ARKK\nAs of 11/26/2025\nARKK\nARK Innovation ETF\n[표 요약 - 표 전체 대신 일부만 포함]\n...(이하 27행 생략)\nHoldings Data - ARKK\nAs of 11/26/2025\n[표 요약 - 표 전체 대신 일부만 포함]\n...(이하 24행 생략)'
+[meta-generate] LocalLLM base_url=http://127.0.0.1:11434/v1 model=llama3.1:latest timeout=180 json_mode=True
+[meta-generate] llm ok json_extracted=True len=668 preview='{"source_file": "ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf", "page_count": 3, "char_count": 5819, "title": "ARK_INNOVATION_ETF_ARKK_HOLDINGS", "created_date": "2025-11-26", "fund_info": {"name": "ARK Innovation ETF", "code": "ARKK"}, "holdings_data": [{"as_of_date": "2025-11-26", "holdings": [{"security_name": "Apple Inc.", "market_value": 123.45, "percentage": 12.34}, {"security_name": "Amazon.com, Inc.", "market_value": 234.56, "percentage": 23.45}]}, {"as_of_date": "2025-11-26", "holdings": [{"sec'
+[meta-generate] endpoint in filename='ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf' file_bytes=95319 prompt_len=921
+[meta-generate] llm invoke start prompt_len=921 has_doc_section=True has_basic_section=True has_json_closing=True instruction_hint_json=True preview='당신은 문서에서 구조화된 메타데이터를 추출하는 도우미입니다.\r\n\r\n(내부로 전달되는) 기본 정보와 문서 원문을 읽고,\r\n이 문서에 실제로 나타나는 정보 구조를 스스로 파악해서\r\n계층적으로(관련 있는 항목끼리 그룹으로 묶어서) JSON 메타데이터를 만드세요.\r\n\r\n규칙:\r\n- 기본 정보('
+[meta-generate] send-doc-before-llm doc_chars=177 doc_lines=10 dense_rows~=2 has_omit_marker=True sample_tickers=[] doc_preview='Holdings Data - ARKK\nAs of 11/26/2025\nARKK\nARK Innovation ETF\n[표 요약 - 표 전체 대신 일부만 포함]\n...(이하 27행 생략)\nHoldings Data - ARKK\nAs of 11/26/2025\n[표 요약 - 표 전체 대신 일부만 포함]\n...(이하 24행 생략)'
+[meta-generate] LocalLLM base_url=http://127.0.0.1:11434/v1 model=llama3.1:latest timeout=180 json_mode=True
+[meta-generate] llm ok json_extracted=True len=179 preview='{\n  "source_file": "ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf",\n  "page_count": 3,\n  "char_count": 5819,\n  "title": "ARK_INNOVATION_ETF_ARKK_HOLDINGS",\n  "created_date": "2025-11-26"\n}'
+[meta-generate] endpoint done source=llm out_len=179 message=None
+[meta-generate] endpoint in filename='a.pdf' file_bytes=45 prompt_len=3
+[meta-generate] endpoint done source=llm out_len=3 message=None
+[meta-generate] llm invoke start prompt_len=23 has_doc_section=True has_basic_section=True has_json_closing=False instruction_hint_json=False preview='지시문\n기본 정보: {}\n문서 내용: 본문'
+[meta-generate] send-doc-before-llm doc_chars=0 doc_lines=0 dense_rows~=0 has_omit_marker=False sample_tickers=[] doc_preview=''
+[meta-generate] llm ok json_extracted=True len=19 preview='{"이솝우화": {"번호": 6}}'
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] send-doc-before-llm doc_chars=0 doc_lines=0 dense_rows~=0 has_omit_marker=False sample_tickers=[] doc_preview=''
+[meta-generate] llm invoke error: groq down
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] send-doc-before-llm doc_chars=0 doc_lines=0 dense_rows~=0 has_omit_marker=False sample_tickers=[] doc_preview=''
+[meta-generate] llm ok json_extracted=True len=7 preview='{"a":1}'
+[meta-generate] LocalLLM base_url=http://127.0.0.1:11434/v1 model=llama3.1:latest timeout=180 json_mode=True
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] endpoint in filename='a.pdf' file_bytes=45 prompt_len=3
+[meta-generate] endpoint done source=llm out_len=3 message=None
+[meta-generate] llm invoke start prompt_len=23 has_doc_section=True has_basic_section=True has_json_closing=False instruction_hint_json=False preview='지시문\n기본 정보: {}\n문서 내용: 본문'
+[meta-generate] send-doc-before-llm doc_chars=0 doc_lines=0 dense_rows~=0 has_omit_marker=False sample_tickers=[] doc_preview=''
+[meta-generate] llm ok json_extracted=True len=19 preview='{"이솝우화": {"번호": 6}}'
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] send-doc-before-llm doc_chars=0 doc_lines=0 dense_rows~=0 has_omit_marker=False sample_tickers=[] doc_preview=''
+[meta-generate] llm invoke error: groq down
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] send-doc-before-llm doc_chars=0 doc_lines=0 dense_rows~=0 has_omit_marker=False sample_tickers=[] doc_preview=''
+[meta-generate] llm ok json_extracted=True len=7 preview='{"a":1}'
+[meta-generate] LocalLLM base_url=http://127.0.0.1:11434/v1 model=llama3.1:latest timeout=180 json_mode=True
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] endpoint in filename='a.pdf' file_bytes=45 prompt_len=3
+[meta-generate] endpoint done source=llm out_len=3 message=None
+[meta-generate] llm invoke start prompt_len=23 has_doc_section=True has_basic_section=True has_json_closing=False instruction_hint_json=False preview='지시문\n기본 정보: {}\n문서 내용: 본문'
+[meta-generate] send-doc-before-llm doc_chars=0 doc_lines=0 dense_rows~=0 has_omit_marker=False sample_tickers=[] doc_preview=''
+[meta-generate] llm ok json_extracted=True len=19 preview='{"이솝우화": {"번호": 6}}'
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] send-doc-before-llm doc_chars=0 doc_lines=0 dense_rows~=0 has_omit_marker=False sample_tickers=[] doc_preview=''
+[meta-generate] llm invoke error: groq down
+[meta-generate] llm invoke start prompt_len=1 has_doc_section=False has_basic_section=False has_json_closing=False instruction_hint_json=False preview='x'
+[meta-generate] send-doc-before-llm doc_chars=0 doc_lines=0 dense_rows~=0 has_omit_marker=False sample_tickers=[] doc_preview=''
+[meta-generate] llm ok json_extracted=True len=7 preview='{"a":1}'
+[meta-generate] LocalLLM base_url=http://127.0.0.1:11434/v1 model=llama3.1:latest timeout=180 json_mode=True
+[meta-generate] ChatGroq model=llama-3.3-70b-versatile timeout=90 json_mode=True max_tokens=8192
+[meta-generate] endpoint in filename='a.pdf' file_bytes=45 prompt_len=3
+[meta-generate] endpoint done source=llm out_len=3 message=None

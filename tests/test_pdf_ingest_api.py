@@ -30,8 +30,8 @@ class _OkService:
             fable_metadata={"fable_id": 1, "title": "테스트"},
         )
 
-    def __call__(self, filename: str, content: bytes) -> PdfIngestResult:
-        _ = content
+    def __call__(self, filename: str, content: bytes, prompt: str | None = None) -> PdfIngestResult:
+        _ = content, prompt
         return PdfIngestResult(
             source_file=filename,
             indexed=5,
@@ -55,8 +55,8 @@ class _FailService:
         _ = filename, content
         raise RuntimeError("boom")
 
-    def __call__(self, filename: str, content: bytes) -> PdfIngestResult:
-        _ = filename, content
+    def __call__(self, filename: str, content: bytes, prompt: str | None = None) -> PdfIngestResult:
+        _ = filename, content, prompt
         raise RuntimeError("Qdrant unavailable")
 
 
@@ -103,6 +103,64 @@ def test_inspect_returns_fable_flag() -> None:
         assert body["is_fable_card"] is True
         assert body["page_count"] == 1
         assert body["fable_metadata"]["title"] == "테스트"
+        assert body["document_kind"] == 1
+        assert "structure_labels" in body
+        assert isinstance(body["structure_labels"], list)
+        assert "extracted_metadata" in body
+        assert isinstance(body["extracted_metadata"], list)
+    finally:
+        app.dependency_overrides.clear()
+
+
+def test_ingest_accepts_prompt_and_returns_it_in_metadata() -> None:
+    """multipart prompt를 받아 메타에 보존한다."""
+
+    @dataclass
+    class _PromptService:
+        last_prompt: str | None = None
+
+        def inspect(self, filename: str, content: bytes) -> PdfInspectResult:
+            _ = filename, content
+            return PdfInspectResult(
+                is_fable_card=True,
+                page_count=1,
+                basic_metadata={},
+                fable_metadata={"title": "T"},
+            )
+
+        def __call__(
+            self,
+            filename: str,
+            content: bytes,
+            prompt: str | None = None,
+        ) -> PdfIngestResult:
+            _ = content
+            self.last_prompt = prompt
+            meta = {"title": "늑대", "prompt": (prompt or "").strip() or None}
+            basic = {"source_file": filename, "prompt": (prompt or "").strip() or None}
+            return PdfIngestResult(
+                source_file=filename,
+                indexed=2,
+                collection="pdf_chunks_bge",
+                page_count=1,
+                metadata=meta,
+                basic_metadata=basic,
+                is_fable_card=True,
+            )
+
+    service = _PromptService()
+    app.dependency_overrides[get_pdf_ingest_service] = lambda: service
+    try:
+        response = client.post(
+            "/pdf/ingest",
+            files={"file": ("wolf.pdf", _FAKE_PDF_BYTES, "application/pdf")},
+            data={"prompt": "키워드를 한글로 보강하라"},
+        )
+        assert response.status_code == 200
+        body = response.json()
+        assert service.last_prompt == "키워드를 한글로 보강하라"
+        assert body["metadata"]["prompt"] == "키워드를 한글로 보강하라"
+        assert body["basic_metadata"]["prompt"] == "키워드를 한글로 보강하라"
     finally:
         app.dependency_overrides.clear()
 

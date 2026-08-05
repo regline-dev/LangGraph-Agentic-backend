@@ -5,6 +5,353 @@ PDF 모드용 LangGraph Agentic 백엔드 계획·구조·구현 변경 이력.
 
 ---
 
+## 2026-08-02 (v11) — Phase 5 A/C 전체 회귀·매뉴얼 갱신 완료
+
+**변경 파일**: A/C E2E 테스트, 업무·운영·개발 매뉴얼, `README.md`
+
+**변경 내용**: A/C 일반 추출·템플릿 매칭·동적 값 채움·벡터 적재·삭제의 **전체 회귀와 운영 문서 검증 완료**
+
+- 이솝·비이솝 A와 기존 C 흐름을 같은 규칙으로 재검증해 백엔드 201건 통과
+- README에 LLM 없는 추출·DOC_TYPE 매칭·`template_id` 삭제·관리자 API 로그 계약 반영
+
+---
+
+## 2026-08-02 (v10) — Phase 4 template_id 삭제·API 로그 검증 완료
+
+**변경 파일**: `ingest/index_documents.py`, PDF API·서비스·테스트
+
+**변경 내용**: Qdrant payload의 `template_id` 저장·A/C 벡터 삭제와 **요청 수신·성공·실패 다줄 로그 보장**
+
+- A/C 템플릿 기반 적재 포인트와 `template_id` 필터 삭제를 메모리 Qdrant로 검증
+- PDF API 로그에 시각·요청자·템플릿·결과·실패 사유를 포함하고 전체 201건 통과
+
+---
+
+## 2026-08-02 (v9) — Phase 3 메타 추천 LLM 제거 완료
+
+**변경 파일**: `app/api/pdf_ingest.py`, `app/pdf_ingest/`, 메타 추천 테스트·스크립트
+
+**변경 내용**: A/C 규칙형 메타데이터 흐름에서 사용하지 않는 **메타 추천 API·LLM 서비스·설정 완전 제거**
+
+- `POST /pdf/recommend-prompt`, 서비스·모듈·메타 LLM 환경값·probe·전용 테스트 삭제
+- 관련 코드 참조 0건, 로컬 실연동 제외 백엔드 196건 통과
+
+---
+
+## 2026-08-02 (v8) — Phase 1 템플릿 A 일반 추출·매칭 완료
+
+**변경 파일**: `Docs/20260802_템플릿A_결정사항_작업계획.md`, `app/pdf_ingest/`, `tests/`
+
+**변경 내용**: A 일반 PDF에서 명시적 후보 메타데이터를 추출하고 **같은 DOC_TYPE 템플릿끼리만 비교·동적 값 채움**
+
+- 콜론·파이프·설정 라벨 패턴을 공통 추출기로 처리하고 `extracted_metadata` 응답 추가
+- 이솝 허용목록·A 본줄 특화 파서를 제거하고 A/C 템플릿 후보 격리
+- 관련 회귀 204건 통과; 로컬 Qdrant 실연동 1건은 기존 1024차원 컬렉션과 32차원 테스트 벡터 불일치
+
+---
+
+## 2026-08-02 (v7) — C 템플릿 매칭 로그 일반화
+
+**변경 파일**: `template_match.py`, `test_template_match.py`, `Docs/20260802_C_템플릿매칭로그_수정_계획.md`
+
+**변경 내용**: C(표 중심) 판별 후 구조 라벨이 부족한 경우, 이솝·ARKK 사례 문구 대신 **`구조 라벨 부족으로 템플릿 비교 생략`**만 출력
+
+- 문서 종류 판별 결과와 후속 템플릿 매칭 실패 사유를 구분
+- 매칭 결과 `no_match` 동작은 변경 없음
+
+---
+
+## 2026-08-01 (v6) — 템플릿 soft-delete · template_id 벡터 삭제
+
+**변경 파일**: `template_store.py`, `service.py`, `pdf_ingest.py` API, `GLOBAL_LABELS.json`, 테스트
+
+**변경 내용**: 템플릿을 **`{id}_delete.json`으로 보관 삭제**하고, 옵션으로 **payload.template_id** 벡터 삭제. 목록에서 soft-delete 제외 · DESCRIPTION 전역키
+
+---
+
+## 2026-08-01 (v5) — GLOBAL DESCRIPTION 키
+
+**변경 파일**: `data/GLOBAL_LABELS.json`
+
+**변경 내용**: 전역 라벨에 **DESCRIPTION(설명)** 을 METADATA_NAME과 COLLECTION 사이에 추가 (LLM 애매 매칭 보조)
+
+---
+
+## 2026-08-01 (v4) — METADATA_NAME 템플릿 UI
+
+**변경 파일**: `Docs/20260801_METADATA_NAME_템플릿UI_계획.md`, GLOBAL_LABELS, `global_labels.py`, `fill_template_meta.py`, GET `/pdf/templates`, FE PdfVector·pdfIngest, 테스트, README §8-1
+
+**변경 내용**: 표(C) **SCHEMA→METADATA_NAME**, DOC_TYPE=`C`, 신규/등록 드롭다운·생성 버튼 표시 규칙 반영
+
+- 템플릿명 정규화: 공백 제거 + UPPER
+- 등록명 선택 시 해당 양식으로 결과 자동 채움
+- 「없음」선택 후에만 신규명 입력 활성
+
+---
+
+## 2026-08-01 (v3) — 템플릿 매칭 진단 로그
+
+**변경 파일**: `template_match.py`, `analyze.py`, `template_store.py`, `service.py`
+
+**변경 내용**: inspect 시 **로드된 템플릿 목록·doc_labels·빈약 사유·저장 id**를 콘솔/`template_match.log`에 남겨 kind=3 안 맞음 원인을 바로 보게 함
+
+---
+
+## 2026-08-01 (v2) — 템플릿 맞음 시 메타 자동 채움
+
+**변경 파일**: `Docs/20260801_템플릿맞음_메타자동채움_계획.md`, `fill_template_meta.py`, `service.py`, `schemas`, API, 테스트
+
+**변경 내용**: 판별 **맞음 + 결과 양식**이면 `/pdf/inspect`가 **filled_result**로 메타를 채워 줌. UI 버튼 클릭 없이 결과 JSON 표시
+
+- 문서 basic·As of 발췌를 양식에 덮어씀 (전역키 정규화 유지)
+- 생성 버튼 시뮬레이션 없음 — 서버가 채움
+
+---
+
+## 2026-08-01 (v1) — 전역라벨·template_id 구현 완료
+
+**변경 파일**: `Docs/20260801_전역라벨_template_id_합의.md`, `data/GLOBAL_LABELS.json`, `global_labels.py`, `admin_meta.py`, `service.py`, FE `GLOBAL_LABELS.json`·`pdfIngest`·`PdfVector`, 테스트
+
+**변경 내용**: README §8-1대로 **GLOBAL_LABELS.json**·**template_id(`C_로그인_ms`)**·**result_schema 전역키 전부·순서** 구현 완료
+
+- BE/FE가 동일 전역 사전을 쓰고, 저장 시 빈 전역 키도 `""`로 채움
+- 로그인 id = `admin_user_id`, 문서특성 1~4 ↔ A~D
+- 구 `created_date`/`modify_date`는 `pdf_created_at`/`pdf_updated_at`으로 이전
+
+---
+
+## 2026-07-31 (v106) — 전역 라벨 사전 생성일·수정일
+
+**변경 파일**: `admin_meta.py`
+
+**변경 내용**: 고정 필드 한글 안내를 `생성일`·`수정일` 포함 목록으로 맞춤 (결과 JSON 데이터와 분리)
+
+---
+
+## 2026-07-31 (v105) — 고정메타 전역사전 + 가변 search_labels
+
+**변경 파일**: `Docs/20260731_고정사전_가변search_labels_계획.md`, `admin_meta.py`, 테스트
+
+**변경 내용**: 필터 해석 시 `title`/`제목` 등 **고정 사전**과 문서 **`search_labels`(가변)** 을 합쳐 영문 키로 품. 확장용으로 미리 둠
+
+---
+
+## 2026-07-31 (v104) — search_labels 청크 스탬프·한글키 해석
+
+**변경 파일**: `Docs/20260731_search_labels_저장해석_계획.md`, `admin_meta.py`, `index_documents.py`, `service.py`, 테스트
+
+**변경 내용**: 벡터화 시 결과 JSON의 **영문 키·`search_labels`** 를 청크에 심고, 「작성기준일」→「As of」해석 함수를 둠 (검색 연결 준비)
+
+---
+
+## 2026-07-31 (v103) — 메타 생성 로컬 Llama(Ollama)
+
+**변경 파일**: `app/config.py`, `prompt_recommend.py`, `.env.example`, 테스트
+
+**변경 내용**: 「메타데이터 생성」기본 LLM을 **로컬 Ollama**(`META_LLM_BACKEND=local`, `llama3.1:latest`)로. Groq는 `META_LLM_BACKEND=groq`일 때만
+
+---
+
+## 2026-07-31 (v102) — 표 전처리를 find_tables로
+
+**변경 파일**: `text_truncate.py`, `analyze.py`, 테스트
+
+**변경 내용**: kind=3 원문 절단을 토큰수 휴리스틱이 아니라 **`find_tables()`** 로 바꿈(참조 스크립트). 큰 표(행≥10) 영역은 빼고 요약·생략만 넣어 종목 행이 LLM에 안 가게 함
+
+---
+
+## 2026-07-31 (v101) — 표(3) 반복 행 전처리 강화
+
+**변경 파일**: `text_truncate.py`, `analyze.py`, `Docs/20260731_문서특성3_표본줄_계획.md`, 합의, 테스트
+
+**변경 내용**: kind=3은 LLM에 보내기 **전** 반복 행 구간을 **전부 제거**(앞 3개 남기기 폐기). 결과 JSON 배열 후처리 삭제는 하지 않음
+
+---
+
+## 2026-07-31 (v100) — 문서특성 3(표) 본줄 완료
+
+**변경 파일**: `Docs/20260731_문서특성3_표본줄_계획.md`, `Docs/20260730_…합의.md`, `doc_kind.py`, `text_truncate.py`, `analyze.py`, 테스트
+
+**변경 내용**: **표(kind=3)** 를 본줄로 개방. 판별은 `find_tables`·행≥10. 보내기 전 반복 행 앞 3개만·표용 지시문. 표 처리는 1번에 넣지 않음. 미개발 모달은 2·4만
+
+---
+
+## 2026-07-31 (v99) — find_tables 판별 TDD
+
+**변경 파일**: `Docs/20260731_find_tables_판별_테스트_계획.md`, `tests/test_doc_kind_find_tables.py`
+
+**변경 내용**: 이솝·ARKK 실PDF에 `find_tables()` 1/3 판별 테스트. **표 유무가 아니라 행 수≥10**이면 3(표 중심), 미만이면 1(일반)
+
+
+---
+
+## 2026-07-31 (v98) — 결과 양식 템플릿 완료
+
+**변경 파일**: `Docs/20260731_결과양식템플릿_계획.md`, `template_store.py`, `template_match.py`, `service.py`, `schemas`, API, 테스트
+
+**변경 내용**: **판별용**(`labels`)과 **결과 양식**(`result_schema`)을 구분 저장. 확정 JSON 저장 후, 다음 맞음 PDF는 결과 양식 채우기 지시문으로 잠금. 판별만 되고 결과 양식 없으면 탐색 가능
+
+---
+
+## 2026-07-31 (v97) — ARKK 메타 JSON 생성 완료
+
+**변경 파일**: `Docs/20260731_ARKK_메타JSON생성_계획.md`, `app/pdf_ingest/prompt_recommend.py`, `tests/test_prompt_recommend.py`
+
+**변경 내용**: ARKK 「메타데이터 생성」에서 **파싱 가능한 메타 JSON**이 나오게 함. Groq JSON 모드·응답 JSON 추출. (프론트는 문서 발췌 상한·맨 끝 JSON 강제 문구)
+
+- 실측: `data/uploads/ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf` → `holdings_data`·TSLA 포함 JSON · `VERDICT: PASS`
+
+---
+
+## 2026-07-31 (v96) — 시드 하드코딩 프롬프트 제거
+
+**변경 파일**: `data/prompt_templates/fable_card_v1.json`, `table_basic_v1.json`, `app/pdf_ingest/template_store.py`
+
+**변경 내용**: 시드 템플릿의 **하드코딩 prompt 문구 삭제**(라벨만 유지). 로드 시 prompt 빈값 허용. 지시문은 UI textarea →「메타데이터 생성」으로만 전달
+
+---
+
+## 2026-07-31 (v95) — 메타 생성 시 문서 발췌 보강
+
+**변경 파일**: `app/pdf_ingest/analyze.py`, `app/pdf_ingest/service.py`, `Docs/20260731_기본메타_결과병합_계획.md`
+
+**변경 내용**: inspect 발췌 상한 확대. 「메타데이터 생성」에 파일이 있고 지시문에 `(텍스트 없음)`이면 **서버가 발췌로 치환** 후 LLM 호출
+
+---
+
+## 2026-07-30 (v94) — 메타데이터 생성 UI
+
+**변경 파일**: `app/pdf_ingest/prompt_recommend.py`, `service.py`, `api/pdf_ingest.py`, `schemas/pdf_ingest.py`, `tests/test_prompt_recommend.py`, `Docs/20260730_메타데이터생성_UI_계획.md`, `Docs/20260730_PDF벡터화_템플릿매칭_추천프롬프트_합의.md`
+
+**변경 내용**: inspect에 문서 발췌 포함. LLM은 **UI textarea 지시문**을 받아 1회 실행 → 결과 JSON. 서버가 칸을 하드코딩 추천문으로 채우지 않음
+
+---
+
+## 2026-07-30 (v93) — LLM 추천 고정 지시문 교체 (테스트)
+
+**변경 파일**: `app/pdf_ingest/prompt_recommend.py`, `Docs/20260730_PDF벡터화_템플릿매칭_추천프롬프트_합의.md`, `Docs/20260730_LLM추천지시문_테스트_계획.md`, `logs/recommend_prompt_aesop_new_v2.json`
+
+**변경 내용**: 안 맞음 LLM 호출용 고정 지시문을 **문서 구조 파악 → 계층 JSON 메타** 형태로 교체. 이솝 신규 가정으로 실호출 결과 확인 (성공 단정 없음)
+
+---
+
+## 2026-07-30 (v92) — 이솝 시드 프롬프트를 합의 지시문으로
+
+**변경 파일**: `data/prompt_templates/fable_card_v1.json`
+
+**변경 내용**: 이솝 템플릿 맞음(잠금) 시 화면에 나오는 지시문을 **합의된 최종 프롬프트**(이솝 번호·제목·내용 평가·영상화 적합도·키워드)로 교체. 예전 summary/keywords/suggested_questions 문구 제거
+
+---
+
+## 2026-07-30 (v91) — 구조 지문 파서 수정 (이솝 매칭)
+
+**변경 파일**: `app/pdf_ingest/structure_fingerprint.py`, `tests/test_structure_fingerprint.py`, `tests/fixtures/fable_pdf_06_extract.txt`
+
+**변경 내용**: 구조 지문 파서가 **제목·평가값·본문을 라벨로 오인**하지 않도록 수정 — 단독 줄은 구조 라벨 허용 목록만. `06_아버지와_아들들.pdf` → `fable_card_v1` **맞음(잠금)**
+
+---
+
+## 2026-07-30 (v90) — Phase 4 완료 (LLM 추천 1회)
+
+**변경 파일**: `app/pdf_ingest/prompt_recommend.py`, `service.py`, `api/pdf_ingest.py`, `schemas/pdf_ingest.py`, `tests/test_prompt_recommend*.py`, admin `PdfVector.jsx`, `agentClient.js`, `Docs/…계획.md`
+
+**변경 내용**: Phase 4 완료 — **안 맞음**이면 `POST /pdf/recommend-prompt` 1회, 애매 모달 닫으면 동일. 실패 시 빈 칸 폴백. 선택 시 `POST /pdf/templates`로 양식 저장
+
+---
+
+## 2026-07-30 (v89) — Phase 3 완료 (시드 템플릿)
+
+**변경 파일**: `data/prompt_templates/fable_card_v1.json`, `table_basic_v1.json`, `Docs/20260730_PDF벡터화_템플릿매칭_추천프롬프트_계획.md`
+
+**변경 내용**: Phase 3 완료 — **이솝 카드·표형 시드 템플릿**을 `data/prompt_templates/`에 두어 맞음/애매 비교가 실제 파일로 동작
+
+---
+
+## 2026-07-30 (v88) — Phase 3 진행 (템플릿 저장·비교·잠금)
+
+**변경 파일**: `app/pdf_ingest/template_store.py`, `template_match.py`, `analyze.py`, `service.py`, `schemas/pdf_ingest.py`, `api/pdf_ingest.py`, `tests/test_template_*.py`, `tests/test_inspect_template_match.py`, `Docs/…계획.md` · admin `PdfVector.jsx`, `agentClient.js`
+
+**변경 내용**: PDF 벡터화 Phase 3 — **파일 템플릿 저장·Jaccard 비교**, inspect에 `structure_labels`·맞음 시 **프롬프트 잠금** (이솝·ARKK 동일 본줄 · manifest 미사용)
+
+- 맞음≥0.85 · 애매 0.50~0.85 · 그 외/빈약 지문=안 맞음
+- 관리 화면·시드 템플릿은 잔여
+
+---
+
+## 2026-07-30 (v87) — 본줄=템플릿 · 레거시 삭제 예정 표기
+
+**변경 파일**: `Docs/20260730_PDF벡터화_템플릿매칭_추천프롬프트_계획.md`, `Docs/20260730_PDF벡터화_템플릿매칭_추천프롬프트_합의.md`
+
+**변경 내용**: 벡터화 본줄은 **템플릿·지문**만 — Agentic의 `arkk_manifest`·이솝·ARKK **상단 별도 진입은 쓰지 않음**. 계획서 `0.5`에 `[폐기]` 트리 명시. **대상은 Agentic·admin만** (`LangGraph` PoC는 계획 범위 밖)
+
+- 이솝·ARKK는 같은 업로드 본줄, 다른 것은 프롬프트(템플릿)만
+- 삭제 전까지도 신규 개발·기준으로 레거시 사용 금지
+
+---
+
+## 2026-07-30 (v86) — Phase 1 진행
+
+**변경 파일**: `app/pdf_ingest/doc_kind.py`, `analyze.py`, `service.py`, `schemas/pdf_ingest.py`, `api/pdf_ingest.py`, `tests/test_doc_kind.py`, `tests/test_pdf_ingest_api.py`
+
+**변경 내용**: PDF inspect에 **document_kind(1~4)** 추가 — 1만 본줄, 2·3·4는 미개발 안내용 판별
+
+- Phase 1 UI 라디오 제거는 프론트 잔여
+
+---
+
+## 2026-07-30 (v85) — Phase 0 완료
+
+**변경 파일**: `Docs/20260730_PDF벡터화_템플릿매칭_추천프롬프트_계획.md`, `app/pdf_ingest/structure_fingerprint.py`, `tests/test_structure_fingerprint.py`
+
+**변경 내용**: PDF 벡터화 Phase 0 — **구조 지문**을 프로그램이 라벨만 뽑도록 검증·구현 (`extract_structure_fingerprint` · 빈약 판정)
+
+- 이솝 카드·표 헤더 샘플 TDD 통과 · 숫자/키워드 값은 지문 제외
+- 새 모듈 `structure_fingerprint.py`: 템플릿 매칭용 지문 추출 (LLM 아님)
+
+---
+
+## 2026-07-30 (v84) — 착수
+
+**변경 파일**: `Docs/20260730_PDF벡터화_템플릿매칭_추천프롬프트_계획.md`
+
+**변경 내용**: PDF 벡터화 — 합의 본줄 구현용 **Phase 0~5 작업순서·체크리스트** 계획 착수 (지문 파서 검증을 최우선)
+
+- 코드 구현은 Phase 0 승인 후
+
+---
+
+## 2026-07-30 (v83) — 기록
+
+**변경 파일**: `Docs/20260730_PDF벡터화_템플릿매칭_추천프롬프트_합의.md`
+
+**변경 내용**: PDF 벡터화 템플릿 매칭·추천 프롬프트·메타 항목 공존 합의를 **새 Docs**로 남김 (기존 자체/외부 초안 파일은 미수정)
+
+- 문서 특성 1번만 진행 · 2·3·4 미개발 안내를 합의 본줄에 반영
+- 코드 변경 없음
+
+---
+
+## 2026-07-30 (v82) — 기록
+
+**변경 파일**: `Docs/20260730_PDF벡터화_대화정리_자체외부_1단계메타.md`, `Docs/20260730_PDF벡터화_대화정리_자체외부_1단계메타 _기존문서 무시_업데이트.md`
+
+**변경 내용**: PDF 벡터화 합의를 **업로드 → 기본 메타 → 문서별 추천 프롬프트(수정)** 로 재정리 (이전 자체/외부 분기 초안은 무시)
+
+- 코드 변경 없음
+
+---
+
+## 2026-07-29 (v81) — 완료
+
+**변경 파일**: `Docs/20260729_PDF벡터화_이솝_프롬프트_입력전달_계획.md`, `app/api/pdf_ingest.py`, `app/pdf_ingest/service.py`, `tests/test_pdf_ingest_api.py`, `README.md`
+
+**변경 내용**: `POST /pdf/ingest`가 multipart **`prompt`** 를 받아 벡터화 결과 메타(`basic_metadata`·이솝 `metadata`)에 보존
+
+- 프롬프트로 LLM 메타 보완은 후속 Phase
+- 이솝/일반 검증·채번 재설계는 3차 DB 때 (지금 변경 없음)
+
+---
+
 ## 2026-07-26 (v80) — PK/FK 재설계 + 감사 컬럼 추가로 갱신
 
 **변경 파일**: Docs/20260726_PDF생성_이력DB_ERD_계획.md (워크스페이스 Docs)
