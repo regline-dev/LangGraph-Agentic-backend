@@ -1,12 +1,17 @@
 # LangGraph-Agentic-backend — PDF Agent API 이미지
 # 순번 22: app/ingest 만 넣고 tests 제외 (.dockerignore)
-FROM python:3.11-slim
+# slim 최신(Trixie)은 mariadb_config가 없어 pip mariadb 빌드가 깨짐 → bookworm 고정
+FROM python:3.11-slim-bookworm
 
 WORKDIR /app
 
-# gcc: 일부 wheel 컴파일 · fonts-nanum: 우화 PDF 한글 (reportlab TTF)
+# gcc: wheel · fonts-nanum: 우화 PDF 한글 · libmariadb-dev/pkg-config: pip mariadb
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends gcc fonts-nanum \
+    && apt-get install -y --no-install-recommends \
+        gcc \
+        pkg-config \
+        libmariadb-dev \
+        fonts-nanum \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PYTHONUNBUFFERED=1 \

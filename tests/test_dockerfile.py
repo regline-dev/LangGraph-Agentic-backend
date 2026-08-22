@@ -23,7 +23,11 @@ def test_dockerfile_exists_and_ships_app_ingest_on_8010() -> None:
     path = ROOT / "Dockerfile"
     assert path.is_file(), "Dockerfile 이 있어야 한다"
     text = path.read_text(encoding="utf-8")
-    assert "python:3.11" in text.lower() or "python:3.11-slim" in text
+    # slim 최신(Trixie)은 mariadb_config 없음 → bookworm + Connector/C
+    lowered = text.lower()
+    assert "python:3.11-slim-bookworm" in lowered
+    assert "libmariadb-dev" in lowered
+    assert "pkg-config" in lowered
     assert "COPY app" in text or "COPY ./app" in text
     assert "COPY ingest" in text or "COPY ./ingest" in text
     assert "8010" in text
