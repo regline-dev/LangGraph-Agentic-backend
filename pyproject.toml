@@ -10,7 +10,7 @@ dependencies = [
     "uvicorn[standard]>=0.32.0",
     "pydantic-settings>=2.6.0",
     "pypdf>=5.0.0",
-    "qdrant-client>=1.12.0",
+    "qdrant-client>=1.13.0,<1.14.0",
     "langgraph>=0.2.0",
     "openai>=1.50.0",
     "sentence-transformers>=3.0.0",
@@ -20,6 +20,8 @@ dependencies = [
     "matplotlib>=3.8.0",
     "numpy>=1.26.0",
     "langchain-groq>=0.2.0",
+    # 템플릿 등록 DB (chatbot MariaDB, admin_backend_python과 공유)
+    "mariadb>=1.1.0",
 ]
 
 [project.optional-dependencies]

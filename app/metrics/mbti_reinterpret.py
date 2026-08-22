@@ -40,7 +40,7 @@ def reinterpret_fable_for_mbti(
     key = (api_key or settings.groq_api_key or "").strip()
     if not key:
         raise ValueError("GROQ_API_KEY가 없어 MBTI 재해석을 할 수 없습니다.")
-    used_model = (model or settings.groq_model or "").strip() or "llama-3.3-70b-versatile"
+    used_model = (model or settings.groq_model or "").strip() or "openai/gpt-oss-120b"
     chat = client or _create_groq_client(key)
     mbti_code = (mbti or "").strip().upper() or "UNKNOWN"
 

@@ -7,6 +7,7 @@ from app.pdf_ingest.template_match import (
     MATCH_STATUS_MATCH,
     MATCH_STATUS_NO_MATCH,
     MatchResult,
+    match_filename_to_templates,
     match_fingerprint_to_templates,
 )
 from app.pdf_ingest.template_store import PromptTemplate
@@ -137,6 +138,29 @@ def test_document_kind_compares_only_same_doc_type_templates() -> None:
     assert result.template.template_id == "general"
 
 
+def test_compare_ignores_whitespace_but_stored_labels_keep_it() -> None:
+    """doc_match_labels(template.labels)는 원문 그대로(공백 유지) 저장되지만,
+    Jaccard 비교 직전엔 양쪽 다 공백을 제거해서 미세한 공백 차이로 억울하게
+    안 겹치는 걸 막는다(Docs/20260812 계획)."""
+    templates = [
+        PromptTemplate(
+            template_id="aesop",
+            name="AESOP",
+            labels=frozenset({"결말톤", "내용 평가", "키워드", "영상화 적합도", "한마디 결론"}),
+            prompt="",
+            result_schema={"METADATA_NAME": "AESOP"},
+        )
+    ]
+    # 공백 형태가 살짝 다른 문서(추출기 차이 등)여도 정규화 후엔 완전히 겹침
+    fingerprint = frozenset({"결말톤", "내용평가", "키워드", "영상화적합도", "한마디결론"})
+
+    result = match_fingerprint_to_templates(fingerprint, templates)
+
+    assert result.status == MATCH_STATUS_MATCH
+    assert result.template is not None
+    assert result.template.template_id == "aesop"
+
+
 def test_document_kind_excludes_templates_without_doc_type() -> None:
     """DOC_TYPE 없는 레거시 템플릿을 A/C 후보에 섞지 않는다."""
     templates = [_tpl("legacy", "제목", "작성자", "발행일")]
@@ -145,6 +169,67 @@ def test_document_kind_excludes_templates_without_doc_type() -> None:
         frozenset({"제목", "작성자", "발행일"}),
         templates,
         document_kind=1,
+    )
+
+    assert result.status == MATCH_STATUS_NO_MATCH
+
+
+def _tpl_with_metadata_name(template_id: str, metadata_name: str, *, doc_type: str = "A") -> PromptTemplate:
+    return PromptTemplate(
+        template_id=template_id,
+        name=template_id,
+        labels=frozenset(),
+        prompt="",
+        result_schema={"METADATA_NAME": metadata_name},
+        doc_type=doc_type,
+    )
+
+
+def test_filename_match_single_candidate() -> None:
+    """파일명에 등록 템플릿명이 포함되고 후보가 하나면 맞음."""
+    templates = [_tpl_with_metadata_name("aesop", "AESOP")]
+
+    result = match_filename_to_templates("AESOP_헤라클레스와 마부.pdf", templates)
+
+    assert result.status == MATCH_STATUS_MATCH
+    assert result.template is not None
+    assert result.template.template_id == "aesop"
+
+
+def test_filename_match_is_case_insensitive() -> None:
+    templates = [_tpl_with_metadata_name("aesop", "AESOP")]
+
+    result = match_filename_to_templates("aesop_test.pdf", templates)
+
+    assert result.status == MATCH_STATUS_MATCH
+
+
+def test_filename_no_keyword_is_no_match() -> None:
+    templates = [_tpl_with_metadata_name("aesop", "AESOP")]
+
+    result = match_filename_to_templates("random_document.pdf", templates)
+
+    assert result.status == MATCH_STATUS_NO_MATCH
+    assert result.template is None
+
+
+def test_filename_matches_multiple_candidates_is_no_match() -> None:
+    """여러 템플릿명이 동시에 파일명에 걸리면(애매) 자동 선택 안 함 — ④로 넘어감."""
+    templates = [
+        _tpl_with_metadata_name("ark", "ARK"),
+        _tpl_with_metadata_name("arkk", "ARKK"),
+    ]
+
+    result = match_filename_to_templates("ARKK_report.pdf", templates)
+
+    assert result.status == MATCH_STATUS_NO_MATCH
+
+
+def test_filename_match_respects_document_kind() -> None:
+    templates = [_tpl_with_metadata_name("aesop_c", "AESOP", doc_type="C")]
+
+    result = match_filename_to_templates(
+        "AESOP_문서.pdf", templates, document_kind=1
     )
 
     assert result.status == MATCH_STATUS_NO_MATCH

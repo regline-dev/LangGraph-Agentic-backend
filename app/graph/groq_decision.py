@@ -20,14 +20,16 @@ _SYSTEM_PROMPT = """당신은 PDF 문서 검색 에이전트 판단기다.
 
 반드시 JSON 객체만 출력한다. 다른 문장·마크다운 설명 금지.
 형식:
-{"need_search": true또는false, "search_query": "검색어", "answer": "최종답변또는빈문자열"}
+{"need_search": true또는false, "search_query": "검색어", "answer": "최종답변또는빈문자열", "answer_status": "document|no_document|general|빈문자열"}
 
 규칙:
 - 인사·자기소개·잡담처럼 문서 근거가 불필요하면 need_search=false 이고 answer에 답변을 채운다.
 - 우화·PDF 내용·교훈·등장인물 등 문서가 필요하면 need_search=true, search_query에 검색어, answer는 "".
 - observations(이전 검색 결과)가 있으면 그걸 근거로만 answer를 쓴다. 부족하면 need_search=true로 재검색한다.
 - observations가 비어 있는데 문서성 질문이면 절대 지어내지 말고 need_search=true로 검색한다.
-- 검색 결과에도 없으면 need_search=false 와 answer에 "문서에서 관련 내용을 찾지 못했습니다."만 짧게.
+- 검색 결과로 답하면 answer_status="document".
+- 검색 결과에도 없으면 need_search=false, answer_status="no_document", answer="".
+- 문서가 필요 없는 잡담 답변이면 answer_status="general".
 - 외부 지식(다른 유명한 우화 이름 등)을 지어내지 않는다.
 """
 
@@ -36,13 +38,15 @@ _HOLDINGS_SYSTEM_PROMPT = """당신은 ARK ETF holdings PDF 검색 에이전트 
 
 반드시 JSON 객체만 출력한다. 다른 문장·마크다운 설명 금지.
 형식:
-{"need_search": true또는false, "search_query": "검색어", "answer": "최종답변또는빈문자열"}
+{"need_search": true또는false, "search_query": "검색어", "answer": "최종답변또는빈문자열", "answer_status": "document|no_document|general|빈문자열"}
 
 규칙:
 - 인사·잡담은 need_search=false, answer에 짧게 답한다.
 - 종목·비중·보유·ARKK·ETF 관련 질문은 need_search=true, search_query에 검색어, answer는 "".
 - observations가 있으면 그 숫자·종목명만 근거로 answer를 쓴다. 없는 종목·비중을 지어내지 않는다.
-- 검색 결과에도 없으면 need_search=false 와 "문서에서 관련 내용을 찾지 못했습니다."만 짧게.
+- 검색 결과로 답하면 answer_status="document".
+- 검색 결과에도 없으면 need_search=false, answer_status="no_document", answer="".
+- 문서가 필요 없는 잡담 답변이면 answer_status="general".
 """
 
 
@@ -72,10 +76,14 @@ def parse_decision_json(raw: str) -> dict[str, Any]:
     if not isinstance(data, dict):
         raise ValueError("Groq 판단 JSON은 객체여야 합니다.")
 
+    answer_status = str(data.get("answer_status", "") or "").strip()
+    if answer_status not in ("", "document", "no_document", "general"):
+        answer_status = ""
     return {
         "need_search": bool(data.get("need_search", False)),
         "search_query": str(data.get("search_query", "") or "").strip(),
         "answer": str(data.get("answer", "") or "").strip(),
+        "answer_status": answer_status,
     }
 
 
@@ -97,7 +105,7 @@ def make_groq_decide_fn(
     if not cleaned_key:
         raise ValueError("GROQ_API_KEY가 비어 있습니다. .env에 GROQ_API_KEY를 설정하세요.")
 
-    cleaned_model = (model or "").strip() or "llama-3.3-70b-versatile"
+    cleaned_model = (model or "").strip() or "openai/gpt-oss-120b"
     chat_client = client or _create_groq_client(cleaned_key)
     prompt = (system_prompt or _SYSTEM_PROMPT).strip()
 

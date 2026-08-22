@@ -261,6 +261,15 @@ def generate_fable_pdf(data: dict, output_path: str, radar_tmp_path: str | None 
         )
         flow = []
 
+        from app.fable_pdf.pdf_header import build_top_header_table
+
+        header_tbl = build_top_header_table(
+            data, content_width=155 * mm, footnote_style=s["footnote"]
+        )
+        if header_tbl is not None:
+            flow.append(header_tbl)
+            flow.append(Spacer(1, 6))
+
         flow.append(Paragraph("이솝우화 도감 · 분석 카드", s["eyebrow"]))
 
         badge_tbl = Table(

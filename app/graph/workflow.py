@@ -76,5 +76,6 @@ def run_agent(graph: Any, *, question: str) -> AgentState:
         "observations": [],
         "citations": [],
         "answer": "",
+        "answer_status": "",
     }
     return graph.invoke(initial)

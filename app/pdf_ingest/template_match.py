@@ -18,6 +18,17 @@ from app.pdf_ingest.template_store import PromptTemplate, has_fill_lock
 
 logger = logging.getLogger(__name__)
 
+
+def _normalize_for_compare(labels: frozenset[str]) -> frozenset[str]:
+    """비교 직전에만 공백 제거 — 저장값(template.labels)·doc_labels 자체는 공백 유지.
+
+    doc_match_labels는 등록 당시 원문 구조 라벨(공백 있는 형태, 예: "내용 평가")을 그대로
+    저장한다 — 공백을 지우면 라벨 인식(known_labels exact match) 자체가 깨져서 오히려
+    나빠진다(Docs/20260812 계획, 실측: 공백 유지 0.71 vs 제거 0.14). 대신 최종 Jaccard
+    비교 직전에만 양쪽 다 공백을 제거해서, 미세한 공백 차이로 억울하게 안 겹치는 걸 막는다.
+    """
+    return frozenset(label.replace(" ", "") for label in labels if label.strip())
+
 MATCH_STATUS_MATCH = "match"
 MATCH_STATUS_AMBIGUOUS = "ambiguous"
 MATCH_STATUS_NO_MATCH = "no_match"
@@ -36,6 +47,45 @@ class MatchResult:
     template: PromptTemplate | None = None
     candidates: list[PromptTemplate] = field(default_factory=list)
     prompt_locked: bool = False
+
+
+def match_filename_to_templates(
+    filename: str,
+    templates: list[PromptTemplate],
+    *,
+    document_kind: int | None = None,
+) -> MatchResult:
+    """②단계: 업로드 파일명에 등록 템플릿명(METADATA_NAME) 키워드가 포함되는지 본다.
+
+    사람이 파일명 규칙을 안 지키면 못 맞는 건 감수한다(정교한 단어 경계 매칭 안 함,
+    Docs/20260812 계획 결정사항) — 대신 후보가 정확히 하나로 좁혀질 때만 맞음으로 본다.
+    """
+    name_upper = str(filename or "").upper()
+    candidates = list(templates)
+    if document_kind is not None:
+        current_doc_type = doc_kind_to_letter(document_kind)
+        candidates = [t for t in candidates if t.doc_type == current_doc_type]
+
+    matched = [
+        t
+        for t in candidates
+        if isinstance(t.result_schema, dict)
+        and str(t.result_schema.get("METADATA_NAME") or "").strip()
+        and str(t.result_schema.get("METADATA_NAME")).strip().upper() in name_upper
+    ]
+    if len(matched) == 1:
+        best = matched[0]
+        message = f"[template_match] status=match reason=파일명 키워드 일치 template_id={best.template_id} filename={filename!r}"
+        print(message, flush=True)
+        _append_match_log(message)
+        return MatchResult(
+            status=MATCH_STATUS_MATCH,
+            score=1.0,
+            template=best,
+            candidates=[best],
+            prompt_locked=has_fill_lock(best),
+        )
+    return MatchResult(status=MATCH_STATUS_NO_MATCH, prompt_locked=False)
 
 
 def match_fingerprint_to_templates(
@@ -76,9 +126,10 @@ def match_fingerprint_to_templates(
         )
         return MatchResult(status=MATCH_STATUS_NO_MATCH, prompt_locked=False)
 
+    labels_norm = _normalize_for_compare(labels)
     scored: list[tuple[float, PromptTemplate]] = []
     for template in candidates:
-        score = _jaccard(labels, template.labels)
+        score = _jaccard(labels_norm, _normalize_for_compare(template.labels))
         scored.append((score, template))
         _log_compare(
             doc_labels=labels,
@@ -196,10 +247,14 @@ def _log_compare(
         if extra:
             message += f" {extra}"
     else:
+        # 점수(score)는 정규화(공백 제거)된 값끼리 비교한 결과라, 아래 교집합/차집합도
+        # 그 점수와 맞춰서 정규화된 값으로 보여준다(원문 그대로는 doc_labels/seed_labels에).
+        doc_norm = _normalize_for_compare(doc_labels)
         seed = template.labels
-        inter = sorted(doc_labels & seed)
-        only_doc = sorted(doc_labels - seed)
-        only_seed = sorted(seed - doc_labels)
+        seed_norm = _normalize_for_compare(seed)
+        inter = sorted(doc_norm & seed_norm)
+        only_doc = sorted(doc_norm - seed_norm)
+        only_seed = sorted(seed_norm - doc_norm)
         message = (
             f"[template_match] status={status} reason={reason} "
             f"template_id={template.template_id} score={score:.4f}\n"

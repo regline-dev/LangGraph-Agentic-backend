@@ -21,3 +21,5 @@ class AgentState(TypedDict, total=False):
     observations: list[dict[str, Any]]
     citations: list[dict[str, Any]]
     answer: str
+    # document=검색 근거 답변, no_document=관련 문서 없음, general=문서 미사용
+    answer_status: str

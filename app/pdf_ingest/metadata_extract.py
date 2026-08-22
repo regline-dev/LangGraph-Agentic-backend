@@ -39,7 +39,7 @@ def extract_metadata_candidates(
     configured_labels = _normalize_known_labels(known_labels)
     configured_lookup = {label.casefold(): label for label in configured_labels}
     results: list[ExtractedMetadata] = []
-    seen: set[tuple[str, str]] = set()
+    seen: set[str] = set()
 
     index = 0
     while index < len(lines):
@@ -202,17 +202,30 @@ def _extract_known_inline_pair(
     return None
 
 
+_MAX_CONFIDENT_VALUE_LEN = 60
+
+
+def _looks_like_confident_value(value: str) -> bool:
+    """메타데이터 값다운지 — 문장으로 끝나거나 너무 길면 본문 조각이지 값이 아니다."""
+    text = value.strip()
+    if not text or len(text) > _MAX_CONFIDENT_VALUE_LEN:
+        return False
+    return not text.endswith((".", "?", "!"))
+
+
 def _append_unique(
     results: list[ExtractedMetadata],
-    seen: set[tuple[str, str]],
+    seen: set[str],
     label: str,
     value: str,
     source: str,
 ) -> None:
     normalized_label = label.strip()
     normalized_value = value.strip()
-    key = (normalized_label.casefold(), normalized_value)
+    key = normalized_label.casefold()
     if not normalized_label or not normalized_value or key in seen:
+        return
+    if not _looks_like_confident_value(normalized_value):
         return
     seen.add(key)
     results.append(

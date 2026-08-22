@@ -8,10 +8,10 @@ from pathlib import Path
 from typing import Callable, Protocol
 
 from app.fable_pdf.id_sequence import next_fable_id
+from app.fable_pdf.pdf_type_profile import PdfTypeProfile
 from app.fable_pdf.pipeline import SOURCE_NOTE_DEFAULT, run_fable_pipeline
 from app.fable_pdf.tmp_store import cleanup_expired_tmp_pdfs, make_tmp_pdf_path
 
-# 프로젝트 루트 기준 (uvicorn cwd = /app 또는 레포 루트)
 _BACKEND_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SEQ_PATH = _BACKEND_ROOT / "data" / "fable_id_seq.txt"
 DEFAULT_TMP_DIR = _BACKEND_ROOT / "data" / "tmp" / "fable_pdf"
@@ -33,17 +33,20 @@ class FablePdfService(Protocol):
         self,
         body_text: str,
         source_note: str | None = None,
+        type_profile: PdfTypeProfile | None = None,
     ) -> FableGenerateResult: ...
 
 
 def generate_fable_pdf_bytes(
     body_text: str,
     source_note: str | None = None,
+    type_profile: PdfTypeProfile | None = None,
     *,
     seq_path: Path | None = None,
     tmp_dir: Path | None = None,
     timeout_seconds: float | None = None,
     pipeline_fn: Callable[..., dict] | None = None,
+    preview_score: dict | None = None,
 ) -> FableGenerateResult:
     """
     1) TTL 청소 2) ID 채번 3) tmp PDF 생성 4) 바이트 읽기 5) tmp 삭제.
@@ -58,10 +61,11 @@ def generate_fable_pdf_bytes(
     note = (source_note or "").strip() or SOURCE_NOTE_DEFAULT
 
     if pipeline_fn is None:
-        # 실파이프라인에 LLM 한도(기본 100초)를 고정
         pipeline: Callable[..., dict] = partial(
             run_fable_pipeline,
             timeout_seconds=timeout,
+            type_profile=type_profile,
+            preview_score=preview_score,
         )
     else:
         pipeline = pipeline_fn
@@ -73,7 +77,11 @@ def generate_fable_pdf_bytes(
     meta: dict = {}
     pdf_bytes = b""
     try:
-        meta = pipeline(text, fable_id, str(pdf_path), note)
+        # pipeline_fn 테스트 더블은 구시그니처(4인자)일 수 있음
+        try:
+            meta = pipeline(text, fable_id, str(pdf_path), note)
+        except TypeError:
+            meta = pipeline(text, fable_id, str(pdf_path), note)
         if not pdf_path.is_file():
             raise RuntimeError("PDF 파일이 생성되지 않았습니다.")
         pdf_bytes = pdf_path.read_bytes()

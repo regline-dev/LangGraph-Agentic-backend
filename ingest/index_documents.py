@@ -66,11 +66,14 @@ def ingest_pdf(
     chunk_size: int = 300,
     chunk_overlap: int = 60,
     admin_meta: dict | None = None,
+    version_meta: dict | None = None,
 ) -> int:
     """uploads 아래 PDF만 로드→청킹→Qdrant 적재한다. 적재 개수를 반환.
 
     tests/fixtures 등 uploads 밖 경로로 직접 호출하면 ValueError.
     admin_meta: 관리자 결과 JSON(영문 키·search_labels) — 있으면 청크에 스탬프.
+    version_meta: document_id/content_hash/version/is_current — 있으면 청크에 스탬프
+      (Docs/20260814_벡터화_문서버전관리_계획.md).
     """
     path = Path(pdf_path).resolve()
     allowed_root = (uploads_dir or DEFAULT_UPLOADS_DIR).resolve()
@@ -98,12 +101,26 @@ def ingest_pdf(
         from app.pdf_ingest.admin_meta import stamp_chunks_with_admin_meta
 
         chunks = stamp_chunks_with_admin_meta(chunks, admin_meta)
+    if version_meta:
+        chunks = _stamp_chunks_with_version_meta(chunks, version_meta)
     return index_chunks(
         chunks,
         client=client,
         collection_name=collection_name,
         embedder=embedder,
     )
+
+
+def _stamp_chunks_with_version_meta(
+    chunks: list[DocumentChunk], version_meta: dict
+) -> list[DocumentChunk]:
+    """청크에 document_id/content_hash/version/is_current 스탬프."""
+    stamped: list[DocumentChunk] = []
+    for chunk in chunks:
+        meta = dict(chunk.metadata)
+        meta.update(version_meta)
+        stamped.append(DocumentChunk(page_content=chunk.page_content, metadata=meta))
+    return stamped
 
 
 class Embedder(Protocol):
@@ -164,7 +181,7 @@ def index_chunks(
 
     points = [
         qmodels.PointStruct(
-            id=_stable_point_id(chunk.metadata["chunk_id"]),
+            id=_stable_point_id(_point_id_key(chunk)),
             vector=vector,
             payload=_chunk_payload(chunk),
         )
@@ -172,6 +189,15 @@ def index_chunks(
     ]
     client.upsert(collection_name=collection_name, points=points)
     return len(points)
+
+
+def _point_id_key(chunk: DocumentChunk) -> str:
+    """포인트 id 생성 키 — 버전이 있으면 섞어서, 같은 파일의 새 버전이 예전 포인트를 덮어쓰지 않게 한다."""
+    chunk_id = chunk.metadata["chunk_id"]
+    version = chunk.metadata.get("version")
+    if version is None:
+        return chunk_id
+    return f"{chunk_id}:v{version}"
 
 
 def _chunk_payload(chunk: DocumentChunk) -> dict:
@@ -209,6 +235,11 @@ def _chunk_payload(chunk: DocumentChunk) -> dict:
         "SCHEMA",
         "template_id",
         "search_labels",
+        # 문서 버전 관리(계획: Docs/20260814_벡터화_문서버전관리_계획.md)
+        "document_id",
+        "content_hash",
+        "version",
+        "is_current",
     ):
         if key in chunk.metadata:
             payload[key] = chunk.metadata[key]

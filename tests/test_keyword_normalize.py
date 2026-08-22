@@ -16,5 +16,11 @@ def test_empty_falls_back() -> None:
     assert normalize_keyword_tags(None) == ["우화"]
 
 
+def test_empty_fallback_none_returns_empty() -> None:
+    """커스텀 경로는 우화 폴백을 쓰지 않는다."""
+    assert normalize_keyword_tags([], empty_fallback=None) == []
+    assert normalize_keyword_tags(None, empty_fallback=None) == []
+
+
 def test_mixed_strips_cjk() -> None:
     assert normalize_keyword_tags(["탐욕貪欲"]) == ["탐욕"]

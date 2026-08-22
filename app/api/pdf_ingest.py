@@ -110,12 +110,21 @@ async def inspect_pdf_endpoint(
         text_excerpt=result.text_excerpt or "",
         result_schema=result.result_schema,
         filled_result=result.filled_result,
+        document_version_preview_action=result.document_version_preview_action,
+        document_id=result.document_id,
+        content_hash=result.content_hash,
     )
+    extracted_count = len(result.extracted_metadata or [])
     log_pdf_api(
         api="POST /pdf/inspect",
         admin_user_id=admin_user_id,
         template_id=result.template_id,
         result="success",
+        reason=(
+            "추천 메타데이터 후보 없음(extracted_metadata=0)"
+            if extracted_count == 0
+            else None
+        ),
     )
     return response
 
@@ -322,6 +331,10 @@ async def ingest_pdf_endpoint(
         metadata=result.metadata,
         basic_metadata=result.basic_metadata,
         is_fable_card=result.is_fable_card,
+        document_version_action=result.document_version_action,
+        document_id=result.document_id,
+        version=result.version,
+        content_hash=result.content_hash,
     )
     log_pdf_api(
         api="POST /pdf/ingest",

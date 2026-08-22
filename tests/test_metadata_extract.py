@@ -72,3 +72,56 @@ def test_fable_fixture_uses_configured_labels_without_document_name_branch() -> 
         classify_document_kind(page_count=2, text=text)
         == DOC_KIND_GENERAL_TEXT
     )
+
+
+def test_same_label_found_twice_keeps_only_first_candidate() -> None:
+    """콜론(뱃지)과 next_line(표) 두 패턴에서 같은 라벨이 잡히면 하나만 남는다."""
+    text = (
+        Path(__file__).parent / "fixtures" / "fable_pdf_06_extract.txt"
+    ).read_text(encoding="utf-8")
+    configured_labels = {
+        "결말톤",
+        "재미도",
+        "폭력성",
+        "교훈 명확도",
+        "키워드",
+        "예상 낭독시간",
+        "등장인물",
+        "대사비중",
+        "분량",
+        "최종평가",
+        "원문",
+        "한마디 결론",
+    }
+
+    extracted = extract_metadata_candidates(text, known_labels=configured_labels)
+
+    ending_tone_entries = [item for item in extracted if item["label"] == "결말톤"]
+    assert len(ending_tone_entries) == 1
+    assert ending_tone_entries[0]["value"] == "해피"
+
+
+def test_prose_like_values_are_excluded_as_not_confident() -> None:
+    """원문·한마디 결론처럼 문장으로 끝나는 긴 값은 메타데이터 후보로 신뢰하지 않는다."""
+    text = (
+        Path(__file__).parent / "fixtures" / "fable_pdf_06_extract.txt"
+    ).read_text(encoding="utf-8")
+    configured_labels = {
+        "결말톤",
+        "재미도",
+        "폭력성",
+        "교훈 명확도",
+        "키워드",
+        "예상 낭독시간",
+        "등장인물",
+        "대사비중",
+        "분량",
+        "최종평가",
+        "원문",
+        "한마디 결론",
+    }
+
+    extracted = extract_metadata_candidates(text, known_labels=configured_labels)
+
+    assert not any(item["label"] == "원문" for item in extracted)
+    assert not any(item["label"] == "한마디 결론" for item in extracted)

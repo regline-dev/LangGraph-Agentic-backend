@@ -32,7 +32,7 @@ SCORE_PROMPT = """다음은 짧은 우화(또는 동화) 원문이다. 아래 JS
 def _get_llm(*, timeout_seconds: float) -> ChatGroq:
     settings = get_settings()
     return ChatGroq(
-        model=settings.groq_model or "llama-3.3-70b-versatile",
+        model=settings.groq_model or "openai/gpt-oss-120b",
         temperature=0.3,
         api_key=settings.groq_api_key or None,
         request_timeout=timeout_seconds,

@@ -5,6 +5,169 @@ PDF 모드용 LangGraph Agentic 백엔드 계획·구조·구현 변경 이력.
 
 ---
 
+## 2026-08-20 (v4)
+
+**변경 파일**: .env
+
+**변경 내용**: 로컬 Agent는 `127.0.0.1:8010`만 듣게 함 — `0.0.0.0`이면 외부 스캔이 들어옴. Docker는 기존 `0.0.0.0`
+
+---
+
+
+
+**변경 파일**: app/api/fable.py, app/fable_pdf/{pipeline,typed_scorer,keyword_normalize,pdf_type_profile}.py, app/schemas/fable.py, tests/test_fable_draft_configs.py, tests/test_typed_pdf_generate.py, tests/test_keyword_normalize.py
+
+**변경 내용**: 커스텀 PDF 생성은 **LLM 한 번(구성 초안)** 으로 항목·값·차트를 만들고, 실제 PDF 조립 때는 Groq를 다시 타지 않게 함. 이솝 채점 경로는 유지
+
+- `POST /fable/draft-configs` 추가. `type_code=aesop` 은 거절
+- 생성 요청 configs에 `value`가 있으면 `score_typed_with_llm`을 건너뜀
+- 커스텀 태그 빈 값에 `"우화"` 폴백을 붙이지 않음. 이솝 채점은 기존 폴백 유지
+- 타입 코드/파일명 문자열 분기는 추가하지 않음 (`is_aesop_type` 기존 시드 코드만)
+
+---
+
+## 2026-08-20 (v2)
+
+**변경 파일**: Docs/20260820_벡터화_inspect후_프로세스사망_계획.md, app/pdf_ingest/service.py, app/main.py, tests/test_pdf_ingest_service.py, tests/test_inspect_template_match.py
+
+**변경 내용**: PDF 업로드(inspect) 뒤 벡터화 시작 시 Agent API가 예외 없이 꺼지던 문제를, **PDF 분석 전에 임베딩 모델을 먼저 열도록** 바꿔 요청이 끝까지 가게 함
+
+- 원인: inspect에서 pymupdf를 쓴 뒤 ingest에서 bge-m3(PyTorch)를 열면 Windows `0xC0000005`로 프로세스 사망
+- `PdfIngestService`가 분석 전에 임베더를 열고, 기동 워밍업 실패는 숨기지 않고 로그로 남김
+- 테스트용 FakeEmbedder는 실모델을 열지 않음
+- 원인·로컬(임베디드 Qdrant) vs 운영(Compose 별도 Qdrant)·운영 부담은 같은 날 계획서에 정리
+
+---
+
+## 2026-08-20
+
+**변경 파일**: app/main.py
+
+**변경 내용**: Windows 로컬 실행 시 `/pdf/ingest` 등에서 한글 로그 print()가 콘솔 기본 인코딩(cp949)과 충돌해 프로세스가 죽거나(크래시) 400 에러가 나던 문제 수정
+
+- `sys.platform == "win32"`일 때 `sys.stdout`/`sys.stderr`를 UTF-8로 강제 reconfigure
+- 별도 환경변수(PYTHONIOENCODING) 없이 평소처럼 서버 기동하면 자동 적용됨
+
+---
+
+## 2026-08-15 (v1)
+
+**변경 파일**: Docs/20260814_벡터화_문서버전관리_계획.md, sql/create_document_version_tables.sql, app/pdf_ingest/{document_version,service}.py, app/schemas/pdf_ingest.py, app/api/pdf_ingest.py, ingest/index_documents.py, app/tools/{search_documents,search_holdings,lookup_fable_metadata}.py, data/GLOBAL_LABELS.json, 테스트
+
+**변경 내용**: PDF 벡터화 재업로드 판단을 파일명 하나만 보던 방식에서 **문서ID + 콘텐츠 해시 + 버전 이력** 기반으로 바꿈
+
+- 새 테이블 `documents`(문서 정체성)/`document_versions`(버전 이력, 재업로드해도 예전 버전은 지우지 않고 `is_current`만 내림) 추가
+- 벡터화 업로드 시 콘텐츠 해시로 스킵(내용 동일)/신규 삽입/새 버전 추가를 판단 — 예전엔 같은 파일명이면 내용이 같아도 무조건 지우고 다시 임베딩했음
+- Qdrant 포인트 payload에 `document_id`/`content_hash`/`version`/`is_current` 추가, 검색 경로 3곳(`search_documents`/`search_holdings`/`lookup_fable_metadata`)에 최신 버전만 보이는 필터 추가 — 필드 없는 기존 포인트는 그대로 검색되게 처리해 회귀 없음
+- `/pdf/inspect` 응답에 "이대로 벡터화하면 스킵/신규/새 버전 중 뭐가 될지" 미리보기 필드 추가
+- `/pdf/ingest` 응답에도 확정된 콘텐츠 해시(`content_hash`) 추가 — 프론트 완료 화면에 "문서 HASH 코드"로 표시
+
+---
+
+## 2026-08-12 (v1)
+
+**변경 파일**: Docs/20260812_템플릿등록_자동매칭_재설계_계획.md, sql/create_template_tables.sql, scripts/migrate_doc_match_labels.py, app/pdf_ingest/{analyze,template_match,template_service,service}.py, 테스트
+
+**변경 내용**: 템플릿 등록의 자동 매칭을 신뢰도 순서(METADATA_NAME 직접비교 → 파일명 키워드 → 구조 라벨 비교 → 사람 선택)로 재설계
+
+- `template_labels` 테이블을 없애고 `template_registry.doc_match_labels` 컬럼(콤마 구분, 공백 유지)으로 대체 — 최초 등록 시에만 자동 캡처, "수정"해도 안 바뀜
+- PDF 구조 라벨 추출 범위를 문서 앞 2페이지로 제한(본문 전체를 훑으면 노이즈 라벨이 잡히는 문제)
+- 파일명에 등록 템플릿명이 포함되면 자동 매칭하는 `match_filename_to_templates` 신규 추가 — 업로드 검사(inspect) API가 파일명 매칭 실패 시에만 구조 라벨 비교로 넘어감
+- 라벨 비교 시 저장값·문서값 양쪽 공백을 제거하고 비교(저장은 공백 유지)
+- `load_templates()` N+1 쿼리 제거(쿼리 3회 → 라벨 컬럼 통합 후 목록+필드 2회)
+
+---
+
+## 2026-08-09 (v1)
+
+**변경 파일**: Docs/20260809_템플릿등록_추천메타데이터_근본개편_계획.md, app/pdf_ingest/metadata_extract.py, 테스트
+
+**변경 내용**: 메타데이터 후보 추출(`extract_metadata_candidates`)에서 **같은 필드 중복**과 **본문 조각이 값으로 섞이는 문제**를 정밀화
+
+- 라벨 기준으로 중복 후보를 제거 (콜론·표 두 패턴에서 같은 필드가 각각 잡히던 문제)
+- 값이 60자를 넘거나 문장 종결 부호(`.`·`?`·`!`)로 끝나면 메타데이터 후보로 신뢰하지 않고 제외
+- `PdfVector.jsx`·템플릿 등록 화면이 이 함수를 공유해서 둘 다 영향받음(확인·승인됨)
+
+---
+
+## 2026-08-08 (v5)
+
+**변경 파일**: Docs/20260808_PDF생성_타입수정_상단헤더_계획.md, app/fable_pdf/pdf_header.py, pipeline.py, typed_pdf.py, pdf_generator.py, schemas/fable.py
+
+**변경 내용**: 생성 PDF **맨 위**에 METADATA_NAME·타입 수정일/수정자(왼쪽)와 문서생성일(오른쪽)을 두고, 하단 각주 METADATA는 제거
+
+- 요청에 type_updated_at / type_updated_by 수신
+- Info 스탬프(METADATA_NAME)는 유지
+
+---
+
+## 2026-08-08 (v4)
+
+**변경 파일**: Docs/20260808_PDF생성_type_code_METADATA스탬프_계획.md, app/fable_pdf/metadata_stamp.py, pipeline.py, typed_pdf.py, pdf_generator.py, tests/test_metadata_stamp.py
+
+**변경 내용**: 생성 PDF에 **METADATA_NAME(=type_code)** 만 찍어, 템플릿이 타입 키로 연결되게 함
+
+- Info `/METADATA_NAME` + 본문 `METADATA_NAME: …` 한 줄
+- type_code 공백제거·대문자 정규화 (타임스탬프형 `type_숫자` 신규 금지)
+
+---
+
+## 2026-08-08 (v3)
+
+**변경 파일**: Docs/20260808_PDF생성_가로카드전폭_섹션제목_계획.md, app/fable_pdf/typed_pdf.py, tests/test_typed_pdf_layout.py
+
+**변경 내용**: 타입 PDF에서 **카드형 가로 박스가 본문 폭을 꽉 채우고**, 섹션 제목(이용 안내 등) 글씨를 줄임
+
+- 카드 3·4개 모두 본문 폭 N등분 (오른쪽에 빈 칸 안 남김)
+- 「이용 안내」 등 그룹 제목 폰트 축소 (이솝 PDF 스타일은 변경 없음)
+
+---
+
+## 2026-08-08 (v2)
+
+**변경 파일**: Docs/20260808_PDF생성_배치카드형_문서번호_계획.md, app/fable_pdf/typed_pdf.py, pipeline.py, tests/test_typed_pdf_layout.py
+
+**변경 내용**: 타입 PDF에서 **배치=카드형(가로)** 를 실제 레이아웃에 반영
+
+- `layout=horizontal` 그룹 → 가로 카드 행 / `vertical` → 세로 리스트
+- 구성에 고른 배치가 생성 PDF에 그대로 적용
+
+---
+
+## 2026-08-08 (v1)
+
+**변경 파일**: Docs/20260808_PDF생성_타입반영_정상화_계획.md, app/fable_pdf/*, app/schemas/fable.py, app/api/fable.py, tests/test_typed_pdf_generate.py
+
+**변경 내용**: PDF 생성이 **선택한 타입 구성으로** 채점·레이아웃되도록 고침 (이솝만 나오던 잘못된 개발 수정)
+
+- `type_code=aesop` → 기존 이솝 분석 카드 유지
+- 그 외 타입 → type_name·구성 그룹·서브타이틀 기반 PDF (이솝 「내용 평가」 미사용)
+- 요청에 type_code / type_name / configs / subtitles 수신
+
+---
+
+## 2026-08-07 (v1)
+
+**변경 파일**: Docs/20260807_PDF답변정책_히트가공_미스무LLM_계획.md, app/graph/no_document_fallback.py, app/graph/runtime.py, tests/*
+
+**변경 내용**: PDF를 **못 찾았을 때 Groq에 일반 답을 맡기지 않음** (거짓 정보 방지). 토글은 **찾은 답의 LLM 가공**만 제어
+
+- 미스·일반 질문 → 항상 「학습 데이터가 없습니다.」만
+- ON → 문서 기반 LLM 정리 답 / OFF → 검색 발췌만
+
+---
+
+## 2026-08-05 (v1)
+
+**변경 파일**: `app/graph/*`, `app/config.py`, `.env*.example`, `tests/test_*`, `README.md`, `docker-compose.hetzner.yml`
+
+**변경 내용**: PDF 질문에서 관련 문서를 찾지 못하면 **무관한 근거를 숨기고**, 시스템 관리 정책에 따라 Groq 기본답변 또는 학습 데이터 없음만 표시
+
+- `fable`·`holdings`와 무관한 일반 질문은 PDF 벡터 검색 없이 기본답변 경로로 분리
+- 끝 글자가 빠진 우화 제목도 같은 전체 카드 답변으로 처리하고 무관한 질문 오탐 방지
+
+---
+
 ## 2026-08-02 (v11) — Phase 5 A/C 전체 회귀·매뉴얼 갱신 완료
 
 **변경 파일**: A/C E2E 테스트, 업무·운영·개발 매뉴얼, `README.md`

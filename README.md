@@ -18,6 +18,14 @@ PDF inspect → kind 1(A) / kind 3(C)
 - Qdrant payload에는 `template_id`가 저장되며 템플릿+벡터 삭제 시 이 값으로 포인트를 삭제한다.
 - PDF 관리 API는 `X-Admin-User-Id`를 받아 요청·성공·실패를 다줄 로그로 남긴다.
 
+## PDF 문서 없음 기본답변
+
+- PDF 도메인은 `fable` / `holdings` / `general`로 분류한다.
+- 관련 문서를 못 찾으면 무관한 근거를 비우고, 어드민 **PDF → 시스템 관리 → 문서 없을 때 LLM 기본답변** 정책을 따른다.
+- ON(시범 기본값): `학습 데이터가 없습니다.` + `[LLM 기본답변]` Groq 응답
+- OFF: `학습 데이터가 없습니다.`만 응답
+- Agent가 조회할 어드민 API 주소는 `ADMIN_API_BASE_URL`이며 Hetzner compose에서는 `http://admin_backend:9001`이다.
+
 ---
 
 ## 1. 전체 작업순서도 (처음부터 끝까지, 파이프라인 기준)
@@ -493,7 +501,7 @@ APP_PORT=8010
 # LLM Provider
 API_SELECT=3
 GROQ_API_KEY=
-GROQ_MODEL=llama-3.3-70b-versatile
+GROQ_MODEL=openai/gpt-oss-120b
 
 GOOGLE_API_KEY=
 GOOGLE_MODEL=gemini-2.5-flash
@@ -508,6 +516,14 @@ QDRANT_HOST=localhost
 QDRANT_PORT=6333
 QDRANT_COLLECTION=pdf_chunks_bge
 QDRANT_COLLECTION_ARKK=arkk_holdings_bge
+
+# 템플릿 등록 DB — chatbot MariaDB, admin_backend_python과 공유(같은 DB)
+# 로컬은 Hetzner SSH 터널(127.0.0.1:3306)이 떠 있어야 함
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USER=chatbot
+DB_PASSWORD=
+DB_NAME=chatbot
 ```
 
 ### Hetzner (`docker-compose.hetzner.yml`, 순번 23)

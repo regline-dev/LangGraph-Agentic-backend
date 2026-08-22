@@ -158,6 +158,21 @@ def test_title_soft_suffix_얘기하고_is_title_only() -> None:
     assert is_title_only_question("늑대와 어린양 얘기하고", TITLES) == "늑대와 어린양"
 
 
+def test_부분일치_제목만_질문도_title_only() -> None:
+    """「아버지와 아들」처럼 끝 글자가 빠져도 제목만 질문으로 본다."""
+    assert is_title_only_question("아버지와 아들", TITLES) == "아버지와 아들들"
+
+
+def test_부분일치_제목_조사_붙어도_title_only() -> None:
+    assert is_title_only_question("아버지와 아들은?", TITLES) == "아버지와 아들들"
+
+
+def test_무관한_질문은_title_only_아님() -> None:
+    """오탐 방지 — 우화와 무관한 질문은 카드 경로로 새지 않는다."""
+    for question in ("커피 종류는", "오늘 날씨 어때", "파이썬 문법 알려줘"):
+        assert is_title_only_question(question, TITLES) is None
+
+
 def test_final_answer_blocks_empty_citations_after_search() -> None:
     state = {
         "question": "왜 박쥐가 배신자로 보이나?",

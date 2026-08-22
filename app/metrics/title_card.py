@@ -42,6 +42,22 @@ def _strip_soft_suffix(rest: str) -> str:
     return text
 
 
+def _remove_matched_title(question: str, title: str) -> str:
+    """질문에서 매칭된 제목 부분을 지운다.
+
+    부분일치(「아버지와 아들」→「아버지와 아들들」)일 때 제목이 질문보다 길어
+    그대로는 지워지지 않으므로, 질문에 실제로 들어 있는 제목의 최장 접두만 지운다.
+    최소 길이는 extract_title_from_question의 부분일치 기준(4자)과 맞춘다.
+    """
+    if title in question:
+        return question.replace(title, "", 1)
+    for end in range(len(title) - 1, 3, -1):
+        stem = title[:end]
+        if stem in question:
+            return question.replace(stem, "", 1)
+    return question
+
+
 def is_title_only_question(question: str, known_titles: list[str]) -> str | None:
     """질문이 알려진 제목(+조사·부드러운 요청)뿐이면 제목, 아니면 None."""
     cleaned = (question or "").strip()
@@ -51,7 +67,7 @@ def is_title_only_question(question: str, known_titles: list[str]) -> str | None
     if not title:
         return None
     # 제목 제거 후 남는 게 조사·공백·소프트 요청뿐인지
-    rest = cleaned.replace(title, "", 1)
+    rest = _remove_matched_title(cleaned, title)
     rest = _strip_soft_suffix(rest)
     if not _TITLE_ONLY_TRAILING.match(rest):
         return None

@@ -116,6 +116,8 @@ def test_tool_call_cap_stops_infinite_search() -> None:
 
     assert len(tool_calls) == MAX_TOOL_CALLS
     assert result["tool_call_count"] == MAX_TOOL_CALLS
+    assert result["answer_status"] == "no_document"
+    assert result["citations"] == []
 
 
 def test_tool_two_times_researches_then_answers() -> None:

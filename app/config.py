@@ -13,7 +13,18 @@ class Settings(BaseSettings):
 
     # Groq (검색 판단 LLM 등)
     groq_api_key: str = ""
-    groq_model: str = "llama-3.3-70b-versatile"
+    groq_model: str = "openai/gpt-oss-120b"
+
+    # PDF 문서 없음 기본답변 정책 — 어드민 시스템 관리 API
+    admin_api_base_url: str = "http://localhost:9001"
+    admin_api_timeout_seconds: float = 3.0
+
+    # 템플릿 등록 DB (chatbot MariaDB, admin_backend_python과 같은 DB 공유)
+    db_host: str = "127.0.0.1"
+    db_port: int = 3306
+    db_user: str = "chatbot"
+    db_password: str = ""
+    db_name: str = "chatbot"
 
     # Vector Store — Chroma처럼 로컬 PATH 우선, 비면 HOST:PORT(Docker)
     qdrant_path: str = ""

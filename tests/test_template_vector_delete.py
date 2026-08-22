@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-
 import pytest
 from qdrant_client import QdrantClient
 from qdrant_client.http import models as qmodels
@@ -29,18 +27,13 @@ def test_chunk_payload_keeps_template_id() -> None:
 
 @pytest.mark.parametrize("template_id", ["A_admin_1", "C_admin_2"])
 def test_delete_prompt_template_removes_same_template_vectors(
-    tmp_path: Path,
     monkeypatch,
     template_id: str,
 ) -> None:
-    template_file = tmp_path / f"{template_id}.json"
-    template_file.write_text(
-        '{"template_id":"x","name":"x","labels":["label"],"prompt":"x"}',
-        encoding="utf-8",
-    )
+    deleted_ids: list[str] = []
     monkeypatch.setattr(
-        "app.pdf_ingest.template_store.DEFAULT_TEMPLATE_STORE_DIR",
-        tmp_path,
+        "app.pdf_ingest.service.soft_delete_template",
+        lambda tid: deleted_ids.append(tid),
     )
 
     client = QdrantClient(":memory:")
@@ -78,7 +71,7 @@ def test_delete_prompt_template_removes_same_template_vectors(
     )
 
     assert result["soft_deleted"] is True
-    assert (tmp_path / f"{template_id}_delete.json").is_file()
+    assert deleted_ids == [template_id]
     points, _ = client.scroll(
         collection_name=collection,
         limit=10,

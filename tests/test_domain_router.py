@@ -25,9 +25,10 @@ from tests.fixtures_helper import ensure_sample_pdf
 FIXTURES_DIR = Path(__file__).parent / "fixtures"
 
 
-def test_parse_domain_json_accepts_fable_and_holdings() -> None:
+def test_parse_domain_json_accepts_fable_holdings_and_general() -> None:
     assert parse_domain_json('{"domain": "holdings"}') == "holdings"
     assert parse_domain_json('{"domain": "fable"}') == "fable"
+    assert parse_domain_json('{"domain": "general"}') == "general"
 
 
 def test_classify_heuristic_arkk_is_holdings() -> None:
@@ -120,6 +121,17 @@ def test_holdings_route_skips_fable_catalog() -> None:
     assert catalog_called == []
     assert result["answer"].startswith("holdings:")
     assert result["citations"][0]["source_file"] == "ARK_INNOVATION_ETF_ARKK_HOLDINGS.pdf"
+
+
+def test_general_route_returns_no_data_without_llm_or_pdf_citations() -> None:
+    """무관 질문은 PDF 검색·LLM 없이 「학습 데이터가 없습니다.」만."""
+    result = run_agent_chat(
+        "커피 종류는",
+        classify_fn=lambda _q: "general",
+    )
+
+    assert result["answer"] == "학습 데이터가 없습니다."
+    assert result["citations"] == []
 
 
 def test_fable_route_still_hits_catalog() -> None:

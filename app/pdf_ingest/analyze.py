@@ -96,6 +96,11 @@ def analyze_pdf_bytes(
         path.write_bytes(content)
         pages = load_pdf_pages(path)
         joined = "\n".join(p.text for p in pages if p.text and p.text.strip())
+        # 구조 라벨(템플릿 매칭용)은 앞 2페이지까지만 본다 — 본문 전체를 다 훑으면
+        # 우연히 콜론 붙은 문장까지 라벨 후보로 잡혀서 노이즈가 커짐(문서 종류 판별과는 별개 문제).
+        joined_for_labels = "\n".join(
+            p.text for p in pages[:2] if p.text and p.text.strip()
+        )
         doc_fields = build_doc_metadata_fields(path, source_file=safe_name)
         # 표 판별은 PDF 구조(find_tables). 텍스트 '|' 휴리스틱 사용 안 함
         document_kind = classify_document_kind(
@@ -111,12 +116,12 @@ def analyze_pdf_bytes(
             (template_labels_by_doc_type or {}).get(doc_type, ())
         )
         extracted_metadata = extract_metadata_candidates(
-            joined,
+            joined_for_labels,
             known_labels=known_labels,
         )
         structure_labels = sorted(
             extract_structure_fingerprint(
-                joined,
+                joined_for_labels,
                 known_labels=known_labels,
             )
         )

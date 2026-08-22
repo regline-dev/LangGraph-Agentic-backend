@@ -29,10 +29,12 @@ _HANJA_TO_HANGUL: dict[str, str] = {
 }
 
 
-def normalize_keyword_tags(tags: list | None) -> list[str]:
+def normalize_keyword_tags(
+    tags: list | None, *, empty_fallback: str | None = "우화"
+) -> list[str]:
     """키워드는 한글만 남긴다. 한자만 있으면 치환표 또는 제외."""
     if not tags:
-        return ["우화"]
+        return [empty_fallback] if empty_fallback else []
 
     cleaned: list[str] = []
     for raw in tags:
@@ -63,4 +65,4 @@ def normalize_keyword_tags(tags: list | None) -> list[str]:
         seen.add(item)
         unique.append(item)
 
-    return unique[:3] if unique else ["우화"]
+    return unique[:3] if unique else ([empty_fallback] if empty_fallback else [])

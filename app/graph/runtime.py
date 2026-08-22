@@ -9,6 +9,11 @@ from qdrant_client import QdrantClient
 
 from app.config import get_settings
 from app.graph.domain_router import ClassifyFn, classify_pdf_domain
+from app.graph.no_document_fallback import (
+    apply_hit_answer_policy,
+    build_no_document_response,
+    load_llm_polish_enabled,
+)
 from app.graph.workflow import build_groq_agent_graph, run_agent
 from app.metrics.catalog import try_handle_catalog_question, try_handle_fun_rank_question
 from app.metrics.mbti_commands import try_handle_mbti_command
@@ -88,6 +93,61 @@ def _pack(
     }
 
 
+def _pack_graph_result(
+    state: dict[str, Any],
+    *,
+    question: str,
+    mbti: str | None,
+) -> dict[str, Any]:
+    """검색 그래프 결과를 API 계약으로 바꾸고 문서 없음·히트 가공 정책을 적용한다."""
+    # answer_status는 LLM 프롬프트·검색 상한이 공통으로 만드는 명시 상태다.
+    if state.get("answer_status") == "no_document":
+        response = build_no_document_response(question)
+        print(
+            "[PDF 문서 없음]\n"
+            "  event=PDF 검색 미스\n"
+            "  llm_called=false\n"
+            "  citations=0\n"
+            "  result=success",
+            flush=True,
+        )
+        return _pack(
+            answer=str(response["answer"]),
+            citations=[],
+            mbti=mbti,
+        )
+
+    polish_enabled = load_llm_polish_enabled()
+    response = apply_hit_answer_policy(
+        answer=str(state.get("answer") or ""),
+        citations=list(state.get("citations") or []),
+        polish_enabled=polish_enabled,
+    )
+    print(
+        "[PDF 문서 히트]\n"
+        "  event=PDF 답변 정책 적용\n"
+        f"  llm_polish_enabled={str(polish_enabled).lower()}\n"
+        f"  citations={len(response.get('citations') or [])}\n"
+        "  result=success",
+        flush=True,
+    )
+    return _pack(
+        answer=str(response["answer"]),
+        citations=response.get("citations"),
+        mbti=mbti,
+    )
+
+
+def _run_general_fallback(question: str) -> dict[str, Any]:
+    """PDF 학습 영역 밖·미스 — LLM 없이 학습 데이터 없음만."""
+    response = build_no_document_response(question)
+    return _pack(
+        answer=str(response["answer"]),
+        citations=[],
+        mbti=None,
+    )
+
+
 def _run_holdings_agent(
     question: str,
     *,
@@ -100,9 +160,9 @@ def _run_holdings_agent(
         document_domain="holdings",
     )
     state = run_agent(graph, question=question)
-    return _pack(
-        answer=str(state.get("answer") or ""),
-        citations=state.get("citations"),
+    return _pack_graph_result(
+        state,
+        question=question,
         mbti=None,
     )
 
@@ -248,9 +308,9 @@ def _run_fable_chat(
         document_domain="fable",
     )
     state = run_agent(graph, question=question)
-    return _pack(
-        answer=str(state.get("answer") or ""),
-        citations=state.get("citations"),
+    return _pack_graph_result(
+        state,
+        question=question,
         mbti=session_memory.get_mbti(session_id),
     )
 
@@ -264,6 +324,8 @@ def run_agent_chat(
 ) -> dict[str, Any]:
     """운영 경로: ② 도메인 LLM → 이솝 규칙 또는 ARKK holdings 검색."""
     domain = classify_pdf_domain(question, classify_fn=classify_fn)
+    if domain == "general":
+        return _run_general_fallback(question)
     if domain == "holdings":
         return _run_holdings_agent(question)
     return _run_fable_chat(question, session_id=session_id, memory=memory)

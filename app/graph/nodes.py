@@ -26,13 +26,13 @@ def make_llm_decision_node(decide_fn: DecideFn):
     def llm_decision_node(state: AgentState) -> dict[str, Any]:
         # 상한에 도달하면 더 이상 검색하지 않고 답변으로 마무리
         if int(state.get("tool_call_count") or 0) >= MAX_TOOL_CALLS:
-            answer = (state.get("answer") or "").strip()
-            if not answer:
-                answer = "검색을 여러 번 시도했지만 충분한 답을 만들지 못했습니다."
             return {
                 "need_search": False,
                 "search_query": "",
-                "answer": answer,
+                "answer": "",
+                "answer_status": "no_document",
+                # 검색 상한 도달은 관련 답을 못 찾은 상태이므로 무관한 근거를 노출하지 않는다.
+                "citations": [],
             }
 
         decision = decide_fn(state)
@@ -43,6 +43,13 @@ def make_llm_decision_node(decide_fn: DecideFn):
         # 검색 불필요일 때만 최종 답변을 이 단계에서 채울 수 있다
         if "answer" in decision and decision["answer"]:
             updates["answer"] = str(decision["answer"])
+        answer_status = str(decision.get("answer_status") or "")
+        if answer_status in ("document", "no_document", "general"):
+            updates["answer_status"] = answer_status
+        elif decision.get("answer"):
+            updates["answer_status"] = (
+                "document" if state.get("observations") else "general"
+            )
         return updates
 
     return llm_decision_node
@@ -99,8 +106,12 @@ def final_answer_node(state: AgentState) -> dict[str, Any]:
     citations = list(state.get("citations") or [])
     tool_count = int(state.get("tool_call_count") or 0)
     observations = list(state.get("observations") or [])
+    answer_status = str(state.get("answer_status") or "")
 
-    if tool_count > 0 and not citations and not observations:
+    if answer_status == "no_document":
+        answer = ""
+        citations = []
+    elif tool_count > 0 and not citations and not observations:
         answer = _NO_DOC_ANSWER
     elif not answer:
         answer = "답변을 생성하지 못했습니다."
@@ -109,4 +120,5 @@ def final_answer_node(state: AgentState) -> dict[str, Any]:
         "answer": answer,
         "citations": citations,
         "tool_call_count": tool_count,
+        "answer_status": answer_status,
     }

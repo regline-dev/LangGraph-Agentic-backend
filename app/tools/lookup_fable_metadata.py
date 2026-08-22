@@ -7,6 +7,12 @@ from typing import Any
 from qdrant_client import QdrantClient
 from qdrant_client.http import models as qmodels
 
+# is_current=False로 명시된 포인트(예전 버전)만 제외 — 필드 자체가 없는 레거시 포인트는
+# 그대로 조회된다. 계획: Docs/20260814_벡터화_문서버전관리_계획.md
+_EXCLUDE_STALE_VERSION = qmodels.FieldCondition(
+    key="is_current", match=qmodels.MatchValue(value=False)
+)
+
 
 def list_fable_titles(
     *,
@@ -20,6 +26,7 @@ def list_fable_titles(
     while True:
         points, next_offset = client.scroll(
             collection_name=collection_name,
+            scroll_filter=qmodels.Filter(must_not=[_EXCLUDE_STALE_VERSION]),
             limit=min(256, limit),
             offset=next_offset,
             with_payload=["title"],
@@ -49,6 +56,7 @@ def list_fable_metas(
     while True:
         points, next_offset = client.scroll(
             collection_name=collection_name,
+            scroll_filter=qmodels.Filter(must_not=[_EXCLUDE_STALE_VERSION]),
             limit=min(256, limit),
             offset=next_offset,
             with_payload=True,
@@ -89,7 +97,8 @@ def lookup_fable_metadata_by_title(
                     key="title",
                     match=qmodels.MatchValue(value=cleaned),
                 )
-            ]
+            ],
+            must_not=[_EXCLUDE_STALE_VERSION],
         ),
         limit=1,
         with_payload=True,
@@ -134,7 +143,8 @@ def fetch_fable_body_by_title(
                     key="content_type",
                     match=qmodels.MatchValue(value=cleaned_type),
                 ),
-            ]
+            ],
+            must_not=[_EXCLUDE_STALE_VERSION],
         ),
         limit=100,
         with_payload=True,

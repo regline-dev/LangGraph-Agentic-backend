@@ -17,7 +17,7 @@ def test_load_global_labels_has_agreed_keys_in_order() -> None:
     assert keys[2] == "DESCRIPTION"
     assert labels["DESCRIPTION"] == "설명"
     assert "pdf_created_at" in keys
-    assert "vector_updated_at" == keys[-1]
+    assert "template_updated_at" == keys[-1]
     assert labels["DOC_TYPE"] == "문서타입명"
     assert labels["METADATA_NAME"] == "메타데이터 템플릿명"
     assert labels["template_created_by"] == "템플릿 등록자"
@@ -56,7 +56,7 @@ def test_normalize_result_schema_fills_all_global_keys_in_order() -> None:
     assert keys[2] == "DESCRIPTION"
     assert keys[-1] == "search_labels"
     assert "As of" in keys
-    assert keys.index("As of") > keys.index("vector_updated_at")
+    assert keys.index("As of") > keys.index("template_updated_at")
     assert out["DOC_TYPE"] == ""
     assert out["METADATA_NAME"] == "ARKK"
     assert out["title"] == "holdings"

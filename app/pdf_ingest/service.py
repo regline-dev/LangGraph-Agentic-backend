@@ -10,13 +10,21 @@ from qdrant_client.http import models as qmodels
 
 from app.config import Settings, get_settings
 from app.pdf_ingest.analyze import analyze_pdf_bytes
-from app.pdf_ingest.template_match import match_fingerprint_to_templates
+from app.pdf_ingest.document_version import (
+    compute_content_hash,
+    mark_document_version_indexed,
+    preview_document_version,
+    resolve_document_version,
+)
+from app.pdf_ingest.template_match import (
+    match_fingerprint_to_templates,
+    match_filename_to_templates,
+)
+from app.pdf_ingest.template_service import load_templates, save_template, soft_delete_template
 from app.pdf_ingest.template_store import (
     PromptTemplate,
     has_result_schema,
-    load_templates,
     resolve_template_prompt,
-    save_template,
 )
 from app.qdrant_factory import get_shared_qdrant_client
 from ingest.embedder_factory import create_embedder
@@ -34,6 +42,11 @@ class PdfIngestResult:
     metadata: dict[str, Any] | None = None  # 이솝 특화 (없으면 null)
     basic_metadata: dict[str, Any] = field(default_factory=dict)
     is_fable_card: bool = False
+    # 문서 버전 관리(계획: Docs/20260814_벡터화_문서버전관리_계획.md)
+    document_version_action: str = "new_document"  # skip | new_document | new_version
+    document_id: int | None = None
+    version: int = 1
+    content_hash: str = ""
 
 
 @dataclass(frozen=True)
@@ -57,6 +70,10 @@ class PdfInspectResult:
     result_schema: dict[str, Any] | None = None
     # 맞음+결과양식일 때 서버가 문서값으로 채운 결과 (UI 자동 표시)
     filled_result: dict[str, Any] | None = None
+    # 1차 판단(예고) — 계획: Docs/20260814_벡터화_문서버전관리_계획.md
+    document_version_preview_action: str = "new_document"  # skip | new_document | new_version
+    document_id: int | None = None
+    content_hash: str = ""
 
 
 class PdfIngestService:
@@ -77,12 +94,41 @@ class PdfIngestService:
         self._embedder = embedder
         self._collection_name = collection_name or self._settings.qdrant_collection
 
+    def _ensure_embedder(self):
+        """PDF 분석(pymupdf) 전에 임베더를 연다.
+
+        Windows에서 inspect 이후 ingest 때 bge-m3를 열면 0xC0000005로 프로세스가 죽는다.
+        주입된 FakeEmbedder는 그대로 둔다.
+        """
+        if self._embedder is None:
+            backend = (self._settings.embedding_backend or "bge-m3").strip()
+            try:
+                self._embedder = create_embedder(self._settings)
+            except Exception as exc:  # noqa: BLE001
+                print(
+                    "[embedder_warmup] phase=service "
+                    f"backend={backend} result=failure\n"
+                    f"  reason={exc}",
+                    flush=True,
+                )
+                raise
+            print(
+                f"[embedder_warmup] phase=service backend={backend} result=success",
+                flush=True,
+            )
+        return self._embedder
+
+    def _has_vectors_for_document(self, document_id: int) -> bool:
+        client = self._client or get_shared_qdrant_client(self._settings)
+        return _document_has_vectors(client, self._collection_name, document_id)
+
     def inspect(self, filename: str, content: bytes) -> PdfInspectResult:
         """적재 없이 카드 여부·메타만."""
         if not content:
             raise ValueError("빈 PDF 파일입니다.")
         if not content.lstrip().startswith(b"%PDF"):
             raise ValueError("PDF 형식이 아닙니다.")
+        self._ensure_embedder()
         templates = load_templates()
         info = analyze_pdf_bytes(
             filename,
@@ -94,11 +140,19 @@ class PdfIngestService:
         labels = list(info.get("structure_labels") or [])
         document_kind = int(info.get("document_kind") or 1)
         extracted_metadata = list(info.get("extracted_metadata") or [])
-        match = match_fingerprint_to_templates(
-            frozenset(labels),
+        # ②: 파일명 키워드 매칭 먼저 시도 — 안 되면 ③ 구조 라벨 비교로 넘어감
+        # (① METADATA_NAME 텍스트 직접비교는 프론트에서 함, Docs/20260812 계획)
+        match = match_filename_to_templates(
+            filename,
             templates,
             document_kind=document_kind,
         )
+        if match.status != "match":
+            match = match_fingerprint_to_templates(
+                frozenset(labels),
+                templates,
+                document_kind=document_kind,
+            )
         matched = match.template
         candidates = [
             {
@@ -125,6 +179,14 @@ class PdfIngestService:
                     extracted_metadata=extracted_metadata,
                 )
             template_prompt = resolve_template_prompt(matched)
+
+        content_hash = compute_content_hash(content)
+        preview = preview_document_version(
+            collection=self._collection_name,
+            source_file=_safe_pdf_filename(filename),
+            content_hash=content_hash,
+            has_vectors=self._has_vectors_for_document,
+        )
         print(
             f"[inspect] file={filename} kind={info.get('document_kind')} "
             f"status={match.status} template_id="
@@ -149,6 +211,9 @@ class PdfIngestService:
             text_excerpt=str(info.get("text_excerpt") or ""),
             result_schema=result_schema,
             filled_result=filled_result,
+            document_version_preview_action=preview.action,
+            document_id=preview.document_id,
+            content_hash=content_hash,
         )
 
     def save_prompt_template(
@@ -208,8 +273,6 @@ class PdfIngestService:
         delete_vectors: bool = False,
     ) -> dict[str, Any]:
         """템플릿 soft-delete. delete_vectors=True 이면 payload.template_id 로 Qdrant 삭제."""
-        from app.pdf_ingest.template_store import soft_delete_template
-
         tid = (template_id or "").strip()
         if not tid:
             raise ValueError("template_id가 비어 있습니다.")
@@ -240,6 +303,7 @@ class PdfIngestService:
         if not content.lstrip().startswith(b"%PDF"):
             raise ValueError("PDF 형식이 아닙니다.")
 
+        self._ensure_embedder()
         templates = load_templates()
         analyzed = analyze_pdf_bytes(
             safe_name,
@@ -257,7 +321,16 @@ class PdfIngestService:
         embedder = self._embedder or create_embedder(self._settings)
         collection = self._collection_name
 
-        _delete_by_source_file(client, collection, safe_name)
+        # 2차 판단(벡터화 시작 시점 확정) — 계획: Docs/20260814_벡터화_문서버전관리_계획.md
+        content_hash = compute_content_hash(content)
+        decision = resolve_document_version(
+            collection=collection,
+            source_file=safe_name,
+            content_hash=content_hash,
+            page_count=int(analyzed["page_count"]),
+            has_vectors=self._has_vectors_for_document,
+        )
+
         from app.pdf_ingest.admin_meta import parse_admin_meta_json
 
         prompt_text = (prompt or "").strip() or None
@@ -273,15 +346,6 @@ class PdfIngestService:
                         admin_meta = {**admin_meta, "template_id": item.template_id}
                         break
 
-        indexed = ingest_pdf(
-            destination,
-            client=client,
-            collection_name=collection,
-            embedder=embedder,
-            uploads_dir=self._uploads_dir,
-            admin_meta=admin_meta,
-        )
-
         # 운영자 프롬프트·결과 JSON은 응답 메타에 보존
         basic_metadata = dict(analyzed["basic_metadata"])
         fable_metadata = analyzed.get("fable_metadata")
@@ -295,6 +359,47 @@ class PdfIngestService:
                 "search_labels": dict(admin_meta["search_labels"]),
             }
 
+        if decision.action == "skip":
+            # 같은 문서ID·같은 콘텐츠 해시 — 임베딩·업서트 생략
+            return PdfIngestResult(
+                source_file=safe_name,
+                indexed=0,
+                collection=collection,
+                page_count=int(analyzed["page_count"]),
+                metadata=fable_metadata,
+                basic_metadata=basic_metadata,
+                is_fable_card=bool(analyzed["is_fable_card"]),
+                document_version_action="skip",
+                document_id=decision.document_id,
+                version=decision.version,
+                content_hash=content_hash,
+            )
+
+        if decision.action == "new_document":
+            # document_id 체계 이전에 쌓인 포인트까지 정리(안전장치)
+            _delete_by_source_file(client, collection, safe_name)
+        else:
+            # 예전 버전은 지우지 않고 is_current만 내림(이력 보존)
+            _mark_previous_version_stale(client, collection, decision.document_id)
+
+        indexed = ingest_pdf(
+            destination,
+            client=client,
+            collection_name=collection,
+            embedder=embedder,
+            uploads_dir=self._uploads_dir,
+            admin_meta=admin_meta,
+            version_meta={
+                "document_id": decision.document_id,
+                "content_hash": content_hash,
+                "version": decision.version,
+                "is_current": True,
+            },
+        )
+        mark_document_version_indexed(
+            decision.document_id, decision.version, indexed=indexed
+        )
+
         return PdfIngestResult(
             source_file=safe_name,
             indexed=indexed,
@@ -303,6 +408,10 @@ class PdfIngestService:
             metadata=fable_metadata,
             basic_metadata=basic_metadata,
             is_fable_card=bool(analyzed["is_fable_card"]),
+            document_version_action=decision.action,
+            document_id=decision.document_id,
+            version=decision.version,
+            content_hash=content_hash,
         )
 
 
@@ -344,6 +453,31 @@ def _safe_pdf_filename(filename: str) -> str:
     return name
 
 
+def _document_has_vectors(client, collection: str, document_id: int) -> bool:
+    """해당 document_id 포인트가 컬렉션에 하나라도 있으면 True."""
+    try:
+        existing = {item.name for item in client.get_collections().collections}
+        if collection not in existing:
+            return False
+        points, _ = client.scroll(
+            collection_name=collection,
+            scroll_filter=qmodels.Filter(
+                must=[
+                    qmodels.FieldCondition(
+                        key="document_id",
+                        match=qmodels.MatchValue(value=document_id),
+                    )
+                ]
+            ),
+            limit=1,
+            with_payload=False,
+            with_vectors=False,
+        )
+        return bool(points)
+    except Exception:  # noqa: BLE001
+        return False
+
+
 def _delete_by_source_file(client, collection: str, source_file: str) -> None:
     """동일 source_file 포인트 삭제 (재업로드 대비)."""
     existing = {item.name for item in client.get_collections().collections}
@@ -360,6 +494,25 @@ def _delete_by_source_file(client, collection: str, source_file: str) -> None:
                     )
                 ]
             )
+        ),
+    )
+
+
+def _mark_previous_version_stale(client, collection: str, document_id: int) -> None:
+    """새 버전 추가 시 예전 버전 포인트를 지우지 않고 is_current만 false로 내린다."""
+    existing = {item.name for item in client.get_collections().collections}
+    if collection not in existing:
+        return
+    client.set_payload(
+        collection_name=collection,
+        payload={"is_current": False},
+        points=qmodels.Filter(
+            must=[
+                qmodels.FieldCondition(
+                    key="document_id",
+                    match=qmodels.MatchValue(value=document_id),
+                )
+            ]
         ),
     )
 

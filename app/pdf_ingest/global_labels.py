@@ -14,10 +14,9 @@ _DEFAULT_LABELS_PATH = (
 
 SEARCH_LABELS_KEY = "search_labels"
 
-# 구 키 → 신 키 (한 번만 이전)
+# 구 키 → 신 키 (한 번만 이전) — pdf_updated_at은 필드 자체가 없어져서 이전 대상에서 제외
 _LEGACY_KEY_MAP = {
     "created_date": "pdf_created_at",
-    "modify_date": "pdf_updated_at",
     "SCHEMA": "METADATA_NAME",
 }
 
@@ -106,7 +105,7 @@ def normalize_result_schema(
 ) -> dict[str, Any]:
     """전역 키 전부(빈값 '') + GLOBAL 순서 + 가변 키 + search_labels 맨 끝.
 
-    구 created_date/modify_date 값은 pdf_created_at/pdf_updated_at 으로 이전.
+    구 created_date 값은 pdf_created_at 으로 이전.
     """
     labels = load_global_labels(labels_path)
     global_keys = list(labels.keys())

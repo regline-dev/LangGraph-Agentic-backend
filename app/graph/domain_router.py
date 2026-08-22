@@ -1,4 +1,4 @@
-"""PDF 모드 도메인 분류 — 이솝우화 vs ARKK holdings (Phase D)."""
+"""PDF 모드 도메인 분류 — 이솝우화 / ARKK holdings / 일반 질문."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ import json
 import re
 from typing import Any, Callable, Literal
 
-PdfDomain = Literal["fable", "holdings"]
+PdfDomain = Literal["fable", "holdings", "general"]
 
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 
@@ -14,11 +14,12 @@ _DOMAIN_SYSTEM_PROMPT = """당신은 PDF 모드 질문 분류기다.
 질문이 어느 문서 영역인지 판별한다.
 
 반드시 JSON 객체만 출력한다.
-형식: {"domain": "fable" 또는 "holdings"}
+형식: {"domain": "fable" 또는 "holdings" 또는 "general"}
 
 규칙:
 - domain="fable": 이솝 우화, 우화 제목·줄거리·재미도·내용평가·MBTI·한마디 결론·우화 목록 등
 - domain="holdings": ARKK·ETF·종목·비중·보유·holdings·주식지표·테슬라 비중 등 ETF 보유 PDF
+- domain="general": 두 PDF 영역과 무관한 일반 질문(커피·날씨·코딩 등)
 - 애매하면 우화 관련 단서가 있으면 fable, ETF/종목/비중 단서가 있으면 holdings
 """
 
@@ -57,7 +58,7 @@ def parse_domain_json(raw: str) -> PdfDomain:
         raise ValueError("도메인 JSON은 객체여야 합니다.")
 
     domain = str(data.get("domain", "")).strip().lower()
-    if domain not in ("fable", "holdings"):
+    if domain not in ("fable", "holdings", "general"):
         raise ValueError(f"알 수 없는 domain: {domain!r}")
     return domain  # type: ignore[return-value]
 
@@ -94,7 +95,7 @@ def make_groq_domain_classify_fn(
     if not cleaned_key:
         raise ValueError("GROQ_API_KEY가 비어 있습니다.")
 
-    cleaned_model = (model or "").strip() or "llama-3.3-70b-versatile"
+    cleaned_model = (model or "").strip() or "openai/gpt-oss-120b"
     chat_client = client or _create_groq_client(cleaned_key)
 
     def classify(question: str) -> PdfDomain:

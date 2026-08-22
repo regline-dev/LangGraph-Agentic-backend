@@ -92,3 +92,16 @@ def test_get_shared_qdrant_client_reuses_same_instance(tmp_path: Path) -> None:
         assert first is second
     finally:
         reset_shared_qdrant_client()
+
+
+def test_qdrant_client_dependency_stays_on_1_13() -> None:
+    """운영·로컬 Docker는 qdrant v1.13.2. 클라이언트 1.18은 서버와 안 맞아 ingest가 timed out 남."""
+    import tomllib
+
+    pyproject = Path(__file__).resolve().parents[1] / "pyproject.toml"
+    data = tomllib.loads(pyproject.read_text(encoding="utf-8"))
+    qdrant_dep = next(
+        dep for dep in data["project"]["dependencies"] if dep.startswith("qdrant-client")
+    )
+    assert "1.13" in qdrant_dep
+    assert "<1.14" in qdrant_dep

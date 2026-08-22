@@ -23,6 +23,13 @@ class PdfIngestResponse(BaseModel):
         description="기본 메타(페이지·파일명·글자수)",
     )
     is_fable_card: bool = Field(False, description="우화 카드 파싱 성공 여부")
+    document_version_action: str = Field(
+        "new_document",
+        description="문서 버전 판단 결과 — skip(스킵) | new_document(신규) | new_version(새 버전)",
+    )
+    document_id: int | None = Field(None, description="문서 아이디(고정 식별자)")
+    version: int = Field(1, ge=1, description="버전 번호")
+    content_hash: str = Field("", description="콘텐츠 해시(SHA256)")
 
 
 class PdfInspectResponse(BaseModel):
@@ -69,6 +76,12 @@ class PdfInspectResponse(BaseModel):
         None,
         description="맞음+결과양식일 때 서버가 이번 PDF 값으로 채운 메타 (자동 표시용)",
     )
+    document_version_preview_action: str = Field(
+        "new_document",
+        description="1차(예고) 문서 버전 판단 — skip(스킵 예정) | new_document(신규) | new_version(새 버전 예정)",
+    )
+    document_id: int | None = Field(None, description="문서 아이디(기존 문서면 값 있음)")
+    content_hash: str = Field("", description="업로드 파일 콘텐츠 해시(SHA256)")
 
 
 class PdfSaveTemplateRequest(BaseModel):

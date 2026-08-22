@@ -13,9 +13,10 @@ client = TestClient(app)
 
 
 def test_save_template_endpoint(tmp_path: Path, monkeypatch, capsys) -> None:
+    saved_templates: list = []
     monkeypatch.setattr(
-        "app.pdf_ingest.template_store.DEFAULT_TEMPLATE_STORE_DIR",
-        tmp_path,
+        "app.pdf_ingest.service.save_template",
+        lambda template: saved_templates.append(template),
     )
     app.dependency_overrides[get_pdf_ingest_service] = lambda: PdfIngestService()
     try:
@@ -33,7 +34,7 @@ def test_save_template_endpoint(tmp_path: Path, monkeypatch, capsys) -> None:
         body = response.json()
         assert body["saved"] is True
         assert body["template_id"] == "custom_v1"
-        assert (tmp_path / "custom_v1.json").is_file()
+        assert saved_templates[0].template_id == "custom_v1"
         log_output = capsys.readouterr().out
         assert "api=POST /pdf/templates" in log_output
         assert "\n  admin_user_id=regline" in log_output

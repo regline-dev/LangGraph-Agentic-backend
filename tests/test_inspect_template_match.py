@@ -4,8 +4,14 @@ from __future__ import annotations
 
 from unittest.mock import patch
 
+from app.pdf_ingest.document_version import DocumentVersionPreview
 from app.pdf_ingest.service import PdfIngestService
 from app.pdf_ingest.template_store import PromptTemplate
+from ingest.index_documents import FakeEmbedder
+
+_PREVIEW_NEW_DOCUMENT = DocumentVersionPreview(
+    action="new_document", document_id=None, next_version=1
+)
 
 
 def test_inspect_match_locks_prompt_when_labels_equal() -> None:
@@ -20,7 +26,7 @@ def test_inspect_match_locks_prompt_when_labels_equal() -> None:
             doc_type="A",
         )
     ]
-    service = PdfIngestService()
+    service = PdfIngestService(embedder=FakeEmbedder(dimension=32))
     with patch(
         "app.pdf_ingest.service.analyze_pdf_bytes",
         return_value={
@@ -39,6 +45,9 @@ def test_inspect_match_locks_prompt_when_labels_equal() -> None:
         with patch(
             "app.pdf_ingest.service.load_templates",
             return_value=templates,
+        ), patch(
+            "app.pdf_ingest.service.preview_document_version",
+            return_value=_PREVIEW_NEW_DOCUMENT,
         ):
             result = service.inspect("x.pdf", b"%PDF-1.4 fake")
 
@@ -64,7 +73,7 @@ def test_inspect_match_uses_result_schema_fill_prompt() -> None:
             doc_type="A",
         )
     ]
-    service = PdfIngestService()
+    service = PdfIngestService(embedder=FakeEmbedder(dimension=32))
     with patch(
         "app.pdf_ingest.service.analyze_pdf_bytes",
         return_value={
@@ -83,6 +92,9 @@ def test_inspect_match_uses_result_schema_fill_prompt() -> None:
         with patch(
             "app.pdf_ingest.service.load_templates",
             return_value=templates,
+        ), patch(
+            "app.pdf_ingest.service.preview_document_version",
+            return_value=_PREVIEW_NEW_DOCUMENT,
         ):
             result = service.inspect("x.pdf", b"%PDF-1.4 fake")
 
