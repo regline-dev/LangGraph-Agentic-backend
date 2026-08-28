@@ -44,6 +44,15 @@ class Settings(BaseSettings):
     embedding_model: str = "BAAI/bge-m3"
     fake_embed_dimension: int = 32
 
+    # Google Cloud Vision — 값은 .env만. 코드·로그에 키를 쓰지 말 것
+    google_vision_api_key: str = ""
+
+    # 3-1/3-2: /ocr/turn 그래프 경로 스위치. 기본값은 레거시(OcrTurnService) 유지.
+    ocr_use_graph: bool = False
+
+    # 디버그 모드. 1이면 그래프 노드·분기 단계 print (이벤트 로그는 이와 무관하게 항상 찍힘)
+    debug_onoff: bool = False
+
 
 def get_settings() -> Settings:
     """설정 싱글톤 — 테스트·런타임에서 동일 규약 사용."""

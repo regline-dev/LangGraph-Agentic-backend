@@ -110,7 +110,7 @@ def test_pipeline_non_aesop_uses_typed_pdf_without_groq(
 
     def _fake_typed_pdf(data, output_path):
         calls["typed_pdf"] += 1
-        assert data["groups"]["기본 정보"]["내용"] == "축제명"
+        assert data["groups"]["기본 정보"] == {"축제명": "-"}
         from reportlab.pdfgen import canvas
 
         c = canvas.Canvas(output_path)
@@ -162,7 +162,7 @@ def test_pipeline_skips_typed_llm_when_values_filled(tmp_path: Path, monkeypatch
 
     def _fake_typed_pdf(data, output_path):
         calls["typed_pdf"] += 1
-        assert data["groups"]["기간"]["내용"] == "8월 15일~17일"
+        assert data["groups"]["안내"]["기간"] == "8월 15일~17일"
         from reportlab.pdfgen import canvas
 
         c = canvas.Canvas(output_path)
@@ -176,9 +176,9 @@ def test_pipeline_skips_typed_llm_when_values_filled(tmp_path: Path, monkeypatch
         type_name="지방축제 안내",
         configs=[
             {
-                "group_name": "기간",
-                "values_text": "8월 15일~17일",
-                "value": "8월 15일~17일",
+                "group_name": "안내",
+                "values_text": "기간",
+                "fields": {"기간": "8월 15일~17일"},
                 "chart": "none",
             }
         ],
@@ -195,6 +195,101 @@ def test_pipeline_skips_typed_llm_when_values_filled(tmp_path: Path, monkeypatch
     assert calls["score"] == 0
     assert calls["typed_pdf"] == 1
     assert meta["title"] == "한강별빛축제"
+
+
+def test_pipeline_groups_keep_preview_detail_fields(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """생성 그룹은 미리보기와 같은 세부항목 키. 이름 목록을 내용 한 칸으로 접지 않는다."""
+    from app.fable_pdf import pipeline as pipe
+
+    captured = {}
+
+    def _fake_typed_pdf(data, output_path):
+        captured["groups"] = data["groups"]
+        captured["layouts"] = data["group_layouts"]
+        from reportlab.pdfgen import canvas
+
+        c = canvas.Canvas(output_path)
+        c.drawString(72, 720, "typed")
+        c.save()
+
+    monkeypatch.setattr(pipe, "generate_typed_pdf", _fake_typed_pdf)
+    profile = PdfTypeProfile(
+        type_code="festival_info",
+        type_name="축제안내",
+        configs=[
+            {
+                "group_name": "입장 교통",
+                "values_text": "입장료, 예매, 주차, 셔틀",
+                "value": "입장료, 예매, 주차, 셔틀",
+                "layout": "horizontal",
+                "fields": {
+                    "입장료": "무료 (일부 유료 체험은 현장 결제)",
+                    "예매": "별도 예매 없음. 현장 선착순",
+                    "주차": "여의도한강공원 주차장",
+                    "셔틀": "여의도역 3번 출구",
+                },
+            }
+        ],
+    )
+    out = tmp_path / "cards.pdf"
+    pipe.run_fable_pipeline(
+        "한강별빛축제",
+        9,
+        str(out),
+        "출처",
+        type_profile=profile,
+        timeout_seconds=5,
+    )
+    group = captured["groups"]["입장 교통"]
+    assert "내용" not in group
+    assert group["입장료"].startswith("무료")
+    assert group["셔틀"] == "여의도역 3번 출구"
+    assert captured["layouts"]["입장 교통"] == "horizontal"
+
+
+def test_pipeline_does_not_use_label_list_as_body_text(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """fields 없이 value=values_text 이면 라벨만 있는 칸. 이름 문자열을 본문으로 쓰지 않는다."""
+    from app.fable_pdf import pipeline as pipe
+
+    captured = {}
+
+    def _fake_typed_pdf(data, output_path):
+        captured["groups"] = data["groups"]
+        from reportlab.pdfgen import canvas
+
+        c = canvas.Canvas(output_path)
+        c.save()
+
+    monkeypatch.setattr(pipe, "generate_typed_pdf", _fake_typed_pdf)
+    profile = PdfTypeProfile(
+        type_code="festival_info",
+        type_name="축제안내",
+        configs=[
+            {
+                "group_name": "입장 교통",
+                "values_text": "입장료, 예매, 주차, 셔틀",
+                "value": "입장료, 예매, 주차, 셔틀",
+                "layout": "horizontal",
+            }
+        ],
+    )
+    out = tmp_path / "labels-only.pdf"
+    pipe.run_fable_pipeline(
+        "한강별빛축제",
+        10,
+        str(out),
+        "출처",
+        type_profile=profile,
+        timeout_seconds=5,
+    )
+    group = captured["groups"]["입장 교통"]
+    assert list(group.keys()) == ["입장료", "예매", "주차", "셔틀"]
+    assert group["입장료"] == "-"
+    assert "입장료, 예매" not in "".join(group.values())
 
 
 def test_pipeline_skips_typed_llm_when_configs_empty(

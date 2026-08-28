@@ -46,7 +46,7 @@ def typed_card_value_style(accent: bool = False) -> ParagraphStyle:
         fontName="NotoBold",
         fontSize=TYPED_CARD_VALUE_FONT_SIZE,
         leading=TYPED_CARD_VALUE_FONT_SIZE + 3,
-        textColor=colors.HexColor("#3b6d11") if accent else colors.HexColor("#0b0b0b"),
+        textColor=colors.HexColor("#0b0b0b"),
     )
 
 

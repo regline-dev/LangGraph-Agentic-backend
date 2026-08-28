@@ -1,4 +1,4 @@
-"""POST /fable/preview-llm — 미리보기 시점 LLM 1회."""
+"""POST /fable/preview-llm — 이솝 채점 / 커스텀은 있는 이름만 채움."""
 
 from __future__ import annotations
 
@@ -46,51 +46,12 @@ def test_preview_llm_aesop_returns_score_only(monkeypatch) -> None:
     assert body["score"]["ending_tone"] == "해피"
 
 
-def test_preview_llm_custom_returns_items(monkeypatch) -> None:
-    from app.fable_pdf import typed_scorer
-
-    def _fake_draft(body_text, type_name, **kwargs):
-        _ = body_text, type_name, kwargs
-        return {
-            "title": "북촌 찻길",
-            "items": [{"name": "오픈", "value": "2024년 3월", "chart": "none"}],
-            "tags": [],
-        }
-
-    monkeypatch.setattr(typed_scorer, "draft_typed_items_with_llm", _fake_draft)
+def test_preview_llm_custom_without_configs_does_not_invent_items() -> None:
+    """구성 이름 없이 미리보기 LLM을 쳐도 원문에서 항목을 만들지 않는다."""
     response = client.post(
         "/fable/preview-llm",
         json={
-            "body_text": "북촌 찻길\n오픈: 2024년 3월",
-            "type_code": "CAFE",
-            "type_name": "카페",
-        },
-        headers={"X-Admin-User-Id": "regline"},
-    )
-    assert response.status_code == 200
-    body = response.json()
-    assert body["mode"] == "custom"
-    assert body["items"][0]["name"] == "오픈"
-    assert body["items"][0]["value"] == "2024년 3월"
-    assert body["score"] is None
-
-
-def test_preview_llm_colon_left_only_as_items() -> None:
-    """콜론 왼쪽만 구성 항목. LLM 흉내 없이 미리보기 API로 확인."""
-    body_text = (
-        "문서제목\n\n"
-        "구역: 가, 나, 다\n"
-        "가는 대기 많고, 나는 비고, 다는 주말만 연다.\n\n"
-        "상품: 하나, 둘, 셋\n"
-        "하나는 8,000원이고 둘은 9,000원, 셋은 6,000원이다.\n\n"
-        "시간대: 낮, 밤\n"
-        "낮은 8,400원, 밤은 12,000원이다.\n\n"
-        "여기는 소개 문단이라 구성 항목이 아니다.\n"
-    )
-    response = client.post(
-        "/fable/preview-llm",
-        json={
-            "body_text": body_text,
+            "body_text": "구역: 가, 나\n가는 대기 많다.",
             "type_code": "custom_doc",
             "type_name": "문서",
         },
@@ -98,8 +59,75 @@ def test_preview_llm_colon_left_only_as_items() -> None:
     )
     assert response.status_code == 200
     body = response.json()
-    names = [item["name"] for item in body["items"]]
-    assert names == ["구역", "상품", "시간대"]
-    assert "가" not in names
-    assert "하나" not in names
-    assert "소개" not in "".join(item["value"] for item in body["items"])
+    assert body["mode"] == "custom"
+    assert body["items"] == []
+    assert body.get("groups") in (None, {})
+
+
+def test_preview_llm_custom_fills_named_groups_only(monkeypatch) -> None:
+    from app.api import fable as fable_api
+
+    def _fake_typed(body_text, profile, **kwargs):
+        _ = body_text, kwargs
+        names = [str(c.get("group_name") or "") for c in (profile.configs or [])]
+        assert names == ["프로그램"]
+        return {
+            "title": "한강별빛축제",
+            "groups": {"프로그램": {"요약": "개막식 8/15"}},
+            "subtitles": {},
+            "tags": [],
+        }
+
+    monkeypatch.setattr(fable_api.typed_scorer, "score_typed_with_llm", _fake_typed)
+    response = client.post(
+        "/fable/preview-llm",
+        json={
+            "body_text": "한강별빛축제\n개막식 8/15",
+            "type_code": "FESTIVAL",
+            "type_name": "축제안내",
+            "configs": [{"group_name": "프로그램", "values_text": ""}],
+        },
+        headers={"X-Admin-User-Id": "regline"},
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["mode"] == "custom"
+    assert body["groups"]["프로그램"]["요약"] == "개막식 8/15"
+    assert body["items"][0]["name"] == "프로그램"
+    assert body["items"][0]["value"] == "개막식 8/15"
+    assert body["score"] is None
+
+
+def test_preview_llm_custom_fills_named_subtitles(monkeypatch) -> None:
+    """구성이 없어도 보낸 서브타이틀 제목에만 값을 채운다."""
+    from app.api import fable as fable_api
+
+    def _fake_typed(body_text, profile, **kwargs):
+        _ = body_text, kwargs
+        titles = [str(s.get("title") or "") for s in (profile.subtitles or [])]
+        assert titles == ["요약"]
+        assert list(profile.configs or []) == []
+        return {
+            "title": "한강별빛축제",
+            "groups": {},
+            "subtitles": {"요약": "여의도에서 사흘간 열린다."},
+            "tags": [],
+        }
+
+    monkeypatch.setattr(fable_api.typed_scorer, "score_typed_with_llm", _fake_typed)
+    response = client.post(
+        "/fable/preview-llm",
+        json={
+            "body_text": "한강별빛축제\n여의도한강공원",
+            "type_code": "FESTIVAL",
+            "type_name": "축제안내",
+            "subtitles": [{"title": "요약", "mode": "llm", "content": ""}],
+        },
+        headers={"X-Admin-User-Id": "counsel"},
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["mode"] == "custom"
+    assert body["groups"] in (None, {})
+    assert body["subtitles"]["요약"] == "여의도에서 사흘간 열린다."
+    assert body["items"] == []

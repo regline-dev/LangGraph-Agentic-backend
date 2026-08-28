@@ -7,7 +7,10 @@ class PdfConfigGroupIn(BaseModel):
     group_name: str = Field(..., description="구성 그룹명")
     values_text: str = Field(default="", description="쉼표 구분 항목 라벨 또는 채워진 값")
     value: str | None = Field(
-        default=None, description="채워진 값. 있으면 생성 시 LLM을 다시 호출하지 않음"
+        default=None, description="그룹 단위 채움값(세부항목 없을 때). 라벨 목록과 같으면 본문이 아님"
+    )
+    fields: dict[str, str] | None = Field(
+        default=None, description="미리보기와 같은 세부항목 라벨→값"
     )
     chart: str | None = Field(default="none")
     layout: str | None = Field(default="vertical")
@@ -45,11 +48,17 @@ class FableGeneratePdfRequest(BaseModel):
 
 
 class FablePreviewLlmRequest(BaseModel):
-    """미리보기 클릭 시점 LLM — 이솝 채점만 / 커스텀 항목+채점."""
+    """미리보기 클릭 시점 LLM — 이솝 채점 / 커스텀은 보낸 구성 이름에 값만."""
 
     body_text: str = Field(..., description="원문 텍스트")
     type_code: str | None = Field(default=None, description="PDF 타입 코드")
     type_name: str | None = Field(default=None, description="PDF 타입 표시명")
+    configs: list[PdfConfigGroupIn] | None = Field(
+        default=None, description="사람이 정한 구성 그룹. 없으면 커스텀은 값을 안 뽑음"
+    )
+    subtitles: list[PdfSubtitleIn] | None = Field(
+        default=None, description="사람이 정한 서브타이틀. 있으면 그 제목에 값만"
+    )
 
 
 class FableDraftConfigsRequest(BaseModel):

@@ -11,6 +11,7 @@ from app.fable_pdf.pdf_generator import generate_fable_pdf
 from app.fable_pdf.pdf_type_profile import (
     PdfTypeProfile,
     is_aesop_type,
+    parse_values_text,
 )
 from app.fable_pdf.scorer import score_fable_with_llm
 from app.fable_pdf.typed_pdf import generate_typed_pdf
@@ -30,17 +31,34 @@ def _title_from_body(body_text: str) -> str:
 
 
 def _groups_from_filled_configs(type_profile: PdfTypeProfile) -> dict[str, dict[str, str]]:
-    """표에 이미 있는 이름·값으로 PDF 그룹을 만든다. LLM 없음."""
+    """미리보기와 같이 세부항목 라벨→값. 이름 목록을 본문 한 칸으로 접지 않는다."""
     groups: dict[str, dict[str, str]] = {}
     for cfg in type_profile.configs:
         name = str(cfg.get("group_name") or "").strip()
         if not name:
             continue
-        if "value" in cfg:
-            value = str(cfg.get("value") or "").strip()
-        else:
-            value = str(cfg.get("values_text") or "").strip()
-        groups[name] = {"내용": value}
+        raw_fields = cfg.get("fields")
+        if isinstance(raw_fields, dict):
+            fields = {
+                str(label).strip(): str(val or "").strip()
+                for label, val in raw_fields.items()
+                if str(label).strip() and str(val or "").strip()
+            }
+            if fields:
+                groups[name] = fields
+                continue
+        labels = parse_values_text(cfg.get("values_text"))
+        filled = str(cfg.get("value") or "").strip()
+        labels_text = str(cfg.get("values_text") or "").strip()
+        # value가 세부항목 이름 문자열과 같으면 채운 값이 아님
+        if filled and filled != labels_text:
+            if len(labels) == 1:
+                groups[name] = {labels[0]: filled}
+            else:
+                groups[name] = {name: filled}
+            continue
+        if labels:
+            groups[name] = {label: "-" for label in labels}
     return groups
 
 

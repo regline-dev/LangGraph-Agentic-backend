@@ -236,12 +236,38 @@ def draft_fable_configs_endpoint(
     }
 
 
+def _groups_to_preview_items(groups: dict) -> list[dict]:
+    """미리보기 화면용 — 그룹명과 값 한 줄. 새 항목 이름은 만들지 않는다."""
+    items: list[dict] = []
+    if not isinstance(groups, dict):
+        return items
+    for group_name, fields in groups.items():
+        if not str(group_name or "").strip():
+            continue
+        if not isinstance(fields, dict):
+            items.append(
+                {"name": str(group_name), "value": str(fields or ""), "chart": "none"}
+            )
+            continue
+        summary = str(fields.get("요약") or "").strip()
+        if summary:
+            value = summary
+        else:
+            value = " ".join(
+                str(part).strip()
+                for key, part in fields.items()
+                if str(key) != "요약" and str(part).strip()
+            )
+        items.append({"name": str(group_name), "value": value, "chart": "none"})
+    return items
+
+
 @router.post("/fable/preview-llm")
 def preview_fable_llm_endpoint(
     body: FablePreviewLlmRequest,
     request: Request,
 ) -> dict:
-    """미리보기 클릭 시점 LLM 1회. 이솝=채점만, 커스텀=항목+채점."""
+    """미리보기 LLM. 이솝=채점. 커스텀=보낸 구성 이름에 값만."""
     admin_user_id = _admin_user_id(request)
     type_code = body.type_code or "-"
     text = (body.body_text or "").strip()
@@ -256,11 +282,23 @@ def preview_fable_llm_endpoint(
         )
         raise HTTPException(status_code=400, detail="원문(body_text)이 비어 있습니다.")
 
+    config_payload = None
+    if body.configs:
+        config_payload = [
+            item.model_dump() if hasattr(item, "model_dump") else dict(item)
+            for item in body.configs
+        ]
+    subtitle_payload = None
+    if body.subtitles:
+        subtitle_payload = [
+            item.model_dump() if hasattr(item, "model_dump") else dict(item)
+            for item in body.subtitles
+        ]
     type_profile = profile_from_request(
         type_code=body.type_code,
         type_name=body.type_name,
-        configs=None,
-        subtitles=None,
+        configs=config_payload,
+        subtitles=subtitle_payload,
     )
     _log_fable(
         event="PDF 미리보기 LLM",
@@ -285,10 +323,34 @@ def preview_fable_llm_endpoint(
                 "items": [],
                 "score": scored,
             }
-        drafted = typed_scorer.draft_typed_items_with_llm(
-            text, (body.type_name or "").strip()
-        )
-        drafted = typed_scorer.overlay_colon_labeled_draft(text, drafted)
+        named_configs = [
+            cfg
+            for cfg in (type_profile.configs or [])
+            if str(cfg.get("group_name") or "").strip()
+        ]
+        named_subtitles = [
+            item
+            for item in (type_profile.subtitles or [])
+            if str(item.get("title") or "").strip()
+        ]
+        if not named_configs and not named_subtitles:
+            _log_fable(
+                event="PDF 미리보기 LLM",
+                api="POST /fable/preview-llm",
+                admin_user_id=admin_user_id,
+                type_code=type_code,
+                result="success",
+            )
+            return {
+                "mode": "custom",
+                "title": "",
+                "items": [],
+                "groups": {},
+                "subtitles": {},
+                "score": None,
+                "tags": [],
+            }
+        scored = typed_scorer.score_typed_with_llm(text, type_profile)
     except Exception as exc:  # noqa: BLE001 — API 경계 안내
         _log_fable(
             event="PDF 미리보기 LLM",
@@ -303,6 +365,10 @@ def preview_fable_llm_endpoint(
             detail=f"미리보기 채점에 실패했습니다. 다시 시도해 주세요. ({exc})",
         ) from exc
 
+    groups = scored.get("groups") if isinstance(scored.get("groups"), dict) else {}
+    subtitles = (
+        scored.get("subtitles") if isinstance(scored.get("subtitles"), dict) else {}
+    )
     _log_fable(
         event="PDF 미리보기 LLM",
         api="POST /fable/preview-llm",
@@ -312,8 +378,10 @@ def preview_fable_llm_endpoint(
     )
     return {
         "mode": "custom",
-        "title": drafted.get("title") or "",
-        "items": drafted.get("items") or [],
+        "title": scored.get("title") or "",
+        "items": _groups_to_preview_items(groups),
+        "groups": groups,
+        "subtitles": subtitles,
         "score": None,
-        "tags": drafted.get("tags") or [],
+        "tags": scored.get("tags") or [],
     }

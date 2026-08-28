@@ -5,6 +5,30 @@ PDF 모드용 LangGraph Agentic 백엔드 계획·구조·구현 변경 이력.
 
 ---
 
+## 2026-08-25 (v3)
+
+**변경 파일**: app/tools/ocr_receipt.py, app/ocr/{turn,session}.py, app/schemas/ocr.py, tests/test_ocr_*
+
+**변경 내용**: OCR 「조용한 유실」방지 — Vision 원문(`raw_text`) 응답, 미매칭 줄 되물음·해석 제안, 수량 뒤 쉼표 허용. box/잔은 메인 정규식에 안 넣고 제안층만.
+
+---
+
+## 2026-08-25 (v2)
+
+**변경 파일**: app/tools/ocr_receipt.py, app/ocr/{turn,session}.py, tests/test_ocr_*
+
+**변경 내용**: OCR 테스트 문제점 중 상·중·정책분 — 동일 품명 병합/충돌 되물음, 합계·금액 검산, 금액 단독 안내. 확정 금액은 계산값만.
+
+---
+
+## 2026-08-25 (v1)
+
+**변경 파일**: app/ocr/*, app/tools/ocr_receipt.py, app/api/ocr.py, tests/test_ocr_*.py
+
+**변경 내용**: OCR 영수증 Tool #1·#2·#3과 `POST /ocr/turn` · 세션 클리어 · 2페이지 PDF. 판단은 Agent만. Vision은 mock 가능, 키는 `.env`만.
+
+---
+
 ## 2026-08-20 (v4)
 
 **변경 파일**: .env
