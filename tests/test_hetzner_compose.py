@@ -46,6 +46,19 @@ def test_env_hetzner_example_lists_required_keys() -> None:
         "QDRANT_PORT",
         "QDRANT_COLLECTION",
         "EMBEDDING_BACKEND",
+        "GOOGLE_VISION_API_KEY",
+        "OCR_USE_GRAPH",
+        "DEBUG_ONOFF",
     ):
         assert key in text, f"{key} 가 .env.hetzner.example 에 있어야 한다"
     assert "8010" in text
+
+
+def test_backend_python_hetzner_example_has_agent_ocr_relay_url() -> None:
+    """OCR은 FAQ :9000 중계 → compose 서비스명 langgraph_agentic 이어야 한다."""
+    path = BACKEND_ROOT.parent / "backend_python" / ".env.hetzner.example"
+    if not path.is_file():
+        pytest.skip(f"모노레포 FAQ env 예시 없음: {path}")
+    text = path.read_text(encoding="utf-8")
+    assert "AGENT_API_BASE_URL" in text
+    assert "http://langgraph_agentic:8010" in text

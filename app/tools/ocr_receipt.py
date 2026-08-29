@@ -105,8 +105,10 @@ _QTY_UNIT_PATTERN = "|".join(
 )
 _QTY_UNIT_ALT = rf"(?:개|EA|ea|{_QTY_UNIT_PATTERN})"
 
-# 품목명은 숫자(수량) 나오기 전까지 이어지는 단어 전부를 잡는다(한 단어만 자르지 않음)
-_NAME_WORDS = r"[가-힣A-Za-z0-9]+(?:\s+[가-힣A-Za-z0-9]+)*?"
+# 품목명은 숫자(수량) 나오기 전까지 이어지는 단어 전부.
+# 콜론·하이픈 등은 코드/SKU형 이름에 쓰이므로 글자 집합에 포함한다(특정 품목명 분기는 없음).
+_NAME_TOKEN = r"[가-힣A-Za-z0-9:_：._-]+"
+_NAME_WORDS = rf"{_NAME_TOKEN}(?:\s+{_NAME_TOKEN})*?"
 
 _LINE = re.compile(
     rf"(?P<name>{_NAME_WORDS})\s+"
@@ -786,10 +788,18 @@ def extract_price_from_text(text: str) -> int | None:
 
 
 def guess_item_name(text: str) -> str:
+    """수량·단가가 있으면 그 앞까지, 없으면 줄 전체를 품목명으로 본다."""
     cleaned = (text or "").strip()
     if not cleaned:
         return ""
-    return cleaned.split()[0]
+    matched = re.match(
+        rf"(?P<name>{_NAME_WORDS})(?=\s+(?:수량\s*)?\d+\s*{_QTY_UNIT_ALT}|$)",
+        cleaned,
+        flags=re.IGNORECASE,
+    )
+    if matched:
+        return matched.group("name").strip()
+    return cleaned
 
 
 def is_affirmative(text: str) -> bool:

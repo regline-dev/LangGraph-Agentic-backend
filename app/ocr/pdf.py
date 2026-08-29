@@ -116,6 +116,37 @@ def _fmt_num(value: int | None) -> str:
     return f"{value:,}"
 
 
+def _supplier_table_style_cmds() -> list:
+    """공급자 표 스타일. GRID·3열 전체 배경은 비고 SPAN을 갈라지게 하므로 쓰지 않는다."""
+    remarks_row = 5
+    style_cmds = [
+        ("SPAN", (0, 0), (0, remarks_row)),  # 공급자 — 전 행
+        ("SPAN", (2, 0), (4, 0)),  # 등록번호 값
+        ("SPAN", (2, 2), (4, 2)),  # 사업장주소 값
+        ("SPAN", (2, remarks_row), (4, remarks_row)),  # 비고 값
+        ("BACKGROUND", (0, 0), (0, -1), _LABEL_BG),
+        ("BACKGROUND", (1, 0), (1, -1), _LABEL_BG),
+        ("BACKGROUND", (3, 1), (3, 1), _LABEL_BG),  # 대표자
+        ("BACKGROUND", (3, 3), (3, 3), _LABEL_BG),  # 종목
+        ("BACKGROUND", (3, 4), (3, 4), _LABEL_BG),  # 총공급대가
+        ("BOX", (0, 0), (-1, -1), 0.6, _BORDER),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 4),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+        ("TOPPADDING", (0, 0), (-1, -1), 3),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+    ]
+    for row_idx in range(remarks_row):
+        style_cmds.append(("LINEBELOW", (0, row_idx), (-1, row_idx), 0.6, _BORDER))
+    style_cmds.append(("LINEAFTER", (0, 0), (0, -1), 0.6, _BORDER))
+    style_cmds.append(("LINEAFTER", (1, 0), (1, -1), 0.6, _BORDER))
+    # SPAN으로 합친 행(등록번호·주소·비고)에는 2·3열 세로선을 그리지 않는다
+    for row_idx in (1, 3, 4):
+        style_cmds.append(("LINEAFTER", (2, row_idx), (2, row_idx), 0.6, _BORDER))
+        style_cmds.append(("LINEAFTER", (3, row_idx), (3, row_idx), 0.6, _BORDER))
+    return style_cmds
+
+
 def _supplier_table(styles: dict[str, ParagraphStyle], grand_total: int) -> Table:
     label = styles["label"]
     value = styles["value"]
@@ -142,25 +173,7 @@ def _supplier_table(styles: dict[str, ParagraphStyle], grand_total: int) -> Tabl
         _CONTENT_WIDTH * 0.28,
     ]
     table = Table(rows, colWidths=col_w)
-    table.setStyle(
-        TableStyle(
-            [
-                ("GRID", (0, 0), (-1, -1), 0.6, _BORDER),
-                ("SPAN", (0, 0), (0, 5)),  # "공급자" — 전체 행 병합
-                ("SPAN", (2, 0), (4, 0)),  # 등록번호 값
-                ("SPAN", (2, 2), (4, 2)),  # 사업장주소 값
-                ("SPAN", (2, 5), (4, 5)),  # 비고 값
-                ("BACKGROUND", (0, 0), (0, -1), _LABEL_BG),
-                ("BACKGROUND", (1, 0), (1, -1), _LABEL_BG),
-                ("BACKGROUND", (3, 0), (3, -1), _LABEL_BG),
-                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-                ("LEFTPADDING", (0, 0), (-1, -1), 4),
-                ("RIGHTPADDING", (0, 0), (-1, -1), 4),
-                ("TOPPADDING", (0, 0), (-1, -1), 3),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
-            ]
-        )
-    )
+    table.setStyle(TableStyle(_supplier_table_style_cmds()))
     return table
 
 

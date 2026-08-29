@@ -10,6 +10,7 @@ from app.tools.ocr_receipt import (
     classify_intent,
     completeness,
     extract_doc_total_ocr,
+    guess_item_name,
     image_fail_reason,
     is_amount_only_mention,
     merge_line_lists,
@@ -214,6 +215,22 @@ def test_multi_word_item_name_not_truncated() -> None:
 
     lines2 = parse_lines_from_text("프린터 토너 카트리지 1개 89,000원")
     assert lines2[0].name == "프린터 토너 카트리지"
+
+
+def test_item_name_keeps_colon_hyphen_and_following_token() -> None:
+    """품목명 글자에 콜론·하이픈이 있으면 숫자 앞까지 이름을 자르지 않는다."""
+    lines = parse_lines_from_text("ID: abjhalbbkk 10개 단가 1000원")
+    assert len(lines) == 1
+    assert lines[0].name == "ID: abjhalbbkk"
+
+    lines2 = parse_lines_from_text("SKU-99 2개 단가 500원")
+    assert lines2[0].name == "SKU-99"
+
+
+def test_guess_item_name_keeps_phrase_until_qty() -> None:
+    """첫 공백 토큰만 쓰지 않고, 수량·단가 앞까지를 품목명으로 본다."""
+    assert guess_item_name("ID: abjhalbbkk") == "ID: abjhalbbkk"
+    assert guess_item_name("노트북 거치대 5개") == "노트북 거치대"
 
 
 def test_suggest_item_handles_unit_word_before_price_korean() -> None:
